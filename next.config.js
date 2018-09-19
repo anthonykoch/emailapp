@@ -17,6 +17,7 @@ module.exports = {
             ],
           },
         },
+        'sass-loader?precision=8',
       ],
     })
 

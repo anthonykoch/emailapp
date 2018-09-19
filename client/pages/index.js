@@ -1,4 +1,4 @@
-import React from 'react'
+// @flow
 
 const Index = () => {
   return (
