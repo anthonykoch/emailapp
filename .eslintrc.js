@@ -1,6 +1,9 @@
 module.exports = {
+
   "env": {
-    "node": true
+    "node": true,
+    "es6": true,
+    "node": true,
   },
   "extends": [
     "standard",
@@ -8,6 +11,7 @@ module.exports = {
   ],
   "parserOptions": {
     "parser": "babel-eslint",
+    "ecmaVersion": 2017,
     "ecmaFeatures": {
       "jsx": true
     },

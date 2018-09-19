@@ -1,7 +1,7 @@
 
 # Email App
 
-A mock email application built with Feathers JS backend and
+An (in progress) mock email application built with Feathers JS backend and SSR React
 
 Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
@@ -14,6 +14,19 @@ npm run dev
 ```
 
 ## Setup (Starting from scratch)
+
+
+### Feathers Backend
+
+It's better to install the backend first because feathers wants to overwrite the package.json completely rather than merge.
+
+```
+npm install @feathersjs/cli -g
+npm i -g @feathers/cli
+```
+
+... TODO
+
 
 ```bash
 npm install --save next react react-dom
@@ -90,6 +103,10 @@ module.exports = {
   },
 }
 ```
+
+
+
+
 
 ## Todo
 

@@ -1,7 +1,11 @@
-export default () => {
+import React from 'react'
+
+const Index = () => {
   return (
     <div>
-      memes
+      Hey!
     </div>
   )
 }
+
+export default Index
