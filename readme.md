@@ -3,6 +3,9 @@
 
 A mock email application built with Feathers JS backend and
 
+Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
+
+
 ## Setup
 
 ```bash
