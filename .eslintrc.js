@@ -8,6 +8,10 @@ module.exports = {
   "extends": [
     "standard",
     "plugin:react/recommended",
+    "plugin:flowtype/recommended",
+  ],
+  "plugins": [
+    "flowtype"
   ],
   "parserOptions": {
     "parser": "babel-eslint",
@@ -24,6 +28,7 @@ module.exports = {
     "propWrapperFunctions": ["forbidExtraProps"]
   },
   "rules": {
+    "react/react-in-jsx-scope": [0],
     "comma-dangle": [
       2,
       "always-multiline"
