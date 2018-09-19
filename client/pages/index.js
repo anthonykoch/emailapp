@@ -1,10 +1,12 @@
 // @flow
 
+import Page from '@/layouts/main'
+
 const Index = () => {
   return (
-    <div>
+    <Page>
       Hey!
-    </div>
+    </Page>
   )
 }
 

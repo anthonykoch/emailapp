@@ -5,7 +5,7 @@
   "description": "A mock email app frontend and backend",
   "main": "index.js",
   "scripts": {
-    "next:dev": "nodemon -w server -w config server/index.js",
+    "next:dev": "nodemon -w .postcssrc.js -w next.config.js -w server -w config server/index.js",
     "next:build": "next build",
     "next:start": "next start"
   },
@@ -17,7 +17,7 @@
     "test": "test/"
   },
   "engines": {
-    "node": "^9.0.0",
+    "node": "9.0.0",
     "npm": ">= 3.0.0"
   },
   "author": "Anthony Koch",
@@ -25,17 +25,13 @@
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.42",
     "autoprefixer": "9.1.5",
-    "css-loader": "1.0.0",
-    "flow-bin": "0.81.0",
-    "next": "6.1.2",
-    "node-sass": "4.9.3",
+    "next": "^7.0.0",
+    "normalize.css": "^8.0.0",
     "react": "16.5.2",
-    "react-dom": "16.5.2",
-    "style-loader": "0.23.0",
-    "styled-components": "3.4.9"
+    "react-dom": "16.5.2"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.42",
+    "@babel/preset-flow": "7.0.0-beta.42",
     "@feathersjs/configuration": "2.0.3",
     "@feathersjs/errors": "3.3.3",
     "@feathersjs/express": "1.2.6",
@@ -43,9 +39,8 @@
     "@feathersjs/socketio": "3.2.5",
     "babel-eslint": "9.0.0",
     "compression": "1.7.3",
-    "@babel/preset-flow": "7.0.0-beta.42",
-    "babel-plugin-styled-components": "1.7.1",
     "cors": "2.8.4",
+    "css-loader": "^1.0.0",
     "cssnano": "4.1.0",
     "eslint": "5.6.0",
     "eslint-config-standard": "12.0.0",
@@ -55,15 +50,24 @@
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-react": "7.11.1",
     "eslint-plugin-standard": "4.0.0",
+    "file-loader": "^2.0.0",
+    "flow-bin": "0.81.0",
     "glob": "7.1.3",
     "helmet": "3.13.0",
+    "mini-css-extract-plugin": "^0.4.3",
     "mocha": "5.2.0",
-    "module-alias": "^2.1.0",
-    "nodemon": "^1.18.4",
-    "postcss-loader": "3.0.0",
+    "module-alias": "2.1.0",
+    "node-sass": "4.9.3",
+    "nodemon": "1.18.4",
+    "postcss-loader": "^3.0.0",
     "request": "2.88.0",
     "request-promise": "4.2.2",
     "serve-favicon": "2.5.0",
+    "style-loader": "^0.23.0",
+    "styled-jsx-plugin-postcss": "0.1.3",
+    "styled-jsx-plugin-sass": "0.2.4",
+    "to-string-loader": "^1.1.5",
+    "url-loader": "^1.1.1",
     "winston": "3.0.0"
   },
   "browserslist": [

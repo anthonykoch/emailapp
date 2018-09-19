@@ -1,13 +1,19 @@
 {
   "presets": [
-    "next/babel",
+   [ "next/babel", {
+      "styled-jsx": {
+        "plugins": [
+          "styled-jsx-plugin-postcss",
+          ["styled-jsx-plugin-sass", {
+              "sassOptions": {
+                "includePaths": ["client/styles"],
+                "precision": 2,
+              },
+            },
+          ],
+        ],
+      },
+   }],
     "@babel/preset-flow"
   ],
-  "plugins": [
-    ["styled-components", {
-      "ssr": true,
-      "displayName": true,
-      // "preprocess": false
-    }]
-  ]
 }
