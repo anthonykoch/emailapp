@@ -3,12 +3,13 @@
   "name": "emailapp",
   "version": "1.0.0",
   "description": "A mock email app frontend and backend",
-  "main": "index.js",
+  "main": "register.js",
   "scripts": {
-    "dev": "nodemon -r esm -w .postcssrc.js -w next.config.js -w server -w config server/index.js -w client/routes.js",
+    "dev": "nodemon -w .postcssrc.js -w next.config.js -w server -w config server/register.js -w client/routes.js",
     "build": "next build client",
-    "start": "cross-env NODE_ENV=production node -r esm server/index.js"
+    "start": "cross-env NODE_ENV=production node server/register.js"
   },
+  "@std/esm": "cjs",
   "_moduleAliases": {
     "@": "server",
     "@client": "client"
@@ -27,13 +28,17 @@
     "@babel/polyfill": "7.0.0-beta.42",
     "autoprefixer": "9.1.5",
     "esm": "^3.0.84",
+    "knex": "^0.15.2",
     "mobx": "^5.1.2",
     "mobx-react": "^5.2.8",
     "next": "^7.0.0",
     "next-routes": "^1.4.2",
     "normalize.css": "^8.0.0",
+    "objection": "^1.3.0",
+    "pg": "^7.4.3",
     "react": "16.5.2",
-    "react-dom": "16.5.2"
+    "react-dom": "16.5.2",
+    "validatorjs": "^3.14.2"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",

@@ -44,4 +44,4 @@ app.use(express.errorHandler({ logger }))
 
 app.hooks(appHooks)
 
-module.exports = app
+export default app
