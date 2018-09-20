@@ -21,7 +21,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10,
+              limit: 10000,
               fallback: 'file-loader',
               publicPath: '/_next/static/images/',
               outputPath: `${isServer ? '../' : ''}static/images/`,
