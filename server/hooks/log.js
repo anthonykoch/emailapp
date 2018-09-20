@@ -1,13 +1,13 @@
 // A hook that logs service method before, after and error
 // See https://github.com/winstonjs/winston for documentation
 // about the logger.
-const logger = require('@/logger')
-const util = require('util')
+import logger from '@/logger'
+import util from 'util'
 
 // To see more detailed messages, uncomment the following line:
 // logger.level = 'debug';
 
-module.exports = function () {
+export default function () {
   return context => {
     // This debugs the service call and a stringified version of the hook context
     // You can customize the message (and logger) to your needs

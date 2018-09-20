@@ -1,18 +1,15 @@
 /* eslint-disable no-console */
+import 'module-alias/register'
 
-require('module-alias/register')
+import logger from '@/logger'
+import app from '@/app'
+import { app as nextApp } from '@/next'
 
-const logger = require('./logger')
-const app = require('./app')
 const port = app.get('port')
-const nextApp = require('./next').app
 
 process.on('unhandledRejection', (reason, p) =>
   logger.error('Unhandled Rejection at: Promise ', p, reason)
 )
-
-console.log({ cwd: process.cwd() });
-
 
 nextApp.prepare().then(() => {
   const server = app.listen(port)

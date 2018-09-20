@@ -1,7 +1,4 @@
 module.exports = {
-  "globals": {
-    "React": true,
-  },
   "env": {
     "node": true,
     "es6": true,
@@ -17,7 +14,7 @@ module.exports = {
   ],
   "parserOptions": {
     "parser": "babel-eslint",
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2018,
     "ecmaFeatures": {
       "jsx": true
     },
@@ -30,7 +27,6 @@ module.exports = {
     "propWrapperFunctions": ["forbidExtraProps"]
   },
   "rules": {
-    "react/react-in-jsx-scope": [0],
     "comma-dangle": [
       2,
       "always-multiline"

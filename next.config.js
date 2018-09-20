@@ -1,13 +1,9 @@
-'use strict';
+import path from 'path'
 
-const path = require('path')
-
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 module.exports = {
-
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
-
     config.resolve.alias['@'] = path.join(__dirname, 'client')
 
     const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -39,8 +35,8 @@ module.exports = {
             loader: require('styled-jsx/webpack').loader,
             options: {
               type: 'global',
-            }
-          }
+            },
+          },
         ],
       },
     ]

@@ -1,7 +1,7 @@
 
-const { handle, isFeathersService } = require('@/next')
+import { handle, isFeathersService } from '@/next'
 
-module.exports = function (options = {}) {
+export default function (options = {}) {
   return function next(req, res, next) {
     if (isFeathersService(req.originalUrl)) {
       return next()
