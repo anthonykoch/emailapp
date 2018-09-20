@@ -1,6 +1,3 @@
-// import path from 'path'
-// import favicon from 'serve-favicon'
-
 import compress from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
@@ -19,7 +16,7 @@ import channels from '@/channels'
 const app = express(feathers())
 
 // Load app configuration
-app.configure(configuration())
+app.configure(configuration(__dirname))
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet())
 app.use(cors())

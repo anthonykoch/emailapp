@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import 'module-alias/register'
 
+import './bootstrap'
+
 import logger from '@/logger'
 import app from '@/app'
 import { app as nextApp } from '@/next'

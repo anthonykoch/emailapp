@@ -5,9 +5,9 @@
   "description": "A mock email app frontend and backend",
   "main": "register.js",
   "scripts": {
-    "dev": "nodemon -w .postcssrc.js -w next.config.js -w server -w config server/register.js -w client/routes.js",
+    "dev": "cross-env NODE_ENV='development' nodemon -w .postcssrc.js -w next.config.js -w server -w config server/register.js -w client/routes.js",
     "build": "next build client",
-    "start": "cross-env NODE_ENV=production node server/register.js"
+    "start": "cross-env NODE_ENV='production' node server/register.js"
   },
   "@std/esm": "cjs",
   "_moduleAliases": {
