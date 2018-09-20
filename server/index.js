@@ -11,6 +11,9 @@ process.on('unhandledRejection', (reason, p) =>
   logger.error('Unhandled Rejection at: Promise ', p, reason)
 )
 
+console.log({ cwd: process.cwd() });
+
+
 nextApp.prepare().then(() => {
   const server = app.listen(port)
 

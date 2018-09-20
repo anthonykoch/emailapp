@@ -5,6 +5,7 @@ const path = require('path')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
 
     config.resolve.alias['@'] = path.join(__dirname, 'client')
