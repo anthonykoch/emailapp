@@ -5,12 +5,13 @@
   "description": "A mock email app frontend and backend",
   "main": "index.js",
   "scripts": {
-    "next:dev": "nodemon -w .postcssrc.js -w next.config.js -w server -w config server/index.js",
+    "next:dev": "nodemon -r esm -w .postcssrc.js -w next.config.js -w server -w config server/index.js -w client/routes.js",
     "next:build": "next build",
     "next:start": "next start"
   },
   "_moduleAliases": {
-    "@": "server"
+    "@": "server",
+    "@client": "client"
   },
   "directories": {
     "lib": "server",
@@ -25,9 +26,11 @@
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.42",
     "autoprefixer": "9.1.5",
+    "esm": "^3.0.84",
     "mobx": "^5.1.2",
     "mobx-react": "^5.2.8",
     "next": "^7.0.0",
+    "next-routes": "^1.4.2",
     "normalize.css": "^8.0.0",
     "react": "16.5.2",
     "react-dom": "16.5.2"

@@ -1,10 +1,11 @@
-const next = require('next')
-const { useStaticRendering } = require('mobx-react')
+import next from 'next'
+import { useStaticRendering } from 'mobx-react'
 
+import routes from '@client/routes'
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './client' })
-const handle = app.getRequestHandler()
+const handle = routes.getRequestHandler(app)
 
 useStaticRendering(true)
 
