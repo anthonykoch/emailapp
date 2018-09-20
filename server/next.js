@@ -1,8 +1,12 @@
 const next = require('next')
+const { useStaticRendering } = require('mobx-react')
+
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './client' })
 const handle = app.getRequestHandler()
+
+useStaticRendering(true)
 
 const feathersServices = [
   // /users

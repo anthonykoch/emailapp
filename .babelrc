@@ -16,4 +16,11 @@
    }],
     "@babel/preset-flow"
   ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": false,
+      "decoratorsBeforeExport": false,
+    }],
+    "@babel/plugin-proposal-class-properties",
+  ],
 }

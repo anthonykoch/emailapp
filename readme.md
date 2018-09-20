@@ -6,6 +6,14 @@ An (in progress) mock email application built with Feathers JS backend and SSR R
 Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
 
+
+### Uses
+
+- next.js
+- mobx (https://github.com/zeit/next.js/blob/master/examples/with-mobx/)
+- styled-jsx
+
+
 ## Setup
 
 ```bash
