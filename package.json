@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "next:dev": "nodemon -r esm -w .postcssrc.js -w next.config.js -w server -w config server/index.js -w client/routes.js",
-    "next:build": "next build",
-    "next:start": "next start"
+    "next:build": "next build client",
+    "next:start": "cross-env NODE_ENV=production next start client"
   },
   "_moduleAliases": {
     "@": "server",

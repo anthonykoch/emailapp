@@ -8,10 +8,16 @@ Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
 ### Uses
 
-- next.js
-- mobx (using this as a guide https://github.com/zeit/next.js/blob/master/examples/with-mobx/)
+- next.js 7
+- mobx
 - styled-jsx
 - feathersjs
+- flowtype
+
+## Credits to the homies
+
+- http://www.albertgao.xyz/2018/02/04/how-to-do-server-side-rendering-with-feathersjs-and-nextjs/
+- https://github.com/zeit/next.js/blob/master/examples/with-mobx
 
 
 ## Setup

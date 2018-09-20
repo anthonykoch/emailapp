@@ -12,7 +12,9 @@ class Index extends React.Component {
       <Page>
         <StoreContext.Consumer>
           {({ store }) => (
-            <div></div>
+            <div>
+              <img src={require('@/images/plane.svg')} alt="plane!" />
+            </div>
           )}
         </StoreContext.Consumer>
       </Page>

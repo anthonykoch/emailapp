@@ -2,12 +2,16 @@
 
 const path = require('path')
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
 
     config.resolve.alias['@'] = path.join(__dirname, 'client')
+
+    const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
+    console.log('env:', process.env.NODE_ENV)
 
     config.module.rules = [
       ...config.module.rules,
@@ -17,24 +21,15 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
+              limit: 10,
               fallback: 'file-loader',
-              // publicPath: '/_next/static/images/',
-              // outputPath: `${isServer ? '../' : ''}static/images/`,
-              name: 'images/[name].[hash:8].[ext]',
+              publicPath: '/_next/static/images/',
+              outputPath: `${isServer ? '../' : ''}static/images/`,
+              name: '[name].[ext]',
             },
           },
         ],
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     // { loader: MiniCssExtractPlugin.loader },
-      //     'to-string-loader',
-      //     'css-loader',
-      //     'postcss-loader',
-      //   ],
-      // },
       {
         test: /\.css$/,
         use: [
@@ -49,11 +44,9 @@ module.exports = {
       },
     ]
 
-
-
-
     config.plugins = [
       ...config.plugins,
+      // { loader: MiniCssExtractPlugin.loader },
       // new MiniCssExtractPlugin({
       //   filename: '[name].[hash:8 ].css',
       //   chunkFilename: '[id].[hash:8].css',
