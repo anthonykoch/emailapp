@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path')
 
 // import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
