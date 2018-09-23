@@ -1,5 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 
-export default function (app) {
+import emails, { route as emailsRoute } from '@/services/emails/emails.service'
 
+export const routes = [
+  emailsRoute,
+]
+
+export default function (app) {
+  app.configure(emails)
 }

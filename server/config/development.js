@@ -10,7 +10,14 @@ module.exports = {
   },
   postgres: {
     client: 'pg',
-    connection: 'postgres://postgres:@localhost:5432/app',
+    connection: 'postgres://postgres:password@db:5432/app',
+    // connection: {
+    //   host: 'localhost',
+    //   port: 5432,
+    //   user: 'postgres',
+    //   password: 'password',
+    //   database: 'app',
+    // },
     seeds: {
       directory: path.join(__dirname, '../database/seeds'),
     },

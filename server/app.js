@@ -8,10 +8,14 @@ import configuration from '@feathersjs/configuration'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
 
-import middleware from '@/middleware'
 import services from '@/services'
 import appHooks from '@/app.hooks'
 import channels from '@/channels'
+
+// NOTE: Import this after services so we can obtain a list of services
+import middleware from '@/middleware'
+
+import knex from '@/knex'
 
 const app = express(feathers())
 
@@ -27,6 +31,8 @@ app.use(express.urlencoded({ extended: true }))
 // Set up Plugins and providers
 app.configure(express.rest())
 app.configure(socketio())
+
+app.configure(knex)
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware)

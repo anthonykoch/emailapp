@@ -27,6 +27,7 @@ module.exports = {
     "propWrapperFunctions": ["forbidExtraProps"]
   },
   "rules": {
+    "space-infix-ops": [0],
     "comma-dangle": [
       2,
       "always-multiline"

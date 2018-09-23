@@ -6,13 +6,16 @@ An (in progress) mock email application built with Feathers JS backend and SSR R
 Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
 
-### Uses
+## Uses
 
-- next.js 7
+- next.js v7
 - mobx
 - styled-jsx
 - feathersjs
-- flowtype
+- postgres
+- docker
+- flowtype on the client and server
+- ES6/7 on the client and server
 
 ## Credits to the homies
 
@@ -22,14 +25,29 @@ Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
 ## Setup
 
-```bash
-npm install
-npm run next:dev
+First, install docker and docker compose on your machine and then run the following commands.
+
 ```
+npm run docker:build
+npm run docker:up
+```
+
+Once `docker:build` is run, only docker:up needs to be run from now on.
+
+### Migrations and seeding
+
+```bash
+# Log into the web image
+docker exec -it emailapp_web sh -l
+
+npm run db:setup
+```
+
+Do note that you can also log into psql by running logging into the postgres container with `docker exec -it emailapp_web sh -l` and running `psql -U postgres`.
 
 
 ## Todo
 
 - Add https://stylelint.io/
-- Read https://www.styled-components.com/docs/api#flow
 - Read https://github.com/zeit/next.js/tree/canary/examples/ssr-caching
+

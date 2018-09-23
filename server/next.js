@@ -9,12 +9,3 @@ export const handle = routes.getRequestHandler(app)
 
 useStaticRendering(true)
 
-const feathersServices = [
-  // /users
-]
-
-export const isFeathersService = (path) =>
-  feathersServices.some((item) =>
-    path.indexOf(item) > -1
-  )
-

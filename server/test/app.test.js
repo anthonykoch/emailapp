@@ -12,12 +12,12 @@ const getUrl = pathname => url.format({
 })
 
 describe('Feathers application tests', () => {
-  before(function(done) {
+  before(function (done) {
     this.server = app.listen(port)
     this.server.once('listening', () => done())
   })
 
-  after(function(done) {
+  after(function (done) {
     this.server.close(done)
   })
 
@@ -27,13 +27,13 @@ describe('Feathers application tests', () => {
     )
   })
 
-  describe('404', function() {
+  describe('404', function () {
     it('shows a 404 HTML page', () => {
       return rp({
         url: getUrl('path/to/nowhere'),
         headers: {
-          'Accept': 'text/html'
-        }
+          'Accept': 'text/html',
+        },
       }).catch(res => {
         assert.equal(res.statusCode, 404)
         assert.ok(res.error.indexOf('<html>') !== -1)
@@ -43,7 +43,7 @@ describe('Feathers application tests', () => {
     it('shows a 404 JSON error without stack trace', () => {
       return rp({
         url: getUrl('path/to/nowhere'),
-        json: true
+        json: true,
       }).catch(res => {
         assert.equal(res.statusCode, 404)
         assert.equal(res.error.code, 404)

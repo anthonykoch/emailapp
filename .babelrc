@@ -1,26 +1,19 @@
 {
   "presets": [
-   [ "next/babel", {
+   ["next/babel", {
       "styled-jsx": {
         "plugins": [
-          "styled-jsx-plugin-postcss",
-          ["styled-jsx-plugin-sass", {
-              "sassOptions": {
-                "includePaths": ["client/styles"],
-                "precision": 2,
-              },
-            },
-          ],
-        ],
-      },
+          "styled-jsx-plugin-postcss"
+        ]
+      }
    }],
     "@babel/preset-flow"
   ],
   "plugins": [
     ["@babel/plugin-proposal-decorators", {
       "legacy": false,
-      "decoratorsBeforeExport": false,
+      "decoratorsBeforeExport": false
     }],
-    "@babel/plugin-proposal-class-properties",
-  ],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
