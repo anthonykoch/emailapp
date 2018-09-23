@@ -23,7 +23,7 @@ const Main = ({ children, title }: Props) => {
       <style jsx global>{`
 
         @import 'normalize.css';
-        @import 'variables.css';
+        @import 'init.css';
 
         *,
         *:before,
