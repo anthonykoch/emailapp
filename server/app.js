@@ -43,7 +43,14 @@ app.configure(channels)
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound())
-app.use(express.errorHandler({ logger }))
+app.use(express.errorHandler({
+  logger,
+  // TODO: Customize 404 and 500 for these
+  // html: {
+  //   404: 'path/to/notFound.html',
+  //   500: 'there/will/be/robots.html'
+  // },
+}))
 
 app.hooks(appHooks)
 

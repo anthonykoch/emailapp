@@ -16,10 +16,6 @@ export class Service {
 
   async get(id, params) {
     return this.db.table(table).where('id', id)
-
-    // return {
-    //   id, text: `A new message with ID: ${id}!`,
-    // }
   }
 
   async create(data, params) {

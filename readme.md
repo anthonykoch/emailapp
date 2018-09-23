@@ -48,6 +48,7 @@ Do note that you can also log into psql by running logging into the postgres con
 
 ## Todo
 
+- Figure out 404 and 500 pages on the feathersjs side
 - Add https://stylelint.io/
 - Read https://github.com/zeit/next.js/tree/canary/examples/ssr-caching
 
