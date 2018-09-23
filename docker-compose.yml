@@ -21,8 +21,8 @@ services:
       # We don't want no node modules
       - "./server:/home/app/server"
       - "./client:/home/app/client"
-      - "./.postcssrc.js:/home/app/.postcssrc.js"
       - "./.babelrc:/home/app/.babelrc"
+      - "./postcss.config.js:/home/app/postcss.config.js"
       - "./package.json:/home/app/package.json"
       - "./knexfile.js:/home/app/knexfile.js"
       - "./next.config.js:/home/app/next.config.js"

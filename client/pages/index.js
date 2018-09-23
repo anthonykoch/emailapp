@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 
 import Page from '@/layouts/main'
 import StoreContext from '@/context/store'
+import 'normalize.css'
 
 @observer
 class Index extends React.Component {
@@ -14,7 +15,7 @@ class Index extends React.Component {
         <StoreContext.Consumer>
           {({ store }) => (
             <div>
-              <img src={require('@/images/plane.svg')} alt="plane!" />
+
             </div>
           )}
         </StoreContext.Consumer>

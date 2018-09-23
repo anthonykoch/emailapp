@@ -1,4 +1,5 @@
 const path = require('path')
+const withCSS = require('@zeit/next-css')
 
 // import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
@@ -6,6 +7,7 @@ module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
     config.resolve.alias['@'] = path.join(__dirname, 'client')
 
+    // eslint-disable-next-line no-unused-vars
     const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
     console.log('env:', process.env.NODE_ENV)
@@ -27,29 +29,10 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.css$/,
-        use: [
-          defaultLoaders.babel,
-          {
-            loader: require('styled-jsx/webpack').loader,
-            options: {
-              type: 'global',
-            },
-          },
-        ],
-      },
-    ]
-
-    config.plugins = [
-      ...config.plugins,
-      // { loader: MiniCssExtractPlugin.loader },
-      // new MiniCssExtractPlugin({
-      //   filename: '[name].[hash:8 ].css',
-      //   chunkFilename: '[id].[hash:8].css',
-      // }),
     ]
 
     return config
   },
 }
+
+module.exports = withCSS(module.exports)

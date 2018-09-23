@@ -4,6 +4,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 
 import Page from '@/layouts/main'
+import DashboardHeader from '@/components/DashboardHeader'
 import StoreContext from '@/context/store'
 
 @observer
@@ -13,7 +14,9 @@ class Index extends React.Component {
       <Page>
         <StoreContext.Consumer>
           {({ store }) => (
-            <div></div>
+            <div>
+              <DashboardHeader></DashboardHeader>
+            </div>
           )}
         </StoreContext.Consumer>
       </Page>

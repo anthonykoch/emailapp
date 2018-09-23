@@ -10,7 +10,7 @@ Design credit goes to -> https://dribbble.com/shots/3903437-Dashboard-message
 
 - next.js v7
 - mobx
-- styled-jsx
+- react-emotion (styled-components type of thing)
 - feathersjs
 - postgres
 - docker
