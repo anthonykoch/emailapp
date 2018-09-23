@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Head from 'next/head'
-import normalize from 'normalize.css'
 
 type Props = {
   title?: string,
@@ -21,10 +20,10 @@ const Main = ({ children, title }: Props) => {
 
         <title>{title}</title>
       </Head>
-      <style jsx global>{normalize}</style>
       <style jsx global>{`
 
-        @import 'variables';
+        @import 'normalize.css';
+        @import 'variables.css';
 
         *,
         *:before,
