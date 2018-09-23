@@ -1,0 +1,41 @@
+# https://docs.docker.com/samples/library/postgres/#arbitrary---user-notes
+# https://medium.com/datreeio/node-js-docker-workflow-b9d936c931e1
+# https://www.youtube.com/watch?v=aetqo2nkQcA
+# https://gist.github.com/guillaumejacquart/676627dd862e70fd6e45e8361f513abf#file-babelrc-json
+
+version: '3.3'
+
+services:
+  web:
+    build: .
+    container_name: emailapp_web
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://todoapp@postgres/todos
+      NODE_ENV: 'development'
+    volumes:
+      # We don't want no node modules
+      - "./server:/home/app/server"
+      - "./client:/home/app/client"
+      - "./postcssrc.js:/home/app/postcssrc.js"
+      - "./.babelrc:/home/app/.babelrc"
+      - "./package.json:/home/app/package.json"
+      - "./knexfile.js:/home/app/knexfile.js"
+      - "./next.config.js:/home/app/next.config.js"
+      - "./register.js:/home/app/register.js"
+      - "./.eslintrc.js:/home/app/.eslintrc.js"
+  db:
+    container_name: emailapp_pg
+    image: postgres:11-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: 'app'
+      # DO NOT CHANGE THE USERNAME TO 'root'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
