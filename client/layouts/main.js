@@ -4,7 +4,7 @@ import React from 'react'
 import Head from 'next/head'
 import { injectGlobal } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
-import * as vars from '@/styles/variables'
+import theme from '@app/styles/main-theme'
 
 import 'normalize.css'
 
@@ -23,14 +23,12 @@ injectGlobal`
 }
 
 body {
-  font-family: ${vars.font1};
+  font-family: ${theme.font1};
   font-size: 1rem;
   line-height: 1.7;
   min-height: 100vh
 }
 `
-
-const theme = Object.assign({}, vars)
 
 const Main = ({ children, title }: Props) => {
   return (

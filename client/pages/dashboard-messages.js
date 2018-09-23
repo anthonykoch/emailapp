@@ -3,19 +3,21 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import Page from '@/layouts/main'
-import DashboardHeader from '@/components/DashboardHeader'
-import StoreContext from '@/context/store'
+import Page from '@app/layouts/main'
+import DashboardHeader from '@app/components/DashboardHeader/DashboardHeader'
+import StoreContext from '@app/context/store'
+
+type Props = {}
 
 @observer
-class Index extends React.Component {
+class Index extends React.Component<Props> {
   render() {
     return (
       <Page>
         <StoreContext.Consumer>
           {({ store }) => (
             <div>
-              <DashboardHeader></DashboardHeader>
+              <DashboardHeader user={store.user}></DashboardHeader>
             </div>
           )}
         </StoreContext.Consumer>

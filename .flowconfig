@@ -1,13 +1,17 @@
 [ignore]
-.*/node_modules/styled-components/.*
+.*/node_modules/jsonlint/.*
 .*/.next/.*
 
 [include]
+client
 
 [libs]
 
 [lints]
 
 [options]
+esproposal.decorators=ignore
+module.name_mapper='^@app\/\(.*\)$' -> '<PROJECT_ROOT>/client/\1'
+module.name_mapper='^@server\/\(.*\)$' -> '<PROJECT_ROOT>/server/\1'
 
 [strict]

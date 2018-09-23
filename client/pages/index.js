@@ -3,12 +3,16 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import Page from '@/layouts/main'
-import StoreContext from '@/context/store'
+import Page from '@app/layouts/main'
+import StoreContext from '@app/context/store'
 import 'normalize.css'
 
+type Props = {
+
+}
+
 @observer
-class Index extends React.Component {
+class Index extends React.Component<Props> {
   render() {
     return (
       <Page>

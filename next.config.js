@@ -5,7 +5,7 @@ const withCSS = require('@zeit/next-css')
 
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
-    config.resolve.alias['@'] = path.join(__dirname, 'client')
+    config.resolve.alias['@app'] = path.join(__dirname, 'client')
 
     // eslint-disable-next-line no-unused-vars
     const IS_PRODUCTION = process.env.NODE_ENV === 'production'
