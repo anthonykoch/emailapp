@@ -31,6 +31,7 @@ const sidebarIconBackgroundColor = colorGrayscale3
 const emailKebabBackgroundColor = colorGrayscale1
 const emailTagBackgroundColor = colorGrayscale2
 const overviewForeground = color6
+const sidebarLinkForeground = color6
 const overviewIconBackground = color4
 const bodyBackgroundColor = colorGrayscale5
 
@@ -59,6 +60,7 @@ export type Theme = {|
   sidebarIconBackgroundColor: string,
   emailKebabBackgroundColor: string,
   emailTagBackgroundColor: string,
+  sidebarLinkForeground: string,
   overviewForeground: string,
   overviewIconBackground: string,
 |}
@@ -89,6 +91,7 @@ const variables: Theme = {
   sidebarIconBackgroundColor,
   emailKebabBackgroundColor,
   emailTagBackgroundColor,
+  sidebarLinkForeground,
   overviewForeground,
   overviewIconBackground,
 }

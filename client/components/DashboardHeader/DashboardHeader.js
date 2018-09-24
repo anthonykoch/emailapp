@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { css } from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 import WideSearch from '@app/components/WideSearch/WideSearch'
 import UserProfilePreview from '@app/components/UserProfilePreview/UserProfilePreview'
@@ -23,7 +23,7 @@ type Props = {
 export default class DashboardHeader extends React.PureComponent<Props> {
   render() {
     return (
-      <div class={dashboardHeaderPanelClass}>
+      <div className={dashboardHeaderPanelClass}>
         <div className={styles.siteMaxWidth}>
           <div className={dashboardHeaderContainerClass}>
             <div
@@ -34,9 +34,7 @@ export default class DashboardHeader extends React.PureComponent<Props> {
             <WideSearch
               className={wideSearchClass}
             />
-            <div
-              className={dashboardRightClass}
-            >
+            <DashboardRight>
               <div>
                 <SetAlert />
               </div>
@@ -46,7 +44,7 @@ export default class DashboardHeader extends React.PureComponent<Props> {
 
                 `}
               />
-            </div>
+            </DashboardRight>
           </div>
         </div>
       </div>
@@ -54,12 +52,14 @@ export default class DashboardHeader extends React.PureComponent<Props> {
   }
 }
 
-const dashboardRightClass = css`
+const DashboardRight = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex: 1;
+  ${'' /* flex: 1; */}
   padding: 0 20px;
+  min-width: 350px;
+  flex-basis: auto;
 `
 
 const logoContainerClass = css`

@@ -1,5 +1,11 @@
-import routes from 'next-routes'
+import createRoutes from 'next-routes'
 
-export default routes()
-  .add('home', '/', 'index')
-  .add('dashboard-messages', '/dashboard/messages', 'dashboard-messages')
+const routes =
+  createRoutes()
+    .add('home', '/', 'index')
+    .add('dashboard-messages', '/dashboard/messages', 'dashboard-messages')
+
+export const Link = routes.Link
+export const Router = routes.Router
+
+export default routes
