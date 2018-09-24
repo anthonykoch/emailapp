@@ -6,6 +6,7 @@
 client
 
 [libs]
+flow-typed/
 
 [lints]
 
@@ -14,5 +15,6 @@ esproposal.optional_chaining=enable
 esproposal.decorators=ignore
 module.name_mapper='^@app\/\(.*\)$' -> '<PROJECT_ROOT>/client/\1'
 module.name_mapper='^@server\/\(.*\)$' -> '<PROJECT_ROOT>/server/\1'
+module.name_mapper='^@root\/\(.*\)$' -> '<PROJECT_ROOT>/\1'
 
 [strict]
