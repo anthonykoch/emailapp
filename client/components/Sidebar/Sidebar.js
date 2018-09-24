@@ -114,7 +114,6 @@ const SidebarLinkContent = styled('span')`
 
 const SidebarContainer = styled('div')`
   height: 100%;
-  max-width: 270px;
 `
 
 const SidebarPanel = styled('div')`
