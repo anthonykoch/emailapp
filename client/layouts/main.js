@@ -26,7 +26,12 @@ body {
   font-family: ${theme.font1};
   font-size: 1rem;
   line-height: 1.7;
-  min-height: 100vh
+  min-height: 100vh;
+  text-rendering: geometricPrecision;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 `
 

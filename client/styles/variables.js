@@ -20,9 +20,11 @@ const colorGrayscale1 = '#d8d8d8'
 const colorGrayscale2 = '#f5f5f5'
 const colorGrayscale3 = '#aaaaaa'
 const colorGrayscale4 = '#e4e4e4'
+const colorGrayscale5 = '#fafafa'
 
 const colorTextForeground = color6
 
+const logoForeground = '#000000'
 const wideSearchInputBackgroundColor = colorGrayscale2
 const wideSearchActionBackgroundColor = colorGrayscale4
 const sidebarIconBackgroundColor = colorGrayscale3
@@ -30,8 +32,38 @@ const emailKebabBackgroundColor = colorGrayscale1
 const emailTagBackgroundColor = colorGrayscale2
 const overviewForeground = color6
 const overviewIconBackground = color4
+const bodyBackgroundColor = colorGrayscale5
 
-export default {
+export type Theme = {|
+  backupFontFamily: string,
+  font1: string,
+  spacing: string,
+  transitionDuration: string,
+  color1: string,
+  color2: string,
+  color3: string,
+  color4: string,
+  color5: string,
+  color6: string,
+  color7: string,
+  color8: string,
+  colorGrayscale1: string,
+  colorGrayscale2: string,
+  colorGrayscale3: string,
+  colorGrayscale4: string,
+  colorTextForeground: string,
+  bodyBackgroundColor: string,
+  logoForeground: string,
+  wideSearchInputBackgroundColor: string,
+  wideSearchActionBackgroundColor: string,
+  sidebarIconBackgroundColor: string,
+  emailKebabBackgroundColor: string,
+  emailTagBackgroundColor: string,
+  overviewForeground: string,
+  overviewIconBackground: string,
+|}
+
+const variables: Theme = {
   backupFontFamily,
   font1,
   spacing,
@@ -49,6 +81,9 @@ export default {
   colorGrayscale3,
   colorGrayscale4,
   colorTextForeground,
+
+  bodyBackgroundColor,
+  logoForeground,
   wideSearchInputBackgroundColor,
   wideSearchActionBackgroundColor,
   sidebarIconBackgroundColor,
@@ -58,5 +93,5 @@ export default {
   overviewIconBackground,
 }
 
-
+export default variables
 
