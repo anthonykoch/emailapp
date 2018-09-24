@@ -13,5 +13,6 @@ module.exports = {
       "decoratorsBeforeExport": false,
     }],
     "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining"
   ],
 }
