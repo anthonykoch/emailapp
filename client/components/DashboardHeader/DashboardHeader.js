@@ -56,7 +56,6 @@ const DashboardRight = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  ${'' /* flex: 1; */}
   padding: 0 20px;
   min-width: 350px;
   flex-basis: auto;

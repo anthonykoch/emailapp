@@ -8,23 +8,18 @@ import { Link } from '@app/routes'
 import profileImage from '@app/images/profile-image.jpg'
 
 import type { Theme } from '@app/styles/variables'
-
-type sidebarLink = {
-  children: any,
-  to: {},
-  icon: any,
-}
+import type { SidebarLink as TSidebarLink } from '@root/types'
 
 type Props = {
   user: {
     firstName: string,
     role: string,
   },
-  links: sidebarLink[],
+  links: TSidebarLink[],
 }
 
 export default class Sidebar extends React.PureComponent<Props> {
-  renderLink(link: sidebarLink) {
+  renderLink(link: TSidebarLink) {
     return (
       <Link
         {...link.to}
