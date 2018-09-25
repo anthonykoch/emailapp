@@ -48,19 +48,28 @@ const colorGrayscale5 = '#fafafa'
 const colorTextForeground = color6
 
 const logoForeground = '#000000'
+
 const wideSearchInputBackgroundColor = colorGrayscale2
 const wideSearchActionBackgroundColor = colorGrayscale4
+
 const sidebarIconBackgroundColor = colorGrayscale3
+
 const emailKebabBackgroundColor = colorGrayscale1
 const emailTagBackgroundColor = colorGrayscale2
+
 const overviewForeground = color6
+
 const sidebarLinkForeground = color6
+
 const overviewIconBackground = color4
+
 const bodyBackgroundColor = colorGrayscale5
 
 const filterActionBorderColorActive = color1
-const filterActionBackground = '#ffffff'
+const filterActionBackground = 'transparent'
 const filterActionBackgroundActive = color1
+
+const liveCallNotificationGradient = `linear-gradient(to left, ${color2}, ${color3})`
 
 export type Breakpoints = {
   xs: number,
@@ -122,6 +131,8 @@ export type Theme = {|
   filterActionBackground: string,
   filterActionBorderColorActive: string,
   filterActionBackgroundActive: string,
+
+  liveCallNotificationGradient: string,
 |}
 
 const variables: Theme = {
@@ -162,6 +173,8 @@ const variables: Theme = {
   filterActionBackground,
   filterActionBorderColorActive,
   filterActionBackgroundActive,
+
+  liveCallNotificationGradient,
 }
 
 export default variables

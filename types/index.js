@@ -5,6 +5,7 @@ export type User = {
   firstName: string,
   lastName: string,
   role: string,
+  shortName: string,
 }
 
 export type SidebarLink = {

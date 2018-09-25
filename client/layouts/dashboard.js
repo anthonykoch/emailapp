@@ -17,6 +17,7 @@ const user: User = {
   role: 'Super Admin',
   firstName: 'Essie',
   lastName: 'Howell',
+  shortName: 'E',
 }
 
 const sidebarLinks: SidebarLink[] = [

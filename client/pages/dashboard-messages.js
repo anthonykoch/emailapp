@@ -8,12 +8,12 @@ import StoreContext from '@app/context/store'
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
+import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
 
 import styles from '@app/styles/utilities'
 
 import type { User } from '@root/types'
 import type { Theme } from '@app/styles/variables'
-
 
 type Props = {
   user: User,
@@ -48,7 +48,6 @@ class Index extends React.Component<Props> {
       {
         children: 'Important',
         last: true,
-        // on
       },
     ]
   }
@@ -62,18 +61,26 @@ class Index extends React.Component<Props> {
       <Page
         middle={
           <div>
-            <Header>
-              <Heading level="1" theme={this.props.theme}>
-                Messages
-              </Heading>
+            <styles.spacing.Margin bottom="2">
+              <Header>
+                <Heading level="1" theme={this.props.theme}>
+                  Messages
+                </Heading>
 
-              <div className={cx(styles.display.flex)}>
-                <styles.spacing.Margin right="2">
-                  <Filters items={this.allFilter}></Filters>
-                </styles.spacing.Margin>
-                <Filters items={this.filters}></Filters>
-              </div>
-            </Header>
+                <div className={cx(styles.display.flex)}>
+                  <styles.spacing.Margin right="2">
+                    <Filters items={this.allFilter}></Filters>
+                  </styles.spacing.Margin>
+                  <Filters items={this.filters}></Filters>
+                </div>
+              </Header>
+            </styles.spacing.Margin>
+            <styles.spacing.Margin bottom="2">
+              <LiveCallNotification />
+            </styles.spacing.Margin>
+            <styles.spacing.Margin bottom="2">
+              {/* <MessagesOverviewNotification /> */}
+            </styles.spacing.Margin>
           </div>
         }
         right={

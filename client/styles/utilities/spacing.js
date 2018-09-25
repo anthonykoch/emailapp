@@ -1,6 +1,6 @@
 // @flow
 
-import { type ComponentType } from 'react'
+import React, { type ComponentType } from 'react'
 import styled, { css } from 'react-emotion'
 
 import type { Theme, SpacingLevel } from '@app/styles/variables'
@@ -23,18 +23,19 @@ export const mxauto = css`
 
 // TODO: Breakpointify this bisquit
 export const createSpacer = (
-  spacer: Spacer
+  spacer: Spacer,
+  tag: 'div' | 'span'
 ): ComponentType<Directional> => {
-  return styled('div')`
+  return styled(tag)`
     ${(props: { theme: Theme } & Directional) => css`
       ${props.y ? css`
-        ${spacer}-top: ${props.theme.spacing[props.y]}
-        ${spacer}-bottom: ${props.theme.spacing[props.y]}
+        ${spacer}-top: ${props.theme.spacing[props.y]};
+        ${spacer}-bottom: ${props.theme.spacing[props.y]};
       ` : ''}
 
       ${props.x ? css`
-        ${spacer}-left: ${props.x ? props.theme.spacing[props.x] : ''}
-        ${spacer}-right: ${props.x ? props.theme.spacing[props.x] : ''}
+        ${spacer}-left: ${props.theme.spacing[props.x]};
+        ${spacer}-right: ${props.theme.spacing[props.x]};
       ` : ''}
 
       ${spacer}-top: ${props.top ? props.theme.spacing[props.top] : ''};
@@ -44,6 +45,12 @@ export const createSpacer = (
     `}
   `
 }
+
+export const MarginBlock = createSpacer('margin', 'div')
+export const MarginInline = createSpacer('margin', 'span')
+
+export const PaddingBlock = createSpacer('padding', 'div')
+export const PaddingInline = createSpacer('padding', 'span')
 
 /**
  * A helper for spacing
@@ -56,6 +63,10 @@ export const createSpacer = (
  * @example
  *  <Margin left={1} />
  */
-export const Margin = createSpacer('margin')
+export const Margin = (props: { inline?: boolean } & Directional) => {
+  return props.inline ? <MarginInline {...props} /> : <MarginBlock {...props} />
+}
 
-export const Spacing = createSpacer('padding')
+export const Padding = (props: { inline?: boolean } & Directional) => {
+  return props.inline ? <PaddingInline {...props} /> : <PaddingBlock {...props} />
+}

@@ -54,6 +54,7 @@
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "react-emotion": "^9.2.10",
+    "recompose": "^0.30.0",
     "validatorjs": "3.14.2",
     "yargs": "12.0.2"
   },
