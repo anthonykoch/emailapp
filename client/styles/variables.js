@@ -4,7 +4,30 @@ const backupFontFamily = `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvet
 
 const font1 = `'Nunito Sans', ${backupFontFamily}`
 
-const spacing = `20px`
+const baseSpacing = 20
+
+const breakpoints = {
+  xs: 0,
+  sm: 360,
+  md: 600,
+  lg: 960,
+  xl: 1200,
+  xxl: 1441,
+}
+
+const spacing = {
+  '1': `${baseSpacing * 0.25}px`,
+  '2': `${baseSpacing * 0.5}px`,
+  '3': `${baseSpacing * 0.75}px`,
+  '4': `${baseSpacing * 1}px`,
+  '5': `${baseSpacing * 1.5}px`,
+  '6': `${baseSpacing * 2}px`,
+  '7': `${baseSpacing * 2.5}px`,
+  '8': `${baseSpacing * 3}px`,
+  '9': `${baseSpacing * 4}px`,
+  '10': `${baseSpacing * 5}px`,
+}
+
 const transitionDuration = '300ms'
 
 const color1 = '#008fff' //  blue
@@ -35,11 +58,43 @@ const sidebarLinkForeground = color6
 const overviewIconBackground = color4
 const bodyBackgroundColor = colorGrayscale5
 
+const filterActionBorderColorActive = color1
+const filterActionBackground = '#ffffff'
+const filterActionBackgroundActive = color1
+
+export type Breakpoints = {
+  xs: number,
+  sm: number,
+  md: number,
+  lg: number,
+  xl: number,
+  xxl: number,
+}
+
+export type Spacing = {
+  '1': string,
+  '2': string,
+  '3': string,
+  '4': string,
+  '5': string,
+  '6': string,
+  '7': string,
+  '8': string,
+  '9': string,
+  '10': string,
+}
+
+export type SpacingLevel = $Keys<Spacing>
+
 export type Theme = {|
+  breakpoints: Breakpoints,
+
+  spacing: Spacing,
+
+  transitionDuration: string,
+
   backupFontFamily: string,
   font1: string,
-  spacing: string,
-  transitionDuration: string,
   color1: string,
   color2: string,
   color3: string,
@@ -63,13 +118,22 @@ export type Theme = {|
   sidebarLinkForeground: string,
   overviewForeground: string,
   overviewIconBackground: string,
+
+  filterActionBackground: string,
+  filterActionBorderColorActive: string,
+  filterActionBackgroundActive: string,
 |}
 
 const variables: Theme = {
+  spacing,
+
+  breakpoints,
+
   backupFontFamily,
   font1,
-  spacing,
+
   transitionDuration,
+
   color1,
   color2,
   color3,
@@ -94,6 +158,10 @@ const variables: Theme = {
   sidebarLinkForeground,
   overviewForeground,
   overviewIconBackground,
+
+  filterActionBackground,
+  filterActionBorderColorActive,
+  filterActionBackgroundActive,
 }
 
 export default variables
