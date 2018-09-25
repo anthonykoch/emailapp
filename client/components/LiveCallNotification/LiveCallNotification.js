@@ -7,6 +7,7 @@ import styles from '@app/styles/utilities'
 import Button from '@app/components/Button/Button'
 import IconCamera from '@app/components/Icon/IconCamera'
 import LiveCallInfo from './Information'
+import UsersList from './UsersList'
 
 import type { Theme } from '@app/styles/variables'
 import type { User } from '@root/types'
@@ -52,64 +53,6 @@ const users: User[] = [
     shortName: 'B',
   },
 ]
-
-const MAX_AVATARS = 4
-
-const UsersList = (props: { users: User[], maxAvatars?: number }) => {
-  const { maxAvatars=MAX_AVATARS, users } = props
-  const remainder = users.length - maxAvatars
-
-  return (
-    <UserAvatarList>
-      {users.slice(0, maxAvatars).map((user, index) => (
-        <UserAvatar
-          key={user.id}
-          className={index === 0 ? firstUserAvatarClass : ''}
-          style={{
-            position: 'relative',
-            zIndex: users.length - index,
-          }}
-        >
-          {user.shortName}
-        </UserAvatar>
-      ))}
-      <styles.spacing.Margin left="3">
-        {users.length > maxAvatars && <UserAvatarRemainder>+{remainder} more</UserAvatarRemainder>}
-      </styles.spacing.Margin>
-    </UserAvatarList>
-  )
-}
-
-const UserAvatarList = styled('div')`
-  align-items: center;
-  display: flex;
-`
-
-const UserAvatar = styled('div')`
-  background-color: #ff765b;
-  border-radius: 50%;
-  border-color: rgba(255, 255, 255, 0.6);
-  border-style: solid;
-  border-width: 2px;
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  margin-left: -10px;
-  height: 32px;
-  text-align: center;
-  line-height: 28px;
-  width: 32px;
-`
-
-const UserAvatarRemainder = styled('div')`
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-`
-
-const firstUserAvatarClass = css`
-  border-color: white;
-`
 
 export default class LiveCallNotification extends React.PureComponent<Props> {
   render() {

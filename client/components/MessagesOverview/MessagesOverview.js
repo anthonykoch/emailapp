@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 import styles from '@app/styles/utilities'
 
@@ -38,7 +38,7 @@ export default class LiveCallInfo extends React.PureComponent<Props> {
             </div>
           </Media>
           <Divider />
-          <Media>
+          <Media className={lastSectionClass}>
             <styles.spacing.Padding right="4">
               <IconBackground></IconBackground>
             </styles.spacing.Padding>
@@ -106,4 +106,8 @@ const IconBackground = styled('div')`
 const Media = styled('div')`
   align-items: center;
   display: flex;
+`
+
+const lastSectionClass = css`
+  padding-right: 30px;
 `

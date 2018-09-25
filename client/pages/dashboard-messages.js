@@ -10,6 +10,7 @@ import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
 import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
 import MessagesOverview from '@app/components/MessagesOverview/MessagesOverview'
+import MessagesInboxContainer from '@app/components/MessagesInbox/MessagesInboxContainer'
 
 import styles from '@app/styles/utilities'
 
@@ -24,8 +25,18 @@ type Props = {
 // https://dribbble.com/shots/3903437-Dashboard-message/attachments/888558
 // https://dribbble.com/shots/3781660-Dashboard-Meeting/attachments/851963
 
+const user: User = {
+  id: 902,
+  firstName: 'Essie',
+  lastName: 'Howell',
+  username: 'Essieness',
+  shortName: 'H',
+  role: 'Super Admin',
+}
+
+export default
 @observer
-class Index extends React.Component<Props> {
+class DashboardMessages extends React.Component<Props> {
   allFilter: any;
   filters: any;
 
@@ -83,7 +94,12 @@ class Index extends React.Component<Props> {
             <styles.spacing.Margin bottom="4">
               <MessagesOverview />
             </styles.spacing.Margin>
+
+            <styles.spacing.Margin bottom="4">
+              <MessagesInboxContainer userId={user.id} />
+            </styles.spacing.Margin>
           </div>
+
         }
         right={
           <IdkWhatThisIs></IdkWhatThisIs>
@@ -134,5 +150,3 @@ const IdkWhatThisIs = styled('div')`
     background-color: ${props.theme.filterActionBackgroundActive};
   `}
 `
-
-export default Index

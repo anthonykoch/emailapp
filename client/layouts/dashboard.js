@@ -68,7 +68,6 @@ const sidebarLinks: SidebarLink[] = [
 type Props = {
   left?: any,
   middle?: any,
-  right?: any,
 }
 
 export default class DashboardLayout extends React.Component<Props> {
@@ -86,9 +85,6 @@ export default class DashboardLayout extends React.Component<Props> {
                 <MiddleColumn>
                   {this.props.middle}
                 </MiddleColumn>
-                <RightColumn>
-                  {this.props.right}
-                </RightColumn>
               </Container>
             </Wrapper>
           </Main>
@@ -98,38 +94,41 @@ export default class DashboardLayout extends React.Component<Props> {
   }
 }
 
+const leftColumnWidth = 300
+const gutter = 30
+
 const Container = styled('div')`
   display: flex;
   flex: 1;
   padding-top: 40px;
 `
 
+// width: Using calc() fixes a bug with elements that have white-space: nowrap
 const LeftColumn = styled('div')`
   flex-basis: auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 340px;
+  padding-left: ${gutter}px;
+  min-width: ${leftColumnWidth}px;
 `
 
 const MiddleColumn = styled('div')`
-  flex: 1;
+  flex-basis: auto;
+  padding-left: ${gutter}px;
+  padding-right: ${gutter}px;
+  width: calc(100% - ${leftColumnWidth}px);
 `
 
-const RightColumn = styled('div')`
-  flex-basis: auto;
-  max-width: 104px;
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 100%;
-`
+// const RightColumn = styled('div')`
+//   flex-basis: auto;
+//   max-width: ${rightColumnWidth}px;
+//   width: ${rightColumnWidth}px;
+//   padding-right: ${gutter}px;
+//   width: 100%;
+// `
 
 const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 
   ${(props: { theme: Theme }) => css`
     background-color: ${props.theme.bodyBackgroundColor};
   `}
 `
-
