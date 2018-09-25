@@ -11,7 +11,7 @@ import Tag from './Tag'
 // $FlowFixMe
 import profileImage from '@app/images/profile-image.jpg'
 
-import type { Theme } from '@app/styles/variables'
+// import type { Theme } from '@app/styles/variables'
 import type { Message as TMessage } from '@root/types'
 
 type Props = {
@@ -26,7 +26,7 @@ export default class Message extends React.PureComponent<Props> {
       <Panel>
         <Container>
           <CheckboxContainer>
-            <Checkbox />
+            <Checkbox defaultChecked={false} />
           </CheckboxContainer>
           <Avatar>
             <AvatarImage src={profileImage} alt="awd" />
@@ -82,12 +82,6 @@ const AvatarImage = styled('img')`
   display: block;
   height: 40px;
   width: 40px;
-`
-
-const Meta = styled('div')`
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
 `
 
 const TagList = styled('div')`

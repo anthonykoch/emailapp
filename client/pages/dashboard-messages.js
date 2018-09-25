@@ -69,6 +69,8 @@ class DashboardMessages extends React.Component<Props> {
   }
 
   render() {
+    const { liveCallNotification } = this.props
+
     return (
       <Page
         middle={
@@ -87,9 +89,9 @@ class DashboardMessages extends React.Component<Props> {
               </Header>
             </styles.spacing.Margin>
 
-            <styles.spacing.Margin bottom="4">
+            {liveCallNotification && (<styles.spacing.Margin bottom="4">
               <LiveCallNotification />
-            </styles.spacing.Margin>
+            </styles.spacing.Margin>)}
 
             <styles.spacing.Margin bottom="4">
               <MessagesOverview />

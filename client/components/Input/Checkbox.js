@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 type Props = {
   checked?: boolean,
@@ -24,8 +24,6 @@ export default class Checkbox extends React.PureComponent<Props, State> {
   }
 
   onIndiciatorClick = () => {
-    console.log(this.state);
-
     this.setState({
       isChecked: !this.state.isChecked,
     }, () => this.onChange())
@@ -51,11 +49,6 @@ export default class Checkbox extends React.PureComponent<Props, State> {
     )
   }
 }
-
-const isIndicatorChecked = css`
-  border-color: #008fff;
-  background-color: #008fff;
-`
 
 const Container = styled('span')`
   display: inline-block;
@@ -100,8 +93,4 @@ position: absolute;
     opacity: 1;
   }
 }
-`
-
-const RealInput = styled('input')`
-  visiblity: hidden;
 `
