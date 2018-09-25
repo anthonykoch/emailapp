@@ -9,6 +9,7 @@ import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
 import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
+import MessagesOverview from '@app/components/MessagesOverview/MessagesOverview'
 
 import styles from '@app/styles/utilities'
 
@@ -66,7 +67,6 @@ class Index extends React.Component<Props> {
                 <Heading level="1" theme={this.props.theme}>
                   Messages
                 </Heading>
-
                 <div className={cx(styles.display.flex)}>
                   <styles.spacing.Margin right="2">
                     <Filters items={this.allFilter}></Filters>
@@ -75,11 +75,13 @@ class Index extends React.Component<Props> {
                 </div>
               </Header>
             </styles.spacing.Margin>
-            <styles.spacing.Margin bottom="2">
+
+            <styles.spacing.Margin bottom="4">
               <LiveCallNotification />
             </styles.spacing.Margin>
-            <styles.spacing.Margin bottom="2">
-              {/* <MessagesOverviewNotification /> */}
+
+            <styles.spacing.Margin bottom="4">
+              <MessagesOverview />
             </styles.spacing.Margin>
           </div>
         }

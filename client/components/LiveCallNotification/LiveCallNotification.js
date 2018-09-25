@@ -138,6 +138,7 @@ export default class LiveCallNotification extends React.PureComponent<Props> {
 }
 
 const Background = styled('div')`
+  border-radius: 2px;
   padding: 20px;
 
   ${(props: { theme: Theme }) => css`
