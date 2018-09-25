@@ -10,7 +10,7 @@ import Sidebar from '@app/components/Sidebar/Sidebar'
 import StoreContext from '@app/context/store'
 
 import type { Theme } from '@app/styles/variables'
-import type { User } from '@root/types'
+import type { User, SidebarLink } from '@root/types'
 
 const user: User = {
   id: 1,
@@ -19,7 +19,7 @@ const user: User = {
   lastName: 'Howell',
 }
 
-const sidebarLinks = [
+const sidebarLinks: SidebarLink[] = [
   {
     id: 1,
     children: 'Overview',
@@ -64,7 +64,13 @@ const sidebarLinks = [
   },
 ]
 
-export default class DashboardLayout extends React.Component<{}> {
+type Props = {
+  left?: any,
+  middle?: any,
+  right?: any,
+}
+
+export default class DashboardLayout extends React.Component<Props> {
   render() {
     return (
       <StoreContext.Consumer>
@@ -72,16 +78,15 @@ export default class DashboardLayout extends React.Component<{}> {
           <Main>
             <Wrapper>
               <DashboardHeader user={user}></DashboardHeader>
-
               <Container>
                 <LeftColumn>
-                  <Sidebar links={sidebarLinks} user={user} />
+                  {this.props.left || <Sidebar links={sidebarLinks} user={user} />}
                 </LeftColumn>
                 <MiddleColumn>
-                  <Meme></Meme>
+                  {this.props.middle}
                 </MiddleColumn>
                 <RightColumn>
-                  <IdkWhatThisIs></IdkWhatThisIs>
+                  {this.props.right}
                 </RightColumn>
               </Container>
             </Wrapper>
@@ -91,40 +96,6 @@ export default class DashboardLayout extends React.Component<{}> {
     )
   }
 }
-
-
-const Meme = styled('div')`
-  height: 50px;
-  background-color: red;
-`
-
-const IdkWhatThisIs = styled('div')`
-  border-radius: 50%;
-  border-bottom: 0;
-  bottom: 30px;
-  box-shadow: 0 25px 50px -4px rgba(0, 0, 0, 0.25);
-  height: 54px;
-  position: fixed;
-  right: 30px;
-  width: 54px;
-
-  &:before {
-    color: white;
-    content: '+';
-    font-size: 28px;
-    display: block;
-    line-height: 1;
-    position: absolute;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
-  }
-
-  ${(props: { theme: Theme }) => css`
-    background-color: ${props.theme.color7}
-  `}
-
-`
 
 const Container = styled('div')`
   display: flex;

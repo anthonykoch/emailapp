@@ -8,9 +8,7 @@ import UserProfilePreview from '@app/components/UserProfilePreview/UserProfilePr
 import Logo from './Logo'
 import SetAlert from './SetAlert'
 
-import * as styles from '@app/styles/utilities/size'
-
-// import type { Theme } from '@app/styles/variables'
+import styles from '@app/styles/utilities'
 
 type Props = {
   user: {
@@ -24,7 +22,7 @@ export default class DashboardHeader extends React.PureComponent<Props> {
   render() {
     return (
       <div className={dashboardHeaderPanelClass}>
-        <div className={styles.siteMaxWidth}>
+        <div className={styles.size.siteMaxWidth}>
           <div className={dashboardHeaderContainerClass}>
             <div
               className={logoContainerClass}
