@@ -30,6 +30,8 @@ export type User = {
 export type SidebarLink = {
   id: number,
   children: any,
-  to: {},
+  to?: string,
+  href?: string,
+  route?: string,
   icon: any,
 }

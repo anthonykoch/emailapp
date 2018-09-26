@@ -1,7 +1,4 @@
-require('@babel/register')({
-  babelrc: false,
-  configFile: './.babelrc.server.js',
-})
+require('@babel/register')()
 
 const path = require('path')
 

@@ -2,7 +2,10 @@
 
 import React from 'react'
 import styled, { css } from 'react-emotion'
+
+// import Link from 'next/link'
 import { Link } from '@app/routes'
+import { withActiveClass } from '@app/core/util'
 
 // $FlowFixMe
 import profileImage from '@app/images/profile-image.jpg'
@@ -22,8 +25,10 @@ export default class Sidebar extends React.PureComponent<Props> {
   renderLink(link: TSidebarLink) {
     return (
       <Link
-        {...link.to}
+        to={link.to}
+        href={link.href}
         key={link.id}
+        passHref
       >
         <SidebarLink>
           <SidebarLinkIcon>{link.icon}</SidebarLinkIcon>
@@ -85,7 +90,8 @@ const SidebarGreeting = styled('div')`
   `}
 `
 
-const SidebarLink = styled('span')`
+const SidebarLink = withActiveClass(styled('a')`
+  border-left: 2px solid transparent;
   display: block;
   font-size: 14px;
   padding: 20px 20px;
@@ -97,15 +103,20 @@ const SidebarLink = styled('span')`
       color: ${props.theme.sidebarLinkForeground}
     `}
   }
-`
+
+  ${props => css`
+    ${props.isActiveRoute && css`
+      background-color: #f4faff;
+      border-left-color: #008fff;
+    `}
+  `}
+`)
 
 const SidebarLinkIcon = styled('span')`
   margin-right: 30px;
 `
 
-const SidebarLinkContent = styled('span')`
-
-`
+const SidebarLinkContent = styled('span')``
 
 const SidebarContainer = styled('div')`
   height: 100%;
@@ -117,5 +128,3 @@ const SidebarPanel = styled('div')`
   background-color: white;
   height: 100%;
 `
-
-

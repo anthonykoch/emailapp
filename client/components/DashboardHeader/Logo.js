@@ -2,24 +2,30 @@
 
 import React from 'react'
 import styled, { css } from 'react-emotion'
+import { Link } from '@app/routes'
+
 import type { Theme } from '@app/styles/variables'
 
 export default class Logo extends React.PureComponent<{}> {
   render() {
     return (
-      <LogoText>
-        BOARDASH
-      </LogoText>
+      <Link href="/" passHref>
+        <LogoLink>BOARDASH</LogoLink>
+      </Link>
     )
   }
 }
 
-const LogoText = styled('div')`
+const LogoLink = styled('div')`
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 3px;
+  text-decoration: none;
 
   ${(props: { theme: Theme }) => css`
-    color: ${props.theme.logoForeground}
+    &:link,
+    &:visited {
+      color: ${props.theme.logoForeground}
+    }
   `}
 `

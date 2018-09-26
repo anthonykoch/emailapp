@@ -20,6 +20,7 @@ import type { Theme } from '@app/styles/variables'
 type Props = {
   user: User,
   theme: Theme,
+  liveCallNotification: boolean,
 }
 
 // https://dribbble.com/shots/3903437-Dashboard-message/attachments/888558

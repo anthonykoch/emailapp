@@ -6,7 +6,6 @@ import styled from 'react-emotion'
 
 type Props = {
   checked?: boolean,
-  defaultChecked: boolean,
   onChange?: Function,
 }
 
@@ -15,8 +14,12 @@ type State = {
 }
 
 export default class Checkbox extends React.PureComponent<Props, State> {
-  state = {
-    isChecked: false,
+  constructor({ checked=false }: { checked: boolean }) {
+    super()
+
+    this.state = {
+      isChecked: checked,
+    }
   }
 
   onChange = () => {
@@ -34,14 +37,11 @@ export default class Checkbox extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { defaultChecked } = this.props
-
     return (
       <Container>
         <Input
           type="checkbox"
           checked={this.state.isChecked}
-          defaultChecked={defaultChecked}
           onChange={this.onChange}
         />
         <Indicator onClick={this.onIndiciatorClick} />
