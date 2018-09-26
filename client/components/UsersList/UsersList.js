@@ -5,18 +5,24 @@ import styled, { css } from 'react-emotion'
 
 import styles from '@app/styles/utilities'
 
+import type { Theme } from '@app/styles/variables'
 import type { User } from '@root/types'
+
+type Subtheme = {
+  dark?: boolean,
+}
 
 type Props = {
   users: User[],
   maxAvatars?: number,
+  subtheme: Subtheme,
 }
 
 const MAX_AVATARS = 4
 
 export default class UsersList extends React.PureComponent<Props> {
   render() {
-    const { maxAvatars=MAX_AVATARS, users } = this.props
+    const { maxAvatars=MAX_AVATARS, users, subtheme={} } = this.props
     const remainder = users.length - maxAvatars
 
     return (
@@ -29,12 +35,19 @@ export default class UsersList extends React.PureComponent<Props> {
               position: 'relative',
               zIndex: users.length - index,
             }}
+            subtheme={subtheme}
           >
             {user.shortName}
           </UserAvatar>
         ))}
         <styles.spacing.Margin left="3">
-          {users.length > maxAvatars && <UserAvatarRemainder>+{remainder} more</UserAvatarRemainder>}
+          {users.length > maxAvatars && (
+            <UserAvatarRemainder
+              subtheme={subtheme}
+            >
+              +{remainder} more
+            </UserAvatarRemainder>)
+          }
         </styles.spacing.Margin>
       </UserAvatarList>
     )
@@ -43,7 +56,8 @@ export default class UsersList extends React.PureComponent<Props> {
 
 const UserAvatarList = styled('div')`
   align-items: center;
-  display: flex;
+  display: inline-flex;
+  padding-left: 10px;
 `
 
 const UserAvatar = styled('div')`
@@ -60,12 +74,26 @@ const UserAvatar = styled('div')`
   text-align: center;
   line-height: 28px;
   width: 32px;
+
+  ${(props: { theme: Theme, subtheme: Subtheme }) => css`
+    ${props.subtheme.dark && css`
+      background-color: #cccccc;
+      border-color: rgba(255, 255, 255, 0.9);
+    `}
+  `}
 `
 
 const UserAvatarRemainder = styled('div')`
   color: white;
   font-size: 11px;
   font-weight: 600;
+
+
+  ${(props: { theme: Theme, subtheme: Subtheme }) => css`
+    ${props.subtheme.dark && css`
+      color: ${props.theme.colorTextForeground};
+    `}
+  `}
 `
 
 const firstUserAvatarClass = css`

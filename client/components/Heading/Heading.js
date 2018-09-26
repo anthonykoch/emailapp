@@ -8,6 +8,7 @@ import type { Theme } from '@app/styles/variables'
 const types = {
   '1': {
     'font-size': '28px',
+    'line-height': '28px',
   },
 }
 

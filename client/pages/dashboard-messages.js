@@ -9,7 +9,7 @@ import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
 import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
-import MessagesOverview from '@app/components/MessagesOverview/MessagesOverview'
+import MessagesOverview from '@app/components/Overview/Messages'
 import MessagesInboxContainer from '@app/components/MessagesInbox/MessagesInboxContainer'
 
 import styles from '@app/styles/utilities'
@@ -95,7 +95,11 @@ class DashboardMessages extends React.Component<Props> {
             </styles.spacing.Margin>)}
 
             <styles.spacing.Margin bottom="4">
-              <MessagesOverview />
+              <MessagesOverview
+                overall={{ amount: 1494 }}
+                sent={{ amount: 1494 }}
+                received={{ amount: 1494 }}
+              />
             </styles.spacing.Margin>
 
             <styles.spacing.Margin bottom="4">

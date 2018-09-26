@@ -34,3 +34,10 @@ export type SidebarLink = {
   route?: string,
   icon: any,
 }
+
+export type OverviewItem = {
+  icon: any,
+  title: any,
+  amount: any,
+  timeframe: any,
+}

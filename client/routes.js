@@ -16,7 +16,7 @@ const defs = [
   {
     name: 'dashboard-meeting',
     pattern: '/dashboard/meeting',
-    page: 'dashboard-meetingad',
+    page: 'dashboard-meeting',
   },
 ]
 
