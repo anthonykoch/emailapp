@@ -21,7 +21,7 @@
   "_moduleAliases": {
     "@root": "./",
     "@": "server",
-    "@client": "client"
+    "@app": "client"
   },
   "directories": {
     "lib": "server",
