@@ -23,7 +23,7 @@
           {
             "sourceMap": true,
             "autoLabel": true,
-            "labelFormat": "[filename]-[local]"
+            "labelFormat": "[local]"
           }
         ]
       ]
