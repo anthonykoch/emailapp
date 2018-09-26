@@ -7,10 +7,6 @@ import styled, { css, cx } from 'react-emotion'
 import StoreContext from '@app/context/store'
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
-import Filters from '@app/components/Filters/Filters'
-import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
-import MessagesOverview from '@app/components/MessagesOverview/MessagesOverview'
-import MessagesInboxContainer from '@app/components/MessagesInbox/MessagesInboxContainer'
 
 import styles from '@app/styles/utilities'
 
@@ -45,9 +41,7 @@ class DashboardMessages extends React.Component<Props> {
           </div>
 
         }
-        right={
-          <IdkWhatThisIs></IdkWhatThisIs>
-        }
+        right={null}
       >
         <StoreContext.Consumer>
           {({ store }) => (

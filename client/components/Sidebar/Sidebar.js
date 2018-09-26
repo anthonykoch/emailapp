@@ -3,7 +3,6 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 
-// import Link from 'next/link'
 import { Link } from '@app/routes'
 import { withActiveClass } from '@app/core/util'
 
@@ -25,7 +24,7 @@ export default class Sidebar extends React.PureComponent<Props> {
   renderLink(link: TSidebarLink) {
     return (
       <Link
-        to={link.to}
+        route={link.route}
         href={link.href}
         key={link.id}
         passHref
