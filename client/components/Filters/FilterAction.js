@@ -58,6 +58,7 @@ const Filter = styled('button')`
   font-size: 12px;
   outline: 0;
   padding: 10px 26px;
+  user-select: none;
 
   ${(props: {
     theme: Theme,

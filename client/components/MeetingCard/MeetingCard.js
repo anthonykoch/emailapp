@@ -120,6 +120,7 @@ const Time = styled('div')`
 
 const Panel = styled('div')`
   background-color: white;
+  border: 1px solid #eeeeee;
   border-radius: 4px;
   box-shadow: 0 4px 40px -16px rgba(0,0,0,0.2);
 `

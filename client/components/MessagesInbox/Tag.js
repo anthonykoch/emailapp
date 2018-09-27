@@ -19,6 +19,7 @@ export default class Tag extends React.PureComponent<Props> {
 
 const Panel = styled('div')`
   background-color: #f5f5f5;
-  padding: 4px 9px;
-  font-size: 12px;
+  border-radius: 3px;
+  padding: 3px 9px;
+  font-size: 11px;
 `

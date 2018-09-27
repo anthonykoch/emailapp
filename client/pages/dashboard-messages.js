@@ -76,7 +76,7 @@ class DashboardMessages extends React.Component<Props> {
       <Page
         middle={
           <div>
-            <styles.spacing.Margin bottom="2">
+            <styles.spacing.Margin bottom="3">
               <Header>
                 <Heading level="1" theme={this.props.theme}>
                   Messages

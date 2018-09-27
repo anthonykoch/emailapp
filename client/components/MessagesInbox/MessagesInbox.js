@@ -37,7 +37,9 @@ export default class MessagesInbox extends React.PureComponent<Props> {
 
 const Panel = styled('div')`
   background-color: white;
-  box-shadow: 0 11px 50px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 11px 50px -14px rgba(0, 0, 0, 0.1);
 `
 
 const Empty = styled('div')`

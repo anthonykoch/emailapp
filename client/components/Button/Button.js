@@ -39,6 +39,7 @@ export default class Button extends React.PureComponent<Props> {
 const Action = styled('button')`
 ${styles.reset.button}
 font-size: 14px;
+user-select: none;
 `
 
 // NOTE: We don't set the button to display flex because of a
