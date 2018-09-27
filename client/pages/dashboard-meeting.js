@@ -9,6 +9,7 @@ import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import MeetingsOverview from '@app/components/Overview/Meetings'
 import MeetingCard from '@app/components/MeetingCard/MeetingCard'
+import DetailsSidebarContainer from '@app/components/DetailsSidebar/DetailsSidebarContainer'
 
 import styles from '@app/styles/utilities'
 
@@ -20,15 +21,6 @@ type Props = {
   theme: Theme,
 }
 
-const user: User = {
-  id: 902,
-  firstName: 'Essie',
-  lastName: 'Howell',
-  username: 'Essieness',
-  shortName: 'H',
-  role: 'Super Admin',
-}
-
 export default
 @observer
 class DashboardMessages extends React.Component<Props> {
@@ -37,6 +29,7 @@ class DashboardMessages extends React.Component<Props> {
       <Page
         middle={
           <div>
+            <DetailsSidebarContainer defaultOpen={true} />
             <styles.spacing.Margin bottom="4">
               <Heading level="1" theme={this.props.theme}>
                 Meetings

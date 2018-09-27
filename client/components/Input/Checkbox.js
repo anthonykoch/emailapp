@@ -7,6 +7,7 @@ import styled from 'react-emotion'
 type Props = {
   checked?: boolean,
   onChange?: Function,
+  className?: string,
 }
 
 type State = {
@@ -37,8 +38,10 @@ export default class Checkbox extends React.PureComponent<Props, State> {
   }
 
   render() {
+    const { className } = this.props
+
     return (
-      <Container>
+      <Container className={className}>
         <Input
           type="checkbox"
           checked={this.state.isChecked}
@@ -58,8 +61,9 @@ const Indicator = styled('span')`
   background-color: transparent;
   border: 2px solid rgba(0,0,0,0.2);
   border-radius: 3px;
-  display: block;
+  display: inline-block;
   height: 16px;
+  line-height: 0;
   position: relative;
   transition-duration: 250ms;
   transition-property: border-color, background-color;
@@ -77,6 +81,7 @@ const Indicator = styled('span')`
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
+    vertical-align: middle;
     width: 3px;
   }
 `

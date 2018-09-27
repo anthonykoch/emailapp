@@ -7,7 +7,7 @@ import styles from '@app/styles/utilities'
 import UserListThumbnail from '@app/components/UserListThumbnail/UserListThumbnail'
 
 // $FlowFixMe
-import profileImage from '@app/images/profile-image.jpg'
+import profileImage from '@app/images/shrewd.png'
 
 import type { Theme } from '@app/styles/variables'
 import type { User } from '@root/types'

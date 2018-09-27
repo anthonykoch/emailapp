@@ -41,3 +41,9 @@ export type OverviewItem = {
   amount: any,
   timeframe: any,
 }
+
+export type VoteOptionResult = {
+  id: number,
+  title: string,
+  votes: number,
+}
