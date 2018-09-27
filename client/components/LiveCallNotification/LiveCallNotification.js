@@ -6,7 +6,7 @@ import styled, { css } from 'react-emotion'
 import styles from '@app/styles/utilities'
 import Button from '@app/components/Button/Button'
 import IconCamera from '@app/components/Icon/IconCamera'
-import UsersList from '@app/components/UsersList/UsersList'
+import UserListThumbnail from '@app/components/UserListThumbnail/UserListThumbnail'
 import LiveCallInfo from './Information'
 
 import type { Theme } from '@app/styles/variables'
@@ -60,7 +60,7 @@ export default class LiveCallNotification extends React.PureComponent<Props> {
       <Background>
         <div className={containerClass}>
           <LiveCallInfo></LiveCallInfo>
-          <UsersList users={users} />
+          <UserListThumbnail users={users} />
           <ButtonGroup>
             <Button type="ghost-light">You{`'`}re invited</Button>
             <Button

@@ -4,7 +4,7 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 
 import styles from '@app/styles/utilities'
-import UsersList from '@app/components/UsersList/UsersList'
+import UserListThumbnail from '@app/components/UserListThumbnail/UserListThumbnail'
 
 // $FlowFixMe
 import profileImage from '@app/images/profile-image.jpg'
@@ -48,7 +48,7 @@ export default class MeetingCard extends React.PureComponent<Props> {
           </InformationGrid>
           <styles.spacing.Padding bottom="5" top="4">
             <div style={{ textAlign: 'center' }}>
-              <UsersList users={users} subtheme={{ dark: true }} />
+              <UserListThumbnail users={users} subtheme={{ dark: true }} />
             </div>
           </styles.spacing.Padding>
         </Information>

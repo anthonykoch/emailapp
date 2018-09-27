@@ -15,12 +15,12 @@ type Subtheme = {
 type Props = {
   users: User[],
   maxAvatars?: number,
-  subtheme: Subtheme,
+  subtheme?: Subtheme,
 }
 
 const MAX_AVATARS = 4
 
-export default class UsersList extends React.PureComponent<Props> {
+export default class UserList extends React.PureComponent<Props> {
   render() {
     const { maxAvatars=MAX_AVATARS, users, subtheme={} } = this.props
     const remainder = users.length - maxAvatars
