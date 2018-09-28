@@ -77,12 +77,6 @@ class DashboardMessages extends React.Component<Props> {
   }
 }
 
-const Header = styled('header')`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`
 const Subheading = styled('div')`
   font-size: 15px;
   font-weight: 600;

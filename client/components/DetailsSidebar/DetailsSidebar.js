@@ -17,21 +17,25 @@ type Props = {
   onRequestClose?: Function,
 }
 
-const SidebarTransition = (props) => {
-  const { in: inProp, children, ...rest } = props
-  const duration = 300
+const SidebarTransition = (props: {
+  in: boolean,
+  duration?: number,
+  children: any,
+}) => {
+  const { in: inProp, duration=300, children, ...rest } = props
 
   const defaultStyle = {
     transitionProperty: 'opacity transform',
     transitionDuration: `${duration}ms`,
     transitionTimingFunction: 'ease-in-out',
     opacity: 0,
+    transform: 'translate(50%, 0)',
   }
 
   const transitionStyles = {
     entering: {
       opacity: 0,
-      transform: 'translate(100%, 0)',
+      transform: 'translate(50%, 0)',
     },
     entered: {
       opacity: 1,
@@ -100,11 +104,13 @@ const CloseButton = styled('button')`
   ${styles.reset.button}
   align-items: center;
   background-color: #e9e9e9;
+  box-shadow: none;
   cursor: pointer;
   display: flex;
   height: 45px;
   justify-content: center;
-  transition: background-color 300ms;
+  transition-duration: 300ms;
+  transition-property: background-color, box-shadow;
   width: 45px;
 
   &:hover,
@@ -115,6 +121,10 @@ const CloseButton = styled('button')`
     svg {
       fill: #e9e9e9;
     }
+  }
+
+  &:active {
+    box-shadow: inset 0 1px 15px 1px rgba(0, 0, 0, 0.35);
   }
 `
 
