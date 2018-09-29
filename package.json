@@ -20,7 +20,7 @@
   },
   "_moduleAliases": {
     "@root": "./",
-    "@": "server",
+    "@server": "server",
     "@app": "client"
   },
   "directories": {

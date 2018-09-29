@@ -1,3 +1,5 @@
+// @flow
+
 // Application hooks that run for every service
 import log from './hooks/log'
 

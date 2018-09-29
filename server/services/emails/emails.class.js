@@ -1,24 +1,31 @@
+// @flow
+
 /* eslint-disable no-unused-vars */
 
-// import Emails from '@/models/emails'
-import hooks from '@/services/emails/emails.hooks'
+import hooks from '@server/services/emails/emails.hooks'
+
+import type Knex from 'knex'
 
 const table = 'emails'
 
+type KnexDB = Knex<any>
+
 export class Service {
-  constructor({ db }) {
+  db: KnexDB
+
+  constructor({ db }: { db: KnexDB }) {
     this.db = db
   }
 
-  async find(params) {
+  async find(params: {}) {
     return []
   }
 
-  async get(id, params) {
+  async get(id: string, params: {}) {
     return this.db.table(table).where('id', id)
   }
 
-  async create(data, params) {
+  async create(data: any[] | any, params: {}) {
     if (Array.isArray(data)) {
       return Promise.all(data.map(current => this.create(current, params)))
     }
@@ -26,20 +33,20 @@ export class Service {
     return data
   }
 
-  async update(id, data, params) {
+  async update(id: string, data: any, params: {}) {
     return data
   }
 
-  async patch(id, data, params) {
+  async patch(id: string, data: any, params: {}) {
     return data
   }
 
-  async remove(id, params) {
+  async remove(id: string, params: {}) {
     return { id }
   }
 }
 
-export default function (options) {
+export default function (options: { db: KnexDB }) {
   return new Service(options)
 }
 

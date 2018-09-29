@@ -1,10 +1,12 @@
+// @flow
+
 // Initializes the `emails` service on path `/emails`
-import createService from '@/services/emails/emails.class.js'
-import hooks from '@/services/emails/emails.hooks'
+import createService from '@server/services/emails/emails.class.js'
+import hooks from '@server/services/emails/emails.hooks'
 
 export const route = '/api/emails'
 
-export default function (app) {
+export default function (app: any) {
   const paginate = app.get('paginate')
 
   const options = {

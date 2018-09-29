@@ -49,6 +49,10 @@ export default class AppWithMobx extends App {
     appContext.ctx.store = store
     appContext.ctx.isServer = isServer
 
+    appContext.ctx.app = appContext.ctx.req.app
+
+    delete appContext.ctx.req.app
+
     let appProps = {}
 
     if (typeof App.getInitialProps === 'function') {
@@ -58,6 +62,7 @@ export default class AppWithMobx extends App {
 
     return {
       ...appProps,
+      memes: 'awda',
       initialState: store,
     }
   }

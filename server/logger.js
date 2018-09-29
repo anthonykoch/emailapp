@@ -1,3 +1,5 @@
+// @flow
+
 import { createLogger, format, transports } from 'winston'
 
 // Configure the Winston logger. For the complete documentation seee https://github.com/winstonjs/winston

@@ -1,11 +1,12 @@
 const path = require('path')
-const withCSS = require('@zeit/next-css')
 
-// import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+const withCSS = require('@zeit/next-css')
+const webpack = require('webpack')
 
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
     config.resolve.alias['@app'] = path.join(__dirname, 'client')
+    config.resolve.alias['@server'] = path.join(__dirname, 'server')
 
     // eslint-disable-next-line no-unused-vars
     const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -29,6 +30,11 @@ module.exports = {
           },
         ],
       },
+    ]
+
+    config.plugins = [
+      ...config.plugins,
+      new webpack.IgnorePlugin(/@(root|server)/),
     ]
 
     return config

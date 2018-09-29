@@ -1,21 +1,23 @@
+// @flow
+
 import compress from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
-import logger from '@/logger'
+import logger from '@server/logger'
 
 import feathers from '@feathersjs/feathers'
 import configuration from '@feathersjs/configuration'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
 
-import services from '@/services'
-import appHooks from '@/app.hooks'
-import channels from '@/channels'
+import services from '@server/services'
+import appHooks from '@server/app.hooks'
+import channels from '@server/channels'
 
 // NOTE: Import this after services so we can obtain a list of services
-import middleware from '@/middleware'
+import middleware from '@server/middleware'
 
-import knex from '@/knex'
+import knex from '@server/knex'
 
 const app = express(feathers())
 

@@ -1,3 +1,5 @@
+// @flow
+
 import next from 'next'
 import { useStaticRendering } from 'mobx-react'
 

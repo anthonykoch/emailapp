@@ -1,10 +1,12 @@
+// @flow
+
 /* eslint-disable no-console */
 
-import './bootstrap'
+import '@server/bootstrap'
 
-import logger from '@/logger'
-import app from '@/app'
-import { app as nextApp } from '@/next'
+import logger from '@server/logger'
+import app from '@server/app'
+import { app as nextApp } from '@server/next'
 
 const port = app.get('port')
 

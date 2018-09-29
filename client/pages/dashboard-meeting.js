@@ -10,6 +10,7 @@ import MeetingCard from '@app/components/MeetingCard/MeetingCard'
 import DetailsSidebarContainer from '@app/components/DetailsSidebar/DetailsSidebarContainer'
 
 import styles from '@app/styles/utilities'
+// import { routes } from '@server/services/index'
 
 import { type User, type IRootStore, type NextInitialArg } from '@root/types'
 import type { Theme } from '@app/styles/variables'
@@ -20,13 +21,21 @@ type Props = {
   store: IRootStore,
 }
 
-export default class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ req, isServer }: NextInitialArg) {
-    if (req) {
-      // do em dirty
-    }
 
-    console.log({ isServer })
+
+
+export default class DashboardMessages extends React.Component<Props> {
+  static async getInitialProps({ isServer, app }: NextInitialArg) {
+    const awd = app.get()
+
+    if (isServer) {
+
+      // do em dirty
+      // db('lol')
+
+      // console.log(props)
+
+    }
 
     return {}
   }

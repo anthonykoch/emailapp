@@ -1,9 +1,12 @@
+// @flow
 
-import { handle } from '@/next'
-import { routes } from '@/services'
+import { handle } from '@server/next'
+import { routes } from '@server/services'
 
-export default function (options={}) {
-  return function next(req, res, next) {
+import type { $Request, $Response, NextFunction } from 'express'
+
+export default function ({ app }: { app: any }) {
+  return function next(req: $Request, res: $Response, next: NextFunction) {
     const isFeathersService =
       routes.some(route => req.originalUrl.startsWith(route))
 
@@ -11,6 +14,8 @@ export default function (options={}) {
       // Let feathers handle it
       return next()
     } else {
+      req.app = app
+
       // Let nextjs handle it
       return handle(req, res)
     }

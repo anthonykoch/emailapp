@@ -5,6 +5,8 @@ import type {
   $Response,
 } from 'express'
 
+import type Knex from 'knex'
+
 export type UserFrom = {
   id: number,
   firstName: string,
@@ -66,9 +68,12 @@ export interface IRootStore {
   constructor(isServer: boolean, lastUpdate: number): void;
 }
 
-
 export type NextInitialArg = {
-  req: $Request,
-  res: $Response,
-  isServer: boolean,
+  req?: $Request,
+  res?: $Response,
+  isServer?: boolean,
+  // db?: Knex<string>
+  app: {
+    get(): {}
+  },
 }
