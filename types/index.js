@@ -72,7 +72,7 @@ export type Services = {
   messages: MessagesService,
 }
 
-export type NextInitialArg = {
+export type NextInitialArgs = {
   req?: $Request,
   res?: $Response,
   isServer?: boolean,

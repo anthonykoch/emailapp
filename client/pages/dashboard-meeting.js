@@ -12,7 +12,7 @@ import DetailsSidebarContainer from '@app/components/DetailsSidebar/DetailsSideb
 // import api from '@app/core/api'
 import styles from '@app/styles/utilities'
 
-import { type User, type IRootStore, type NextInitialArg } from '@root/types'
+import { type User, type IRootStore, type NextInitialArgs } from '@root/types'
 import type { Theme } from '@app/styles/variables'
 
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
 }
 
 export default class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ isServer, services }: NextInitialArg) {
+  static async getInitialProps({ isServer, services }: NextInitialArgs) {
     if (isServer && SERVER) {
       // services.messages.get(id, params)
     }

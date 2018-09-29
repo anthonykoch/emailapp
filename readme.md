@@ -97,7 +97,7 @@ app.__NEXT__ = __NEXT__
 
 ```js
 class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ services }) {
+  static async getInitialProps({ services }: NextInitialArgs) {
     let messages = null
 
     if (SERVER) {
@@ -119,7 +119,7 @@ Code that should be stripped out when sent to the client can be put under an `If
 import clientapi from '@app/core/api'
 
 class HomePage extends React.Component<Props> {
-  static async getInitialProps({ api }: NextInitialArg) {
+  static async getInitialProps({ api }: NextInitialArgs) {
     let messages = null
 
     if (SERVER) {
