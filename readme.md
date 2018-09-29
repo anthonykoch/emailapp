@@ -55,3 +55,4 @@ Do note that you can also log into psql by running logging into the postgres con
 - Change how module aliases are done so type hinting works properly https://www.npmjs.com/package/babel-plugin-module-resolver eslint-import-resolver-alias
 - https://github.com/facebook/flow/issues/345
 - https://github.com/zeit/next.js/issues/184
+- Add keys to meta items in HEAD

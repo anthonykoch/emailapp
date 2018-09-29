@@ -1,10 +1,8 @@
 // @flow
 
 import React from 'react'
-import { observer } from 'mobx-react'
 import styled, { css, cx } from 'react-emotion'
 
-import StoreContext from '@app/context/store'
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
@@ -35,9 +33,7 @@ const user: User = {
   role: 'Super Admin',
 }
 
-export default
-@observer
-class DashboardMessages extends React.Component<Props> {
+export default class DashboardMessages extends React.Component<Props> {
   allFilter: any;
   filters: any;
 
@@ -75,7 +71,7 @@ class DashboardMessages extends React.Component<Props> {
     return (
       <Page
         middle={
-          <div>
+          <div >
             <styles.spacing.Margin bottom="3">
               <Header>
                 <Heading level="1" theme={this.props.theme}>
@@ -106,19 +102,11 @@ class DashboardMessages extends React.Component<Props> {
               <MessagesInboxContainer userId={user.id} />
             </styles.spacing.Margin>
           </div>
-
         }
         right={
           <IdkWhatThisIs></IdkWhatThisIs>
         }
       >
-        <StoreContext.Consumer>
-          {({ store }) => (
-            <div>
-              hey!
-            </div>
-          )}
-        </StoreContext.Consumer>
       </Page>
     )
   }

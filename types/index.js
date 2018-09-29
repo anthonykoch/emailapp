@@ -47,3 +47,16 @@ export type VoteOptionResult = {
   title: string,
   votes: number,
 }
+
+export interface IMeetingStore {
+  isSidebarShowing: boolean;
+  showSidebar(): void;
+  hideSidebar(): void;
+}
+
+export interface IRootStore {
+  meeting: IMeetingStore;
+  isServer: boolean;
+  lastUpdate: number;
+  constructor(isServer: boolean, lastUpdate: number): void;
+}

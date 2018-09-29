@@ -1,46 +1,50 @@
 // @flow
 
 import React from 'react'
+import { observer } from 'mobx-react'
 
 import DetailsSidebar from '@app/components/DetailsSidebar/DetailsSidebar'
 
-// import { users } from '@app/data'
+import { withStore } from '@app/context/store'
+
+import type { IRootStore } from '@root/types'
 
 type Props = {
-  defaultOpen: boolean,
+  defaultOpen?: boolean,
+  store: IRootStore,
 }
 
 type State = {
   isOpen: boolean,
 }
 
-export default class DetailsSidebarContainer extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
-    super()
+export default withStore(observer(
+  class DetailsSidebarContainer extends React.Component<Props, State> {
+    constructor(props: Props) {
+      super()
 
-    this.state = {
-      isOpen: props.defaultOpen,
+      this.state = {
+        isOpen: props.defaultOpen == null ? false : props.defaultOpen,
+      }
     }
-  }
 
-  show = () => {
-    this.setState({ isOpen: true })
-  }
+    show = () => {
+      this.props.store.meeting.showSidebar()
+    }
 
-  hide = () => {
-    this.setState({ isOpen: false })
-  }
+    hide = () => {
+      this.props.store.meeting.hideSidebar()
+    }
 
-  toggle = () => {
-    this.setState({ isOpen: !this.state.isOpen })
-  }
+    render() {
+      const { store } = this.props
 
-  render() {
-    return (
-      <DetailsSidebar
-        open={this.state.isOpen}
-        onRequestClose={this.hide}
-      />
-    )
-  }
-}
+      return (
+        <DetailsSidebar
+          open={store.meeting.isSidebarShowing}
+          onRequestClose={this.hide}
+        />
+      )
+    }
+  })
+)

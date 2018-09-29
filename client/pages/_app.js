@@ -6,13 +6,10 @@ import StoreContext from '@app/context/store'
 class MyApp extends App {
   render() {
     const { Component, pageProps, mobxStore: store } = this.props
-    const provisions = {
-      store,
-    }
 
     return (
       <Container>
-        <StoreContext.Provider value={provisions}>
+        <StoreContext.Provider value={store}>
           <Component {...pageProps} />
         </StoreContext.Provider>
       </Container>

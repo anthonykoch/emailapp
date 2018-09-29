@@ -1,10 +1,8 @@
 // @flow
 
 import React from 'react'
-import { observer } from 'mobx-react'
 import styled, { css } from 'react-emotion'
 
-import StoreContext from '@app/context/store'
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
 import MeetingsOverview from '@app/components/Overview/Meetings'
@@ -13,23 +11,31 @@ import DetailsSidebarContainer from '@app/components/DetailsSidebar/DetailsSideb
 
 import styles from '@app/styles/utilities'
 
-import type { User } from '@root/types'
+import type { User, IRootStore } from '@root/types'
 import type { Theme } from '@app/styles/variables'
+import type { Request } from 'express'
 
 type Props = {
   user: User,
   theme: Theme,
+  store: IRootStore,
 }
 
-export default
-@observer
-class DashboardMessages extends React.Component<Props> {
+export default class DashboardMessages extends React.Component<Props> {
+  static async getInitialProps({ req }: { req: Request }) {
+    if (req) {
+      // do em dirty
+    }
+
+    return {}
+  }
+
   render() {
     return (
       <Page
         middle={
           <div>
-            <DetailsSidebarContainer defaultOpen={true} />
+            <DetailsSidebarContainer />
             <styles.spacing.Margin bottom="4">
               <Heading level="1" theme={this.props.theme}>
                 Meetings
@@ -65,13 +71,6 @@ class DashboardMessages extends React.Component<Props> {
         }
         right={null}
       >
-        <StoreContext.Consumer>
-          {({ store }) => (
-            <div>
-              hey!
-            </div>
-          )}
-        </StoreContext.Consumer>
       </Page>
     )
   }

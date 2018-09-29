@@ -7,8 +7,6 @@ import Main from '@app/layouts/main'
 import DashboardHeader from '@app/components/DashboardHeader/DashboardHeader'
 import Sidebar from '@app/components/Sidebar/Sidebar'
 
-import StoreContext from '@app/context/store'
-
 import type { Theme } from '@app/styles/variables'
 import type { User, SidebarLink } from '@root/types'
 
@@ -73,23 +71,19 @@ type Props = {
 export default class DashboardLayout extends React.Component<Props> {
   render() {
     return (
-      <StoreContext.Consumer>
-        {({ store }) => (
-          <Main>
-            <Wrapper>
-              <DashboardHeader user={user}></DashboardHeader>
-              <Container>
-                <LeftColumn>
-                  {this.props.left || <Sidebar links={sidebarLinks} user={user} />}
-                </LeftColumn>
-                <MiddleColumn>
-                  {this.props.middle}
-                </MiddleColumn>
-              </Container>
-            </Wrapper>
-          </Main>
-        )}
-      </StoreContext.Consumer>
+      <Main>
+        <Wrapper>
+          <DashboardHeader user={user}></DashboardHeader>
+          <Container>
+            <LeftColumn>
+              {this.props.left || <Sidebar links={sidebarLinks} user={user} />}
+            </LeftColumn>
+            <MiddleColumn>
+              {this.props.middle}
+            </MiddleColumn>
+          </Container>
+        </Wrapper>
+      </Main>
     )
   }
 }

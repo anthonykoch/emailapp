@@ -93,7 +93,7 @@ const SidebarLink = withActiveClass(styled('a')`
   border-left: 2px solid transparent;
   display: block;
   font-size: 14px;
-  padding: 20px 20px;
+  padding: 14px 20px;
   text-decoration: none;
 
   &:link,

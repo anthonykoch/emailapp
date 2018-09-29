@@ -1,18 +1,26 @@
 {
   "presets": [
     "@babel/preset-env",
-    "next/babel",
+    "@babel/preset-react",
     "@babel/preset-flow"
   ],
   "plugins": [
     ["@babel/plugin-proposal-decorators", {
-      "legacy": false,
-      "decoratorsBeforeExport": false
+      "legacy": true,
     }],
-    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-proposal-optional-chaining"
   ],
   "env": {
+    "server": {
+      "presets": [
+        ["@babel/preset-env", {
+          "targets": {
+            "node": true
+          }
+        }]
+      ],
+    },
     "production": {
       "plugins": [["emotion", { "hoist": true }]]
     },
