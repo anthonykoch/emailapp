@@ -17,11 +17,11 @@ type Props = {
   onRequestClose?: Function,
 }
 
-const SidebarTransition = (props: {
+function SidebarTransition(props: {
   in: boolean,
   duration?: number,
   children: any,
-}) => {
+}) {
   const { in: inProp, duration=300, children, ...rest } = props
 
   const defaultStyle = {

@@ -35,7 +35,7 @@ body {
 }
 `
 
-const Main = ({ children, title }: Props) => {
+export default function Main({ children, title }: Props) {
   return (
     <div>
       <Head>
@@ -52,5 +52,3 @@ const Main = ({ children, title }: Props) => {
     </div>
   )
 }
-
-export default Main
