@@ -31,7 +31,6 @@ const containerClass = css`
 `
 
 const avatarClass = css`
-  ${'' /* border: 1px solid rgba(0, 120, 0, 0.2); */}
   border-radius: 50%;
   margin-right: 14px;
   height: 40px;

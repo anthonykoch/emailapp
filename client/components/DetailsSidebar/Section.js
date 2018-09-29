@@ -1,6 +1,6 @@
 // @flow
 
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 // import type { Theme } from '@app/styles/variables'
 

@@ -43,7 +43,7 @@ export default class MeetingOverview extends React.PureComponent<Props> {
         amount: canceled.amount,
         timeframe: canceled.timeframe,
         icon: <IconBackground />,
-      }
+      },
     ]
 
     if (this.props.sort) {

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 import styles from '@app/styles/utilities'
 import Checkbox from '@app/components/Input/Checkbox'
