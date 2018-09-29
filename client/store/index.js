@@ -5,8 +5,6 @@ import { action, observable, autorun } from 'mobx'
 
 import type { IMeetingStore, IRootStore } from '@root/types'
 
-let store = null
-
 export class RootStore implements IRootStore {
   // eslint-disable-next-line
   meeting: IMeetingStore
@@ -23,29 +21,27 @@ export class RootStore implements IRootStore {
 export class MeetingStore implements IMeetingStore {
   // root: RootStore;
 
-  @observable isSidebarShowing = true
+  @observable isSidebarShowing = false
 
   // constructor(root: RootStore) {
   //   this.root = root
   // }
 
-  showSidebar() {
+  @action showSidebar() {
     this.isSidebarShowing = true
   }
 
-  hideSidebar() {
+  @action hideSidebar() {
     this.isSidebarShowing = false
   }
 }
 
-export function initializeStore(isServer: boolean, lastUpdate: number=Date.now()) {
-  if (isServer) {
-    return new RootStore(isServer, lastUpdate)
-  } else {
-    if (store === null) {
-      store = new RootStore(isServer, lastUpdate)
-    }
-
-    return store
-  }
+export default function createStore({
+  isServer,
+  lastUpdate=Date.now(),
+}: {
+  isServer: boolean,
+  lastUpdate?: number,
+}) {
+  return new RootStore(isServer, lastUpdate)
 }

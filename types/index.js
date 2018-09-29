@@ -1,5 +1,10 @@
 // @flow
 
+import type {
+  $Request,
+  $Response,
+} from 'express'
+
 export type UserFrom = {
   id: number,
   firstName: string,
@@ -59,4 +64,11 @@ export interface IRootStore {
   isServer: boolean;
   lastUpdate: number;
   constructor(isServer: boolean, lastUpdate: number): void;
+}
+
+
+export type NextInitialArg = {
+  req: $Request,
+  res: $Response,
+  isServer: boolean,
 }

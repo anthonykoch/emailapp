@@ -11,9 +11,8 @@ import DetailsSidebarContainer from '@app/components/DetailsSidebar/DetailsSideb
 
 import styles from '@app/styles/utilities'
 
-import type { User, IRootStore } from '@root/types'
+import { type User, type IRootStore, type NextInitialArg } from '@root/types'
 import type { Theme } from '@app/styles/variables'
-import type { Request } from 'express'
 
 type Props = {
   user: User,
@@ -22,10 +21,12 @@ type Props = {
 }
 
 export default class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ req }: { req: Request }) {
+  static async getInitialProps({ req, isServer }: NextInitialArg) {
     if (req) {
       // do em dirty
     }
+
+    console.log({ isServer })
 
     return {}
   }
