@@ -74,7 +74,7 @@ export default function () {
   // ...
   app.use(Service.route, new Service)
 
-  const service = app.service(route)
+  const service = app.service(Service.route)
   // ...
 }
 ```
@@ -101,7 +101,7 @@ class DashboardMessages extends React.Component<Props> {
     let messages = null
 
     if (SERVER) {
-      messages = services
+      messages = services.messages.get(1);
     }
 
     return {
