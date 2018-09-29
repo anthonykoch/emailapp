@@ -10,6 +10,8 @@ import configuration from '@feathersjs/configuration'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
 
+import { Service as MessagesService } from '@server/services/messages/messages.class'
+
 import services from '@server/services'
 import appHooks from '@server/app.hooks'
 import channels from '@server/channels'
@@ -18,6 +20,8 @@ import channels from '@server/channels'
 import middleware from '@server/middleware'
 
 import knex from '@server/knex'
+
+import type { Services } from '@root/types'
 
 const app = express(feathers())
 
@@ -55,5 +59,14 @@ app.use(express.errorHandler({
 }))
 
 app.hooks(appHooks)
+
+// Expose anything we want to use in getInitialProps()
+const __NEXT__: { services: Services } = {
+  services: {
+    messages: app.service(MessagesService.route),
+  },
+}
+
+app.__NEXT__ = __NEXT__
 
 export default app

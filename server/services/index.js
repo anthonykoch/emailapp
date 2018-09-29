@@ -1,12 +1,12 @@
 // @flow
 // eslint-disable-next-line no-unused-vars
 
-import emails, { route as emailsRoute } from '@server/services/emails/emails.service'
+import messages, { route as messagesRoute } from '@server/services/messages/messages.service'
 
 export const routes = [
-  emailsRoute,
+  messagesRoute,
 ]
 
 export default function (app: any) {
-  app.configure(emails)
+  app.configure(messages)
 }

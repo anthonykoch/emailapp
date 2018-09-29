@@ -35,6 +35,9 @@ module.exports = {
     config.plugins = [
       ...config.plugins,
       new webpack.IgnorePlugin(/@(root|server)/),
+      new webpack.DefinePlugin({
+        SERVER: JSON.stringify(isServer),
+      }),
     ]
 
     return config

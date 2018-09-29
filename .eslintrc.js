@@ -1,4 +1,7 @@
 module.exports = {
+  "globals": {
+    "SERVER": true,
+  },
   "env": {
     "node": true,
     "es6": true,

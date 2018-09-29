@@ -2,16 +2,19 @@
 
 /* eslint-disable no-unused-vars */
 
-import hooks from '@server/services/emails/emails.hooks'
+import hooks from '@server/services/messages/messages.hooks'
 
 import type Knex from 'knex'
 
-const table = 'emails'
-
 type KnexDB = Knex<any>
+
+const table = 'messages'
+
 
 export class Service {
   db: KnexDB
+
+  static route = '/api/messages'
 
   constructor({ db }: { db: KnexDB }) {
     this.db = db
@@ -49,4 +52,3 @@ export class Service {
 export default function (options: { db: KnexDB }) {
   return new Service(options)
 }
-

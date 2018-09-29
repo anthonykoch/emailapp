@@ -5,7 +5,7 @@ import type {
   $Response,
 } from 'express'
 
-import type Knex from 'knex'
+import { type Service as MessagesService } from '@server/services/messages/messages.class'
 
 export type UserFrom = {
   id: number,
@@ -68,12 +68,13 @@ export interface IRootStore {
   constructor(isServer: boolean, lastUpdate: number): void;
 }
 
+export type Services = {
+  messages: MessagesService,
+}
+
 export type NextInitialArg = {
   req?: $Request,
   res?: $Response,
   isServer?: boolean,
-  // db?: Knex<string>
-  app: {
-    get(): {}
-  },
+  services: Services,
 }
