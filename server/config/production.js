@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
   host: 'localhost',
-  port: 3000,
+  port: 4000,
   public: './public',
   paginate: {
     default: 10,

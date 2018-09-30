@@ -1,6 +1,10 @@
 {
   "presets": [
-    "@babel/preset-env",
+    ["@babel/preset-env", {
+      "targets": {
+        "node": true
+      }
+    }],
     "@babel/preset-react",
     "@babel/preset-flow"
   ],
@@ -12,15 +16,6 @@
     "@babel/plugin-proposal-optional-chaining"
   ],
   "env": {
-    "server": {
-      "presets": [
-        ["@babel/preset-env", {
-          "targets": {
-            "node": true
-          }
-        }]
-      ],
-    },
     "production": {
       "plugins": [["emotion", { "hoist": true }]]
     },

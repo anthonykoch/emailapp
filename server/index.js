@@ -2,7 +2,7 @@
 
 /* eslint-disable no-console */
 
-import '@server/bootstrap'
+import './bootstrap'
 
 import logger from '@server/logger'
 import app from '@server/app'

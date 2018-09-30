@@ -15,6 +15,7 @@ An (in progress) mock email application built with Feathers JS backend and SSR R
 - [flowtype](https://flow.org) on the client and server
 - ES6/7 on the client and server
 
+
 ## Credits to the homies
 
 - http://www.albertgao.xyz/2018/02/04/how-to-do-server-side-rendering-with-feathersjs-and-nextjs/
@@ -136,6 +137,12 @@ class HomePage extends React.Component<Props> {
 ```
 
 Make sure to update the types in `/types/index.js` when adding/removing services!
+
+
+## Note
+
+This project requires a unix platform or [git bash](https://git-scm.com/downloads) to run commands
+
 
 ## Todo
 

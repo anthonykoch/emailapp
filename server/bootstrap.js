@@ -1,6 +1,10 @@
 const path = require('path')
 
-require('module-alias/register')
+const moduleAlias = require('module-alias')
+
+const aliases = require(path.join(__dirname, '../.alias.js'))
+
+moduleAlias.addAliases(aliases)
 
 // NOTE: This file needs ot be imported before '@feathers/configuration'
 // for it to work properly. Setting it with cross-env doesn't seem to work

@@ -12,6 +12,7 @@ services:
     command: npm run dev
     ports:
       - "3000:3000"
+      - "4000:4000"
     depends_on:
       - db
     environment:
@@ -21,6 +22,8 @@ services:
       # We don't want no node modules
       - "./server:/home/app/server"
       - "./client:/home/app/client"
+      - "./scripts:/home/app/scripts"
+      - "./.alias.js:/home/app/.alias.js"
       - "./.babelrc:/home/app/.babelrc"
       - "./postcss.config.js:/home/app/postcss.config.js"
       - "./package.json:/home/app/package.json"

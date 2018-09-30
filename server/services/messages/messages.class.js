@@ -10,7 +10,6 @@ type KnexDB = Knex<any>
 
 const table = 'messages'
 
-
 export class Service {
   db: KnexDB
 
@@ -24,8 +23,11 @@ export class Service {
     return []
   }
 
-  async get(id: string, params: {}) {
-    return this.db.table(table).where('id', id)
+  async get(id: string | number, params?: ?{}) {
+    return {
+      id: String(id),
+    }
+    // return this.db.table(table).where('id', id)
   }
 
   async create(data: any[] | any, params: {}) {

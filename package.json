@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "cross-env BABEL_ENV=server NODE_ENV='development' nodemon -w .babelrc -w register.js -w next.config.js -w server -w config -w client/routes.js node register.js -f ./server/index.js",
     "start": "cross-env NODE_ENV='production' node ./build/server/index.js",
-    "build:client": "next build client",
-    "build:server": "cross-env BABEL_ENV=server babel server -d build/server",
+    "build": "npm run build:clean && npm run build:babel && npm run build:next && npm run build:copy",
+    "build:next": "cross-env NODE_ENV='production' next build client",
+    "build:babel": "babel server -d build/server && babel client/routes.js -d build/client",
+    "build:copy": "cp .alias.js build/.alias.js",
+    "build:clean": "rm -rf build/*",
     "fix": "npx eslint \"client/**/*.js\" \"server/**/*.js\" *.js --fix -c .eslintrc.js",
     "lint": "npx eslint \"client/**/*.js\" \"server/**/*.js\" *.js -c .eslintrc.js",
     "db:setup": "knex migrate:latest && knex seed:run",
@@ -17,11 +20,6 @@
     "docker:stop": "docker stop emailapp_web emailapp_pg",
     "docker:ssh": "docker exec -it emailapp_web sh -l",
     "docker:rm": "docker rm emailapp_web emailapp_pg"
-  },
-  "_moduleAliases": {
-    "@root": "./",
-    "@server": "server",
-    "@app": "client"
   },
   "directories": {
     "lib": "server",

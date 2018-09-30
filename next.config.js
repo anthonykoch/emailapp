@@ -3,15 +3,21 @@ const path = require('path')
 const withCSS = require('@zeit/next-css')
 const webpack = require('webpack')
 
+// eslint-disable-next-line no-unused-vars
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
+
+console.log('env:', JSON.stringify({
+  IS_PRODUCTION,
+}, null, '  '))
+
 module.exports = {
+  distDir: '../build/client/.next',
+
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
-    config.resolve.alias['@app'] = path.join(__dirname, 'client')
-    config.resolve.alias['@server'] = path.join(__dirname, 'server')
+    const aliases = require(path.join(__dirname, './.alias.js'))
 
-    // eslint-disable-next-line no-unused-vars
-    const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
-    console.log('env:', process.env.NODE_ENV)
+    Object.assign(config.resolve.alias, aliases)
 
     config.module.rules = [
       ...config.module.rules,

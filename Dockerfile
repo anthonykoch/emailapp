@@ -6,9 +6,8 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 COPY ./ ./
-CMD ["npm", "run", "build:server"]
 
-EXPOSE 3000
+EXPOSE 3000 4000
 
 CMD ["npm", "run", "dev"]
 
