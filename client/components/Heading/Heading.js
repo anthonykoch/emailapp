@@ -15,7 +15,6 @@ const types = {
 type HeadingLevel = 1 | '1'
 
 type Props = {
-  theme: Theme,
   level: HeadingLevel,
 }
 
@@ -24,7 +23,7 @@ const Heading: ComponentType<Props> = styled('h2')`
   padding: 0;
   margin: 0;
 
-  ${(props: Props) => css`
+  ${(props: { theme: Theme } & Props) => css`
     color: ${props.theme.colorTextForeground};
     ${css(types[props.level])}
   `}

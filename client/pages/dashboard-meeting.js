@@ -15,30 +15,40 @@ import styles from '@app/styles/utilities'
 import { type User, type IRootStore, type NextInitialArgs } from '@root/types'
 import type { Theme } from '@app/styles/variables'
 
+type InitialProps = {
+  message: ?{ id: string },
+}
+
 type Props = {
   user: User,
   theme: Theme,
   store: IRootStore,
-}
+} & InitialProps
 
 export default class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ isServer, services }: NextInitialArgs) {
-    if (isServer && SERVER) {
-      // services.messages.get(id, params)
+  static async getInitialProps({ services }: NextInitialArgs): Promise<InitialProps> {
+    let message = null
+
+    if (SERVER) {
+      message = await services.messages.get(1)
     }
 
-    return {}
+    return {
+      message,
+    }
   }
 
   render() {
+    const { message } = this.props
+
     return (
       <Page
         middle={
           <div>
             <DetailsSidebarContainer />
             <styles.spacing.Margin bottom="4">
-              <Heading level="1" theme={this.props.theme}>
-                Meetings
+              <Heading level="1">
+                Meetings {message?.id}
               </Heading>
             </styles.spacing.Margin>
             <styles.spacing.Margin bottom="6">
