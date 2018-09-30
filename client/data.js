@@ -17,7 +17,7 @@ export const voteResults: VoteOptionResult[] = [
     id: 3,
     title: 'csgo',
     votes: 305,
-  }
+  },
 ]
 
 export const users: User[] = [
