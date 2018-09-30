@@ -49,9 +49,11 @@ export default class AppWithMobx extends App {
     appContext.ctx.store = store
     appContext.ctx.isServer = isServer
 
-    Object.assign(appContext.ctx, appContext.ctx.req.app.__NEXT__)
+    if (SERVER) {
+      Object.assign(appContext.ctx, appContext.ctx.req.__NEXT__)
+      delete appContext.ctx.req.__NEXT__
+    }
 
-    delete appContext.ctx.req.app
 
     let appProps = {}
 

@@ -56,6 +56,12 @@ import '@server/services/messages/messages.class' // -> will import '/server/ser
 import '@app/components/Button'                   // -> will import '/client/components/Button'
 ```
 
+
+## Defining routes
+
+Routes are defined in `@app/routes.js`.
+
+
 ## Using services in getInitialProps
 
 In order to use feathers services in a page's getInitialProps, import it in `app.js` and add it to the api object.
@@ -97,6 +103,7 @@ app.__NEXT__ = __NEXT__
 ```
 
 ```js
+// @app/pages/dashboard-messages
 class DashboardMessages extends React.Component<Props> {
   static async getInitialProps({ services }: NextInitialArgs) {
     let messages = null
@@ -139,9 +146,9 @@ class HomePage extends React.Component<Props> {
 Make sure to update the types in `/types/index.js` when adding/removing services!
 
 
-## Note
+## Notes
 
-This project requires a unix platform or [git bash](https://git-scm.com/downloads) to run commands
+- This project requires a unix platform or [git bash](https://git-scm.com/downloads) for windows to run commands
 
 
 ## Todo

@@ -14,7 +14,7 @@ export default function ({ app }: { app: any }) {
       // Let feathers handle it
       return next()
     } else {
-      req.app = app
+      req.__NEXT__ = app.__NEXT__
 
       // Let nextjs handle it
       return handle(req, res)
