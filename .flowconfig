@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/jsonlint/.*
+.*/node_modules/bcryptjs/.*
 .*/.next/.*
 
 [include]

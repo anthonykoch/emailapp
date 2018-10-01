@@ -3,23 +3,20 @@
 import compress from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
-import logger from '@server/logger'
 
 import feathers from '@feathersjs/feathers'
 import configuration from '@feathersjs/configuration'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
 
-import { Service as MessagesService } from '@server/services/messages/messages.class'
-
+import logger from '@server/logger'
 import services from '@server/services'
 import appHooks from '@server/app.hooks'
 import channels from '@server/channels'
-
-// NOTE: Import this after services so we can obtain a list of services
 import middleware from '@server/middleware'
-
 import knex from '@server/knex'
+
+import { Service as MessagesService } from '@server/services/messages/messages.class'
 
 import type { Services } from '@root/types'
 

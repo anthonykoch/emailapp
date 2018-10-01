@@ -160,3 +160,7 @@ Make sure to update the types in `/types/index.js` when adding/removing services
 - https://github.com/facebook/flow/issues/345
 - https://github.com/zeit/next.js/issues/184
 - Add keys to meta items in HEAD
+- https://stackoverflow.com/questions/16573668/best-practices-when-running-node-js-with-port-80-ubuntu-linode
+- https://medium.freecodecamp.org/secure-your-web-application-with-these-http-headers-fd66e0367628
+
+

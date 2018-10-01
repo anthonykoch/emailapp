@@ -5,7 +5,11 @@ import type {
   $Response,
 } from 'express'
 
+import type Knex from 'knex'
+
 import { type Service as MessagesService } from '@server/services/messages/messages.class'
+
+export type KnexDB = Knex<any>
 
 export type UserFrom = {
   id: number,
@@ -77,4 +81,16 @@ export type NextInitialArgs = {
   res?: $Response,
   isServer?: boolean,
   services: Services,
+}
+
+export interface IModel {
+  fillable: string[];
+  table: string;
+  data: {};
+}
+
+export interface IDBService {
+  db: KnexDB;
+
+  constructor({ db: KnexDB }): void;
 }

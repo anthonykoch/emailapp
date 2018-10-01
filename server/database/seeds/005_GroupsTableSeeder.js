@@ -13,23 +13,23 @@ exports.seed = async (knex, Promise) => {
       },
     ])
   })
-  .then(() => knex('group_members').del())
-  .then(async () => {
-    const group = knex('groups').where('name', 'Dunder Mifflin')
+    .then(() => knex('group_members').del())
+    .then(async () => {
+      const group = knex('groups').where('name', 'Dunder Mifflin')
 
-    knex('group_members').insert([
-      {
-        user_id: jim.id,
-        group_id: group.id,
-      },
-      {
-        user_id: dwight.id,
-        group_id: group.id,
-      },
-      {
-        user_id: michael.id,
-        group_id: group.id,
-      },
-    ])
-  })
+      knex('group_members').insert([
+        {
+          user_id: jim.id,
+          group_id: group.id,
+        },
+        {
+          user_id: dwight.id,
+          group_id: group.id,
+        },
+        {
+          user_id: michael.id,
+          group_id: group.id,
+        },
+      ])
+    })
 }

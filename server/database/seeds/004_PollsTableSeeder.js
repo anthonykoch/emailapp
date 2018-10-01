@@ -1,7 +1,6 @@
 
 exports.seed = async (knex, Promise) => {
   const jim = await knex('users').where('first_name', 'Jim').first()
-  const dwight = await knex('users').where('first_name', 'Dwight').first()
   const michael = await knex('users').where('first_name', 'Michael').first()
 
   // Deletes ALL existing entries
@@ -30,7 +29,7 @@ exports.seed = async (knex, Promise) => {
         {
           name: 'Battlestar Galactica',
           poll_id: poll.id,
-        }
+        },
       ])
     })
     .then(() => knex('poll_votes').del())
@@ -48,7 +47,7 @@ exports.seed = async (knex, Promise) => {
           poll_id: poll.id,
           option_id: pollOptions[0].id,
           user_id: michael.id,
-        }
+        },
       ])
     })
 }

@@ -4,13 +4,11 @@
 
 import hooks from '@server/services/messages/messages.hooks'
 
-import type Knex from 'knex'
-
-type KnexDB = Knex<any>
+import type { KnexDB, IDBService } from '@root/types'
 
 const table = 'messages'
 
-export class Service {
+export class Service implements IDBService {
   db: KnexDB
 
   static route = '/api/messages'

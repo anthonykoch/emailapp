@@ -1,32 +1,27 @@
 // Update with your config settings.
 
 require('./register')
+require('./server/bootstrap')
 
-const { postgres: development } = require('./server/config/development')
-const { postgres: production } = require('./server/config/production')
+// A bit hacky, bit I couldn't figure out another way
+const config = (nodeEnv) => {
+  const NODE_ENV = process.env.NODE_ENV
+
+  process.env.NODE_ENV = nodeEnv
+
+  const env = require('config')
+
+  delete require.cache[require.resolve('config')]
+
+  process.env.NODE_ENV = NODE_ENV
+
+  return env
+}
+
+const { postgres: development } = config('development')
+const { postgres: production } = config('production')
 
 module.exports = {
-  development: {
-    ...development,
-  },
-
-  // staging: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     user: 'username',
-  //     password: 'password',
-  //     database: 'my_db',
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10,
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations',
-  //   },
-  // },
-
-  production: {
-    ...production,
-  },
+  development,
+  production,
 }

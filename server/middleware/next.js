@@ -14,6 +14,7 @@ export default function ({ app }: { app: any }) {
       // Let feathers handle it
       return next()
     } else {
+      // $FlowFixMe
       req.__NEXT__ = app.__NEXT__
 
       // Let nextjs handle it
