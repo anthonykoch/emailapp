@@ -94,3 +94,11 @@ export interface IDBService {
 
   constructor({ db: KnexDB }): void;
 }
+
+export interface IStatusService {
+  // TODO
+}
+
+export type StatusResponse = {
+  status: number,
+}

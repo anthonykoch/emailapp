@@ -162,5 +162,5 @@ Make sure to update the types in `/types/index.js` when adding/removing services
 - Add keys to meta items in HEAD
 - https://stackoverflow.com/questions/16573668/best-practices-when-running-node-js-with-port-80-ubuntu-linode
 - https://medium.freecodecamp.org/secure-your-web-application-with-these-http-headers-fd66e0367628
-
+- https://til.hashrocket.com/posts/e65bb49204-lower-is-faster-than-ilike
 
