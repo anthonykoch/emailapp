@@ -9,6 +9,11 @@ exports.up = (knex, Promise) => {
     t.timestamps()
   })
     .then(() => {
+      return knex.schema.alterTable('users', t => {
+        t.unique('email')
+      })
+    })
+    .then(() => {
       return knex.schema.createTable('messages', t => {
         t.increments('id')
 
