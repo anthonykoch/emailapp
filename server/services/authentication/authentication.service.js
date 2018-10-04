@@ -2,17 +2,16 @@
 
 import authentication from '@feathersjs/authentication'
 import jwt from '@feathersjs/authentication-jwt'
-import local, { Verifier } from '@feathersjs/authentication-local'
-import Debug from 'debug'
+import local from '@feathersjs/authentication-local'
+
+// $FlowFixMe
+import bcrypt from 'bcryptjs'
 
 import { Service as UsersService } from '@server/services/users/users.service'
-
-const debug = Debug('app')
 
 // import oauth2 from '@feathersjs/authentication-oauth2'
 // import GoogleStrategy from 'passport-google-oauth20'
 // import GithubStrategy from 'passport-github'
-
 
 // app.configure(oauth2(Object.assign({
 //   name: 'google',
@@ -32,24 +31,29 @@ export const route = '/api/authentication'
 export default (app: any) => {
   const config = app.get('authentication')
 
-  class AuthVerifier extends Verifier {
-    verify(req, username, password, done) {
-      this.service.find({ username })
-        .then(response => {
-          const results = response.data || response
-          if (!results.length) {
-            debug(`User with username '${username}' did not exist`)
+  class AuthVerifier {
+    verify(req, identifier, password, done) {
+      app.service(UsersService.route).find({ query: { username: identifier } })
+        .then(({ data: [user] }) => {
+          console.log(user);
+
+          if (user == null) {
+            return done(null, false, { message: 'Invalid login' })
           }
 
-          return this._normalizeResult(response)
+          console.log(password, user.password)
+
+          return bcrypt.compare(password, user.password)
+            .then((result) => {
+              console.log(result)
+
+              result
+                ? done(null, user, { userId: user.id })
+                : done(null, false, { message: 'Invalid login' })
+            })
+            .catch(err => done(err))
         })
-        .then(entity => this._comparePassword(entity, password))
-        .then(entity => {
-          const id = entity[this.service.id]
-          const payload = { [`${this.options.entity}Id`]: id }
-          done(null, entity, payload)
-        })
-        .catch(error => error ? done(error) : done(null, error, { message: 'Invalid login' }))
+        .catch(err => done(err))
     }
   }
 

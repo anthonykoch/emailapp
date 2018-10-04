@@ -1,11 +1,12 @@
 // @flow
 
+import log from '@server/hooks/log'
+
 // Application hooks that run for every service
-import log from './hooks/log'
 
 export default {
   before: {
-    all: [ log() ],
+    all: [log()],
     find: [],
     get: [],
     create: [],
@@ -25,7 +26,7 @@ export default {
   },
 
   error: {
-    all: [ log() ],
+    all: [log()],
     find: [],
     get: [],
     create: [],

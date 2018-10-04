@@ -7,10 +7,7 @@ import type { $Request, $Response, NextFunction } from 'express'
 
 export default function ({ app }: { app: any }) {
   return function next(req: $Request, res: $Response, next: NextFunction) {
-    const isFeathersService =
-      routes.some(route => req.originalUrl.startsWith(route))
-
-    if (isFeathersService) {
+    if (req.originalUrl.startsWith('/api')) {
       // Let feathers handle it
       return next()
     } else {

@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group'
 import styles from '@app/styles/utilities'
 import InviteNotification from './InviteNotification'
 import { SectionPanel } from './Section'
-import Vote from './Vote'
+// import Vote from './Vote'
 import IconClose from '@app/components/Icon/IconClose'
 
 import type { Theme } from '@app/styles/variables'
@@ -82,7 +82,7 @@ export default class DetailsSidebar extends React.PureComponent<Props> {
             <InviteNotification></InviteNotification>
           </SectionPanel>
           <SectionPanel>
-            <Vote open={true} options={undefined}></Vote>
+            {/* <Vote open={true} options={undefined}></Vote> */}
           </SectionPanel>
         </Panel>
       </SidebarTransition>

@@ -151,7 +151,7 @@ Make sure to update the types in `/types/index.js` when adding/removing services
 - This project requires a unix platform or [git bash](https://git-scm.com/downloads) for windows to run commands
 
 
-## Todo
+## Todo/ToRead
 
 - https://www.npmjs.com/package/eslint-plugin-import
 - Figure out 404 and 500 pages on the feathersjs side
@@ -163,4 +163,9 @@ Make sure to update the types in `/types/index.js` when adding/removing services
 - https://stackoverflow.com/questions/16573668/best-practices-when-running-node-js-with-port-80-ubuntu-linode
 - https://medium.freecodecamp.org/secure-your-web-application-with-these-http-headers-fd66e0367628
 - https://til.hashrocket.com/posts/e65bb49204-lower-is-faster-than-ilike
+- https://blog.feathersjs.com/access-control-strategies-with-feathersjs-72452268739d
+- https://github.com/feathersjs-ecosystem/feathers-knex/blob/master/lib/error-handler.js#L73
+
+
+
 

@@ -2,22 +2,24 @@
 exports.up = (knex, Promise) => {
   return knex.schema.createTable('users', t => {
     t.increments('id')
-    t.string('email')
-    t.string('password')
-    t.string('first_name')
-    t.string('last_name')
+    t.string('email').notNullable()
+    t.string('username').notNullable()
+    t.string('password').notNullable()
+    t.string('first_name').notNullable()
+    t.string('last_name').notNullable()
     t.timestamps()
   })
     .then(() => {
       return knex.schema.alterTable('users', t => {
         t.unique('email')
+        t.unique('username')
       })
     })
     .then(() => {
       return knex.schema.createTable('messages', t => {
         t.increments('id')
 
-        t.string('content')
+        t.string('content').notNullable()
 
         t.integer('sender_id')
           .notNullable()
@@ -50,13 +52,13 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('meetings', t => {
         t.increments('id')
-        t.string('name')
+        t.string('name').notNullable()
         t.integer('creator_id')
           .notNullable()
           .references('id')
           .inTable('users')
           .onDelete('CASCADE')
-        t.boolean('canceled')
+        t.boolean('canceled').notNullable()
         t.timestamp('start_date')
         t.timestamp('end_date')
         t.timestamps()
@@ -65,8 +67,8 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('meeting_attendees', t => {
         // It would probably be better to have an enum type
-        t.boolean('pending')
-        t.boolean('attending')
+        t.boolean('pending').notNullable()
+        t.boolean('attending').notNullable()
         t.integer('attendee_id')
           .notNullable()
           .references('id')
@@ -85,7 +87,7 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('polls', t => {
         t.increments('id')
-        t.string('name')
+        t.string('name').notNullable()
 
         t.integer('creator_id')
           .notNullable()
@@ -99,7 +101,7 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('poll_options', t => {
         t.increments('id')
-        t.string('name')
+        t.string('name').notNullable()
         t.integer('poll_id')
           .notNullable()
           .references('id')
@@ -134,7 +136,7 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('groups', t => {
         t.increments('id')
-        t.string('name')
+        t.string('name').notNullable()
       })
     })
     .then(() => {

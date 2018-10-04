@@ -29,7 +29,7 @@ module.exports = {
     },
     local: {
       entity: 'user',
-      usernameField: 'email',
+      usernameField: 'identifier',
       passwordField: 'password',
     },
     // google: {

@@ -9,12 +9,13 @@ import configuration from '@feathersjs/configuration'
 import express from '@feathersjs/express'
 import socketio from '@feathersjs/socketio'
 
-import logger from '@server/logger'
+// import logger from '@server/logger'
 import services from '@server/services'
 import appHooks from '@server/app.hooks'
 import channels from '@server/channels'
 import middleware from '@server/middleware'
 import knex from '@server/knex'
+import validator from '@server/validator'
 
 import { Service as MessagesService } from '@server/services/messages/messages.class'
 
@@ -43,17 +44,22 @@ app.configure(middleware)
 app.configure(services)
 // Set up event channels (see channels.js)
 app.configure(channels)
+app.configure(validator)
 
 // Configure a middleware for 404s and the error handler
-app.use(express.notFound())
-app.use(express.errorHandler({
-  logger,
-  // TODO: Customize 404 and 500 for these
-  // html: {
-  //   404: 'path/to/notFound.html',
-  //   500: 'there/will/be/robots.html'
-  // },
-}))
+// app.use(express.notFound())
+
+app.use((err, req, res, next) => {
+  const error = {
+    status: err.code,
+    errors: err.errors,
+    message: err.message,
+  }
+
+  // console.log(err)
+
+  res.json(error)
+})
 
 app.hooks(appHooks)
 

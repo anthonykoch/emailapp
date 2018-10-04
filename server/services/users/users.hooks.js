@@ -3,31 +3,40 @@
 import authentication from '@feathersjs/authentication'
 import local from '@feathersjs/authentication-local'
 
-import { status } from '@server/hooks'
+import * as validations from '@server/services/users/users.validations'
+import { validate } from '@server/hooks/validate'
 
 const { hooks: { authenticate } } = authentication
 
 const {
   hooks: {
     hashPassword,
-    protect,
+    // protect,
   },
 } = local
 
 export default {
   before: {
     all: [],
-    // find: [authenticate('jwt')],
-    // get: [authenticate('jwt')],
-    // create: [hashPassword()],
-    // update: [hashPassword(), authenticate('jwt')],
-    // patch: [hashPassword(), authenticate('jwt')],
-    // remove: [authenticate('jwt')],
+    find: [
+      validate(validations.Find),
+      authenticate('jwt'),
+    ],
+    get: [
+      authenticate('jwt'),
+      validate(validations.Get),
+    ],
+    create: [
+      validate(validations.Create),
+      hashPassword(),
+    ],
+    update: [hashPassword(), authenticate('jwt')],
+    patch: [hashPassword(), authenticate('jwt')],
+    remove: [authenticate('jwt')],
   },
 
   after: {
     all: [
-      status(),
       // Make sure the password field is never sent to the client
       // Always must be the last hook
       // protect('password'),

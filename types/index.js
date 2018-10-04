@@ -99,6 +99,54 @@ export interface IStatusService {
   // TODO
 }
 
-export type StatusResponse = {
+
+export type GetResponse = {
+  data: {} | null
+}
+
+export type FindResponse = {
+  data: *[],
+}
+
+export type CreateResponse = {
+  data: {}[],
+}
+
+export type SingleCreateResponse = {
+  data: {},
+}
+
+export type ErrorResponse = {
   status: number,
+  message: string,
+}
+
+export type DataResponse = {
+  status: number,
+  data: mixed,
+}
+
+export type ValidationResponse = {
+  status: number,
+  invalid: {
+    errors: [],
+  },
+}
+
+export type Response = DataResponse | ErrorResponse | ValidationResponse
+
+export type ValidationResult = {
+  errors: {},
+  count: number,
+  isValid: boolean,
+}
+
+export interface IValidator {
+  rules: Object;
+  messages: Object;
+  constructor(): void;
+  pick(context: any): {};
+  check({
+    context: any,
+  } & ValidationResult): void | any;
 }
