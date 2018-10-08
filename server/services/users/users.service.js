@@ -29,24 +29,16 @@ export class Service implements IDBService {
     this.table = Service.table
   }
 
-  async get(id: string): Promise<GetResponse> {
+  async get(id: string): Promise<{} | null> {
     if (!Number.isFinite(+id)) {
-      return {
-        data: null,
-      }
+      return null
     }
 
     return this.db(this.table)
       .select()
       .where('id', id)
       .first()
-      .then((user: ?{}) => {
-        if (user != null) {
-          return { data: user }
-        }
-
-        return { data: null }
-      })
+      .then((user: ?{}) => user || null)
       .catch(() => {
         throw new RequestError.GeneralError('Service Unavailable')
       })
@@ -61,24 +53,16 @@ export class Service implements IDBService {
     return this.db(this.table)
       .insert(_.pick(_data, fillable))
       .returning('*')
-      .then((entity: {}) => {
-        return {
-          status: 201,
-          data: entity,
-        }
-      })
       .catch(() => {
         throw new RequestError.GeneralError('Service unavailable')
       })
   }
 
-  async find(params: { query: {} }): Promise<FindResponse> {
+  async find(params: { query: {} }): Promise<[]> {
     const query = _.pick(params.query, searchable)
 
     if (Object.keys(query).length === 0) {
-      return {
-        data: [],
-      }
+      return []
     }
 
     const q = this.db(this.table)
@@ -100,17 +84,11 @@ export class Service implements IDBService {
         }
       })
 
-    console.log(q.toString());
+    console.log(q.toString())
 
-
-    return q.then((users) => {
-      return {
-        data: users,
-      }
+    return q.catch(() => {
+      throw new RequestError.GeneralError('Service Unavailable')
     })
-      .catch(() => {
-        throw new RequestError.GeneralError('Service Unavailable')
-      })
   }
 }
 

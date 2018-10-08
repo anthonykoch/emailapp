@@ -34,19 +34,15 @@ export default (app: any) => {
   class AuthVerifier {
     verify(req, identifier, password, done) {
       app.service(UsersService.route).find({ query: { username: identifier } })
-        .then(({ data: [user] }) => {
-          console.log(user);
-
-          if (user == null) {
+        .then((users) => {
+          if (users.length === 0) {
             return done(null, false, { message: 'Invalid login' })
           }
 
-          console.log(password, user.password)
+          const [user] = users
 
           return bcrypt.compare(password, user.password)
             .then((result) => {
-              console.log(result)
-
               result
                 ? done(null, user, { userId: user.id })
                 : done(null, false, { message: 'Invalid login' })

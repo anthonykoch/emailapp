@@ -15,8 +15,6 @@ export default
 @observer
 class MessagesInboxContainer extends React.Component<Props> {
   render() {
-    console.log('MessagesInboxContainer', this.props)
-
     return (
       <MessagesInbox
         messages={[

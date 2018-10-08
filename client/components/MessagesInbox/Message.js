@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 import styles from '@app/styles/utilities'
 import Checkbox from '@app/components/Input/Checkbox'
@@ -19,6 +19,10 @@ type Props = {
 export default class Message extends React.PureComponent<Props> {
   render() {
     const { message } = this.props
+    const { tags=[] } = message
+
+    console.log({message});
+
 
     return (
       <Panel>
@@ -27,14 +31,15 @@ export default class Message extends React.PureComponent<Props> {
             <Checkbox defaultChecked={false} />
           </CheckboxContainer>
           <Avatar>
-            <AvatarImage src={profileImage} alt="awd" />
+            <ShortnameAvatar shortname={message.from.shortname}></ShortnameAvatar>
+            {/* <AvatarImage src={profileImage} alt="awd" /> */}
           </Avatar>
           <From>
             {message.from.firstName}{' '}
             {message.from.lastName}
           </From>
           <TagList>
-            {message.tags.map((tag, index) => <Tag key={index}>{Tag.name}</Tag>)}
+            {tags.map((tag, index) => <Tag key={index}>{Tag.name}</Tag>)}
           </TagList>
           <Text className={styles.text.ellipsis}>
             {message.message}
@@ -79,6 +84,8 @@ const From = styled('div')`
   width: 150px;
 `
 
+// 'shortname', users.shortname
+
 const CheckboxContainer = styled('div')`
   align-items: center;
   display: flex;
@@ -99,4 +106,25 @@ const Panel = styled('div')`
 const Container = styled('div')`
   align-items: center;
   display: flex;
+`
+
+const ShortnameAvatar = styled('div')`
+  background-color: #eeeeee;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 40px;
+  position: relative;
+  width: 40px;
+
+  ${(props: { shortname: string }) => css`
+    &:after {
+      content: '${props.shortname}';
+      left: 50%;
+      color: #999;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  `}
 `

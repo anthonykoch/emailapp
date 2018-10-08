@@ -47,7 +47,9 @@ export default function Main({ children, title }: Props) {
         <title>{title}</title>
       </Head>
       <ThemeProvider theme={theme}>
-        {children}
+        <div>
+          {children}
+        </div>
       </ThemeProvider>
     </div>
   )

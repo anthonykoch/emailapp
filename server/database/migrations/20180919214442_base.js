@@ -4,6 +4,7 @@ exports.up = (knex, Promise) => {
     t.increments('id')
     t.string('email').notNullable()
     t.string('username').notNullable()
+    t.string('shortname').notNullable()
     t.string('password').notNullable()
     t.string('first_name').notNullable()
     t.string('last_name').notNullable()
@@ -18,8 +19,9 @@ exports.up = (knex, Promise) => {
     .then(() => {
       return knex.schema.createTable('messages', t => {
         t.increments('id')
-
         t.string('content').notNullable()
+        t.string('subject')
+        t.boolean('read')
 
         t.integer('sender_id')
           .notNullable()
@@ -32,6 +34,13 @@ exports.up = (knex, Promise) => {
         t.timestamps()
       })
     })
+    // TODO
+    // .then(() => {
+    //   return knex.schema.createTable('roles', t => {
+    //     t.increments('id')
+
+    //   })
+    // })
     .then(() => {
       return knex.schema.createTable('message_recipients', t => {
         t.integer('recipient_id')

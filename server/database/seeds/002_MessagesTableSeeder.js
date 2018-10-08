@@ -11,14 +11,26 @@ exports.seed = async (knex, Promise) => {
         {
           sender_id: michael.id,
           content: `I didn't say it, I declared it`,
+          subject: `Bankruptcy`,
+          read: false,
         },
         {
           sender_id: jim.id,
-          content: `Bears. Beets. Battlestar Galactica`,
+          content: `Fact, bears eat beets. Bears. Beets. Battlestar Galactica`,
+          subject: `What kind of bear is best?`,
+          read: false,
+        },
+        {
+          sender_id: jim.id,
+          content: `Oh yeah, sorry Dwight, I forwarded your phone calls to my cell.`,
+          subject: `Reply: Forwarded calls`,
+          read: false,
         },
         {
           sender_id: dwight.id,
-          content: `Identify theft is not a joke Jim, millions of families suffer every year!`,
+          subject: `My interests`,
+          content: `Identify theft is not a joke Jim! Millions of families suffer every year!`,
+          read: false,
         },
       ])
     })

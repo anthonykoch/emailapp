@@ -1,7 +1,6 @@
 // @flow
 
 import { handle } from '@server/next'
-import { routes } from '@server/services'
 
 import type { $Request, $Response, NextFunction } from 'express'
 

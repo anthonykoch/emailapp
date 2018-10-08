@@ -26,12 +26,13 @@ type Props = {
 } & InitialProps
 
 export default class DashboardMessages extends React.Component<Props> {
-  static async getInitialProps({ services }: NextInitialArgs): Promise<InitialProps> {
+  static async getInitialProps({ req, services }: NextInitialArgs): Promise<InitialProps> {
     let message = null
 
-    if (SERVER) {
-      message = await services.messages.get(1)
-    }
+    // if (process.env.SERVER) {
+    //   message = await services.messages.get(1)
+    //   console.log(message)
+    // }
 
     return {
       message,

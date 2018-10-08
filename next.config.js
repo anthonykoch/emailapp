@@ -42,7 +42,9 @@ module.exports = {
       ...config.plugins,
       new webpack.IgnorePlugin(/@(root|server)/),
       new webpack.DefinePlugin({
-        SERVER: JSON.stringify(isServer),
+        'process.env': {
+          SERVER: JSON.stringify(isServer),
+        },
       }),
     ]
 

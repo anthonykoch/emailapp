@@ -10,12 +10,12 @@ import type { Theme } from '@app/styles/variables'
 
 type Props = {
   messages: TMessage[],
-  empty?: any,
+  empty?: ?any,
 }
 
 export default class MessagesInbox extends React.PureComponent<Props> {
   render() {
-    const { messages } = this.props
+    const { messages=[], empty=null } = this.props
 
     if (messages.length > 0) {
       return (
@@ -27,7 +27,7 @@ export default class MessagesInbox extends React.PureComponent<Props> {
       )
     }
 
-    return this.props.empty || (
+    return empty || (
       <Empty>
         <div>There are no messages to display.</div>
       </Empty>

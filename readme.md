@@ -21,7 +21,7 @@ An (in progress) mock email application built with Feathers JS backend and SSR R
 - http://www.albertgao.xyz/2018/02/04/how-to-do-server-side-rendering-with-feathersjs-and-nextjs/
 - https://github.com/zeit/next.js/blob/master/examples/with-mobx
 - https://dribbble.com/shots/3903437-Dashboard-message
-
+- https://dribbble.com/shots/4317968-S-App-Login
 
 ## Setup
 
@@ -108,7 +108,7 @@ class DashboardMessages extends React.Component<Props> {
   static async getInitialProps({ services }: NextInitialArgs) {
     let messages = null
 
-    if (SERVER) {
+    if (process.env.SERVER) {
       messages = services.messages.get(1);
     }
 
@@ -121,7 +121,7 @@ class DashboardMessages extends React.Component<Props> {
 
 ## Server only code in getInitialProps
 
-Code that should be stripped out when sent to the client can be put under an `If` statement with `SERVER` as the test condition. `SERVER` is a boolean defined in `next.config.js`
+Code that should be stripped out when sent to the client can be put under an `If` statement with `process.env.SERVER` as the test condition. `process.env.SERVER` is a boolean defined in `next.config.js`
 
 ```
 import clientapi from '@app/core/api'
@@ -130,7 +130,7 @@ class HomePage extends React.Component<Props> {
   static async getInitialProps({ api }: NextInitialArgs) {
     let messages = null
 
-    if (SERVER) {
+    if (process.env.SERVER) {
       messages = await api.messages.get(1)
     } else {
       messages = await clientapi.messages.get(1)

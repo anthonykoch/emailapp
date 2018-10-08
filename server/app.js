@@ -15,7 +15,7 @@ import appHooks from '@server/app.hooks'
 import channels from '@server/channels'
 import middleware from '@server/middleware'
 import knex from '@server/knex'
-import validator from '@server/validator'
+import validator from '@app/validations/register'
 
 import { Service as MessagesService } from '@server/services/messages/messages.class'
 
@@ -68,6 +68,7 @@ const __NEXT__: { services: Services } = {
   services: {
     messages: app.service(MessagesService.route),
   },
+  app,
 }
 
 app.__NEXT__ = __NEXT__

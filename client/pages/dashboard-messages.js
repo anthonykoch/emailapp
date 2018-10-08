@@ -8,34 +8,96 @@ import Heading from '@app/components/Heading/Heading'
 import Filters from '@app/components/Filters/Filters'
 import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallNotification'
 import MessagesOverview from '@app/components/Overview/Messages'
-import MessagesInboxContainer from '@app/components/MessagesInbox/MessagesInboxContainer'
+import MessagesInbox from '@app/components/MessagesInbox/MessagesInbox'
 
 import styles from '@app/styles/utilities'
 
 import type { User } from '@root/types'
-import type { Theme } from '@app/styles/variables'
+import type { Theme, Message, NextInitialArgs } from '@app/styles/variables'
 
 type Props = {
-  user: User,
   theme: Theme,
   liveCallNotification: boolean,
 }
 
-// https://dribbble.com/shots/3903437-Dashboard-message/attachments/888558
-// https://dribbble.com/shots/3781660-Dashboard-Meeting/attachments/851963
-
-const user: User = {
-  id: 902,
-  firstName: 'Essie',
-  lastName: 'Howell',
-  username: 'Essieness',
-  shortName: 'H',
-  role: 'Super Admin',
+type InitialProps = {
+  messages: ?Message[],
+  user: ?{
+    id: number,
+    firstName: string,
+    lastName: string,
+    username: string,
+    shortName: string,
+    role: string,
+  },
 }
 
-export default class DashboardMessages extends React.Component<Props> {
+// https://dribbble.com/shots/3903437-Dashboard-message/attachments/888558
+// https://dribbble.com/shots/3781660-Dashboard-Meeting/attachments/851963
+// if (process.env.SERVER) {
+//   const { route: UsersServiceRoute } = require('../../server/services/users/users.service')
+// }
+
+export default class DashboardMessages extends React.Component<Props & InitialProps> {
   allFilter: any;
   filters: any;
+
+  static async getInitialProps({ req, app }: NextInitialArgs): Promise<InitialProps> {
+    if (process.env.SERVER) {
+      const db = app.get('knex')
+
+      const promises = [
+        db('messages')
+          .select(db.raw(`
+            (SELECT count(messages.sender_id) FROM messages WHERE messages.sender_id = ${req.user.id}) AS sent,
+            (SELECT count(*)
+            FROM message_recipients
+            WHERE message_recipients.recipient_id = ${req.user.id}) AS received
+          `))
+          .first(),
+        db('messages')
+          .select(db.raw(`
+            messages.id as id,
+            messages.content as message,
+            json_build_object(
+              'firstName', users.first_name,
+              'lastName', users.last_name,
+              'shortname', users.shortname
+            ) as from,
+            messages.read as read
+          `))
+          .join('message_recipients', {
+            'messages.id': 'message_recipients.message_id',
+          })
+          .join('users', {
+            'users.id': 'messages.sender_id',
+          })
+          .where('message_recipients.recipient_id', req.user.id),
+        app.service('/api/users').get(req.user.id),
+      ]
+
+      const [{ sent, received }, messages, user] = await Promise.all(promises)
+
+      // console.log({ messages })
+      // console.log({ user })
+      // console.log({ overview })
+
+      return {
+        overview: {
+          sent: Number(sent),
+          received: Number(received),
+        },
+        user,
+        messages,
+      }
+    }
+
+    // return {
+    //   overview,
+    //   user,
+    //   messages,
+    // }
+  }
 
   constructor() {
     super()
@@ -66,12 +128,15 @@ export default class DashboardMessages extends React.Component<Props> {
   }
 
   render() {
-    const { liveCallNotification } = this.props
+    const { liveCallNotification, messages, overview } = this.props
+
+    console.log(overview);
+
 
     return (
       <Page
         middle={
-          <div >
+          <div>
             <styles.spacing.Margin bottom="3">
               <Header>
                 <Heading level="1" theme={this.props.theme}>
@@ -92,14 +157,14 @@ export default class DashboardMessages extends React.Component<Props> {
 
             <styles.spacing.Margin bottom="4">
               <MessagesOverview
-                overall={{ amount: 1494 }}
-                sent={{ amount: 1494 }}
-                received={{ amount: 1494 }}
+                overall={{ amount: overview.sent + overview.received }}
+                sent={{ amount: overview.sent }}
+                received={{ amount: overview.received }}
               />
             </styles.spacing.Margin>
 
             <styles.spacing.Margin bottom="4">
-              <MessagesInboxContainer userId={user.id} />
+              <MessagesInbox messages={messages == null ? [] : messages} />
             </styles.spacing.Margin>
           </div>
         }

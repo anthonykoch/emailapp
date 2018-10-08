@@ -3,7 +3,7 @@
 // eslint-disable-next-line no-unused-vars
 import { action, observable, autorun } from 'mobx'
 
-import app from '@app/core/api'
+import app from '@app/api'
 
 import type { IMeetingStore, IRootStore } from '@root/types'
 
@@ -42,11 +42,11 @@ export class AuthStore {
       password: string,
       strategy: string,
     }) {
-    app.authenticate({
-      identifier,
-      password,
-      strategy,
-    })
+    // app.authenticate({
+    //   identifier,
+    //   password,
+    //   strategy,
+    // })
   }
 }
 

@@ -3,6 +3,7 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 
+import configureValidator from '@app/validations/register'
 import StoreContext from '@app/context/store'
 import createStore from '@app/store'
 
@@ -39,6 +40,10 @@ if (module.hot) {
   })
 }
 
+if (!process.env.SERVER) {
+  configureValidator()
+}
+
 export default class AppWithMobx extends App {
   static async getInitialProps(appContext: any) {
     // Get or Create the store with `undefined` as initialState
@@ -49,7 +54,7 @@ export default class AppWithMobx extends App {
     appContext.ctx.store = store
     appContext.ctx.isServer = isServer
 
-    if (SERVER) {
+    if (process.env.SERVER) {
       Object.assign(appContext.ctx, appContext.ctx.req.__NEXT__)
       delete appContext.ctx.req.__NEXT__
     }

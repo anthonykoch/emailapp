@@ -2,7 +2,11 @@
 
 import createRoutes from 'next-routes'
 
-const defs = [
+export const DASHBOARD_MESSAGES = '/dashboard/messages'
+export const DASHBOARD_MEETING = '/dashboard/meeting'
+export const LOGIN = '/login'
+
+export const defs = [
   {
     name: 'home',
     pattern: '/',
@@ -10,13 +14,18 @@ const defs = [
   },
   {
     name: 'dashboard-messages',
-    pattern: '/dashboard/messages',
+    pattern: DASHBOARD_MESSAGES,
     page: 'dashboard-messages',
   },
   {
     name: 'dashboard-meeting',
-    pattern: '/dashboard/meeting',
+    pattern: DASHBOARD_MEETING,
     page: 'dashboard-meeting',
+  },
+  {
+    name: 'login',
+    pattern: LOGIN,
+    page: 'login',
   },
 ]
 

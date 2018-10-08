@@ -26,6 +26,7 @@ export type Message = {
   id: number,
   from: UserFrom,
   tags: MessageTag[],
+  subject: string,
   message: string,
   read: boolean,
 }
