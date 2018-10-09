@@ -5,21 +5,24 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import Head from 'next/head'
 
-import api from '@app/api'
+import auth from '@app/auth'
 import { Router, Link } from '@app/routes'
 import styles from '@app/styles/utilities'
-import { withStore } from '@app/context/store'
+import withStore from '@app/hocs/store'
 
 import InputGroup from '@app/components/Input/InputGroup'
 import Main from '@app/layouts/main'
 import AnimatedDualOverlay from '@app/components/Overlay/AnimatedDualOverlay'
 
-import type { IRootStore } from '@root/types'
+import type { NextInitialArgs, IRootStore } from '@root/types'
+
+type InitialProps = {
+  store: IRootStore,
+}
 
 type Props = {
-  store: IRootStore,
   redirectUrl: string,
-}
+} & InitialProps
 
 type State = {
   isAuthenticated: boolean,
@@ -51,6 +54,10 @@ class Login extends React.Component<Props, State> {
     password: '',
   }
 
+  static async getInitialProps(props: NextInitialArgs): InitialProps {
+    return {}
+  }
+
   constructor() {
     super()
 
@@ -71,7 +78,7 @@ class Login extends React.Component<Props, State> {
   onSubmit = async (e) => {
     e.preventDefault()
 
-    api.authenticate({
+    this.props.store.auth.login({
       strategy: 'local',
       identifier: this.state.username,
       password: this.state.password,
@@ -92,8 +99,10 @@ class Login extends React.Component<Props, State> {
         }
       })
       .catch((err) => {
+        console.log(err)
+
         this.setState({
-          error: 'Error 500 - Service Unavailable' ,
+          error: 'Error 500 - Service Unavailable',
         })
       })
   }
@@ -237,4 +246,4 @@ const Error = styled('p')`
   color: red
 `
 
-export default Login
+export default withStore(Login)

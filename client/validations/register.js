@@ -2,7 +2,7 @@
 
 import Validator from 'validatorjs'
 
-import api from '@app/api'
+import auth from '@app/auth'
 
 export default (app: any) => {
   Validator.register('stripped', (value, req, attribute) => {

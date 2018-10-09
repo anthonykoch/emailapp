@@ -3,7 +3,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import app from '@app/api'
+import auth from '@app/auth'
 import { withStore } from '@app/context/store'
 
 import type { IRootStore } from '@root/types'
@@ -26,9 +26,9 @@ class Authentication extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    app.authenticate({
+    auth.authenticate({
       strategy: 'jwt',
-      accessToken: app.passport.getJWT(),
+      accessToken: auth.passport.getJWT(),
     })
   }
 

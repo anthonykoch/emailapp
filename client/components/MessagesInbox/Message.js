@@ -21,9 +21,6 @@ export default class Message extends React.PureComponent<Props> {
     const { message } = this.props
     const { tags=[] } = message
 
-    console.log({message});
-
-
     return (
       <Panel>
         <Container>

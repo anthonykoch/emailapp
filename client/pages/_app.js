@@ -69,7 +69,6 @@ export default class AppWithMobx extends App {
 
     return {
       ...appProps,
-      memes: 'awda',
       initialState: store,
     }
   }

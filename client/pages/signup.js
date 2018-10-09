@@ -7,7 +7,7 @@ import _ from 'lodash'
 import Head from 'next/head'
 
 import { create } from '@shared/validations/user'
-import api from '@app/api'
+import auth from '@app/auth'
 import styles from '@app/styles/utilities'
 import { withStore } from '@app/context/store'
 
@@ -227,7 +227,8 @@ class Signup extends React.Component<Props, State> {
   onSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await api.service('/api/users').create(this.state.user)
+    const response =
+      this.props.store.auth.createUser(this.state.user)
 
     if (response.errors) {
       this.setState({ errors: response.errors })

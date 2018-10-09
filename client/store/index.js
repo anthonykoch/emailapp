@@ -3,24 +3,65 @@
 // eslint-disable-next-line no-unused-vars
 import { action, observable, autorun } from 'mobx'
 
-import app from '@app/api'
+import auth from '@app/auth'
 
-import type { IMeetingStore, IRootStore } from '@root/types'
-
-export class RootStore implements IRootStore {
+export class RootStore {
   // eslint-disable-next-line
-  meeting: IMeetingStore
+  auth: AuthStore // eslint-disable-line no-use-before-define
+  meeting: MeetingStore // eslint-disable-line no-use-before-define
+  userMessages: UserMessages // eslint-disable-line no-use-before-define
   isServer: boolean
   lastUpdate: number
 
   constructor(isServer: boolean, lastUpdate: number) {
-    this.meeting = new MeetingStore()
+    this.auth = new AuthStore(this)
+    this.meeting = new MeetingStore(this)
+    this.userMessages = new UserMessages(this)
     this.isServer = isServer
     this.lastUpdate = lastUpdate
   }
 }
 
-export class AuthStore {
+class NestedStore {
+  root: RootStore
+
+  constructor(root: RootStore) {
+    this.root = root
+  }
+
+  // NOTE: Deletes the root store or else we got "Circular JSON" error
+  toJSON() {
+    const obj = Object.assign({}, this)
+
+    delete obj.root
+
+    return obj
+  }
+}
+
+export class UserMessages extends NestedStore {
+  getUserMessages() {
+    // const { userId } =
+    //   await api.passport
+    //     .getJWT()
+    //     .then((token) => api.passport.verifyJWT(token))
+
+    // await api.getUsersMessages()
+    //   .then((awd) => {
+    //     console.log({awd})
+    //   })
+  }
+}
+
+type SignupCredentials = {
+  username: string,
+  first_name: string,
+  last_name: string,
+  password: string,
+  email: string,
+}
+
+export class AuthStore extends NestedStore {
   isAuthenticated: boolean
   token: null | string
   isFetching: boolean
@@ -33,6 +74,22 @@ export class AuthStore {
   @observable isFetching = false
   @observable error = null
 
+  @action createUser(user: SignupCredentials) {
+    return axios.post('/api/users', user)
+      .then((res) => {
+        console.log(res);
+
+      })
+      .catch(err => {
+        console.log(err);
+
+      })
+  }
+
+  @action async logout() {
+    return auth.logout()
+  }
+
   @action login({
     identifier,
     password,
@@ -42,22 +99,16 @@ export class AuthStore {
       password: string,
       strategy: string,
     }) {
-    // app.authenticate({
-    //   identifier,
-    //   password,
-    //   strategy,
-    // })
+    return auth.authenticate({
+      identifier,
+      password,
+      strategy,
+    })
   }
 }
 
-export class MeetingStore implements IMeetingStore {
-  // root: RootStore;
-
+export class MeetingStore extends NestedStore {
   @observable isSidebarShowing = false
-
-  // constructor(root: RootStore) {
-  //   this.root = root
-  // }
 
   @action showSidebar() {
     this.isSidebarShowing = true

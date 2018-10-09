@@ -7,7 +7,12 @@ import type {
 
 import type Knex from 'knex'
 
-import { type Service as MessagesService } from '@server/services/messages/messages.class'
+import { type RootStore } from '@app/store'
+import { type Service as UsersMessagesOverviewService } from '@server/services/users/messages-overview.service'
+import { type Service as UsersMessagesService } from '@server/services/users/messages.service'
+import { type Service as UsersService } from '@server/services/users/users.service'
+
+export type IRootStore = RootStore
 
 export type KnexDB = Knex<any>
 
@@ -16,6 +21,7 @@ export type UserFrom = {
   firstName: string,
   lastName: string,
   username: string,
+  shortname: string,
 }
 
 export type MessageTag = {
@@ -60,27 +66,16 @@ export type VoteOptionResult = {
   votes: number,
 }
 
-export interface IMeetingStore {
-  isSidebarShowing: boolean;
-  showSidebar(): void;
-  hideSidebar(): void;
-}
-
-export interface IRootStore {
-  meeting: IMeetingStore;
-  isServer: boolean;
-  lastUpdate: number;
-  constructor(isServer: boolean, lastUpdate: number): void;
-}
-
 export type Services = {
-  messages: MessagesService,
+  usersMessagesOverview: UsersMessagesOverviewService,
+  usersMessages: UsersMessagesService,
+  users: UsersService,
 }
 
 export type NextInitialArgs = {
-  req?: $Request,
-  res?: $Response,
-  isServer?: boolean,
+  req: $Request & { user: { id: number | string } },
+  res: $Response,
+  store: IRootStore,
   services: Services,
 }
 
@@ -99,7 +94,6 @@ export interface IDBService {
 export interface IStatusService {
   // TODO
 }
-
 
 export type GetResponse = {
   data: {} | null
@@ -137,7 +131,7 @@ export type ValidationResponse = {
 export type Response = DataResponse | ErrorResponse | ValidationResponse
 
 export type ValidationResult = {
-  errors: {},
+  errors: Object,
   count: number,
   isValid: boolean,
 }

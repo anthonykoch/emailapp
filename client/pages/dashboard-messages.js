@@ -10,10 +10,11 @@ import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallN
 import MessagesOverview from '@app/components/Overview/Messages'
 import MessagesInbox from '@app/components/MessagesInbox/MessagesInbox'
 
+import { Link } from '@app/routes'
 import styles from '@app/styles/utilities'
 
-import type { User } from '@root/types'
-import type { Theme, Message, NextInitialArgs } from '@app/styles/variables'
+import type { Message, NextInitialArgs } from '@root/types'
+import type { Theme } from '@app/styles/variables'
 
 type Props = {
   theme: Theme,
@@ -42,61 +43,38 @@ export default class DashboardMessages extends React.Component<Props & InitialPr
   allFilter: any;
   filters: any;
 
-  static async getInitialProps({ req, app }: NextInitialArgs): Promise<InitialProps> {
-    if (process.env.SERVER) {
-      const db = app.get('knex')
+  static async getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
+    let overview
+    let messages
+    let user
 
+    if (process.env.SERVER) {
+      const userId = String(req.user.id)
       const promises = [
-        db('messages')
-          .select(db.raw(`
-            (SELECT count(messages.sender_id) FROM messages WHERE messages.sender_id = ${req.user.id}) AS sent,
-            (SELECT count(*)
-            FROM message_recipients
-            WHERE message_recipients.recipient_id = ${req.user.id}) AS received
-          `))
-          .first(),
-        db('messages')
-          .select(db.raw(`
-            messages.id as id,
-            messages.content as message,
-            json_build_object(
-              'firstName', users.first_name,
-              'lastName', users.last_name,
-              'shortname', users.shortname
-            ) as from,
-            messages.read as read
-          `))
-          .join('message_recipients', {
-            'messages.id': 'message_recipients.message_id',
-          })
-          .join('users', {
-            'users.id': 'messages.sender_id',
-          })
-          .where('message_recipients.recipient_id', req.user.id),
-        app.service('/api/users').get(req.user.id),
+        services.usersMessagesOverview.find({ route: { userid: userId } }),
+        services.usersMessages.find({ route: { userid: userId } }),
+        services.users.get(userId),
       ]
 
-      const [{ sent, received }, messages, user] = await Promise.all(promises)
+      ;([overview, messages, user] = await Promise.all(promises))
+    } else {
+      ;(
+        [overview, messages, user] =
+          await Promise.all([
 
-      // console.log({ messages })
-      // console.log({ user })
-      // console.log({ overview })
-
-      return {
-        overview: {
-          sent: Number(sent),
-          received: Number(received),
-        },
-        user,
-        messages,
-      }
+          ])
+            .catch((err) => console.log(err) || [])
+      )
     }
 
-    // return {
-    //   overview,
-    //   user,
-    //   messages,
-    // }
+    return {
+      messages,
+      user,
+      overview: {
+        sent: Number(overview?.sent) || 'memed',
+        received: Number(overview?.received) || 'memed',
+      },
+    }
   }
 
   constructor() {
@@ -130,13 +108,13 @@ export default class DashboardMessages extends React.Component<Props & InitialPr
   render() {
     const { liveCallNotification, messages, overview } = this.props
 
-    console.log(overview);
-
-
     return (
       <Page
         middle={
           <div>
+            <Link route="/logout">
+              <a>Logout</a>
+            </Link>
             <styles.spacing.Margin bottom="3">
               <Header>
                 <Heading level="1" theme={this.props.theme}>
