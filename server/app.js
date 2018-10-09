@@ -17,7 +17,9 @@ import middleware from '@server/middleware'
 import knex from '@server/knex'
 import validator from '@app/validations/register'
 
-import { Service as MessagesService } from '@server/services/messages/messages.class'
+import { Service as UsersMessagesOverviewService } from '@server/services/users/messages-overview.service'
+import { Service as UsersMessagesService } from '@server/services/users/messages.service'
+import { Service as UsersService } from '@server/services/users/users.service'
 
 import type { Services } from '@root/types'
 
@@ -66,7 +68,9 @@ app.hooks(appHooks)
 // Expose anything we want to use in getInitialProps()
 const __NEXT__: { services: Services } = {
   services: {
-    messages: app.service(MessagesService.route),
+    users: app.service(UsersService.route),
+    usersMessages: app.service(UsersMessagesService.route),
+    usersMessagesOverview: app.service(UsersMessagesOverviewService.route),
   },
   app,
 }

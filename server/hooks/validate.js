@@ -15,9 +15,12 @@ export class Validator {
 }
 
 // Runs validations against whatever is picked from the context object
-export const validate = function (Verifier: Class<IValidator>) {
+export const validate = function (Verifier: Class<IValidator> | IValidator) {
   return async (context: any) => {
-    const verifier = new Verifier()
+    const verifier =
+      typeof Verifier === 'function'
+        ? new Verifier()
+        : Verifier
     const Validator = context.app.get('validator')
     const validator =
       new Validator(await verifier.pick(context), verifier.rules, verifier.messages)
@@ -39,6 +42,12 @@ export const validate = function (Verifier: Class<IValidator>) {
 
     if (error != null) {
       throw error
+    }
+
+    if (validator.errorCount > 0) {
+      throw new RequestError.BadRequest({
+        message: 'Invalid request',
+      })
     }
   }
 }
