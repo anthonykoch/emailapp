@@ -22,6 +22,7 @@ const users: User[] =
       id: index,
       firstName: 'Tony',
       lastName: 'Bamboni',
+      username: 'lol',
       role: 'Super Admin',
       shortName: 'T',
     }))

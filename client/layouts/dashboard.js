@@ -10,19 +10,11 @@ import Sidebar from '@app/components/Sidebar/Sidebar'
 import type { Theme } from '@app/styles/variables'
 import type { User, SidebarLink } from '@root/types'
 
-const user: User = {
-  id: 1,
-  role: 'Super Admin',
-  firstName: 'Essie',
-  lastName: 'Howell',
-  shortName: 'E',
-}
-
 const sidebarLinks: SidebarLink[] = [
   {
     id: 1,
     children: 'Overview',
-    route: 'overview',
+    route: 'dashboard-overview',
     icon: '',
   },
   {
@@ -64,12 +56,15 @@ const sidebarLinks: SidebarLink[] = [
 ]
 
 type Props = {
+  user: User,
   left?: any,
   middle?: any,
 }
 
 export default class DashboardLayout extends React.Component<Props> {
   render() {
+    const { user } = this.props
+
     return (
       <Main>
         <Wrapper>
@@ -92,6 +87,7 @@ const leftColumnWidth = 300
 const gutter = 30
 
 const Container = styled('div')`
+  align-items: flex-start;
   display: flex;
   flex: 1;
   padding-top: 40px;

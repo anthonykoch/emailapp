@@ -1,8 +1,7 @@
 // @flow
 
 import Validator from 'validatorjs'
-
-import auth from '@app/auth'
+import axios from 'axios'
 
 export default (app: any) => {
   Validator.register('stripped', (value, req, attribute) => {
@@ -43,12 +42,13 @@ export default (app: any) => {
 
     app.set('validator', Validator)
   } else {
-    Validator.registerAsync('unique_email', async (value, attribute, req, passes) => {
-      const response = await api.service('/api/users').create({
-        email: value,
-      })
+    const client = require('@app/client').default
 
-      console.log(response.errors)
+    Validator.registerAsync('unique_email', async (value, attribute, req, passes) => {
+      const response =
+        await client.service('/api/users').create({
+          email: value,
+        })
 
       // TODO: The response should return an error count
       if (response.errors.email != null) {

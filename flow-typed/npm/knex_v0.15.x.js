@@ -16,6 +16,7 @@ declare class Knex$QueryBuilder<R> mixins Promise<R> {
   clearWhere(): this;
   select(key?: string[]): this;
   select(...key: string[]): this;
+  select(mapping: Object): this;
   timeout(ms: number, options?: { cancel: boolean }): this;
   column(key: string[]): this;
   column(...key: string[]): this;

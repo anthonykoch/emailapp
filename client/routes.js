@@ -4,7 +4,9 @@ import createRoutes from 'next-routes'
 
 export const DASHBOARD_MESSAGES = '/dashboard/messages'
 export const DASHBOARD_MEETING = '/dashboard/meeting'
+export const DASHBOARD_OVERVIEW = '/dashboard/overview'
 export const LOGIN = '/login'
+export const LOGOUT = '/logout'
 
 export const defs = [
   {
@@ -14,18 +16,28 @@ export const defs = [
   },
   {
     name: 'dashboard-messages',
-    pattern: DASHBOARD_MESSAGES,
     page: 'dashboard-messages',
+    pattern: DASHBOARD_MESSAGES,
   },
   {
     name: 'dashboard-meeting',
-    pattern: DASHBOARD_MEETING,
     page: 'dashboard-meeting',
+    pattern: DASHBOARD_MEETING,
+  },
+  {
+    name: 'dashboard-overview',
+    page: 'dashboard-overview',
+    pattern: DASHBOARD_OVERVIEW,
   },
   {
     name: 'login',
-    pattern: LOGIN,
     page: 'login',
+    pattern: LOGIN,
+  },
+  {
+    name: 'logout',
+    page: 'logout',
+    pattern: LOGOUT,
   },
 ]
 

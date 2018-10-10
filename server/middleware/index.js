@@ -9,8 +9,8 @@ export default function (app: any) {
   // in Express, the order matters.
 
   if (process.env.SERVER) {
-    const cookieParser = require('cookie-parser');
-    const { authenticate } = require('@feathersjs/authentication').express;
+    const cookieParser = require('cookie-parser')
+    const { authenticate } = require('@feathersjs/authentication').express
 
     app.use(routes.DASHBOARD_MEETING, cookieParser(), authenticate('jwt', {
       failureRedirect: `/login?redirect=${routes.DASHBOARD_MEETING}`,
@@ -18,6 +18,10 @@ export default function (app: any) {
 
     app.use(routes.DASHBOARD_MESSAGES, cookieParser(), authenticate('jwt', {
       failureRedirect: `/login?redirect=${routes.DASHBOARD_MESSAGES}`,
+    }))
+
+    app.use(routes.DASHBOARD_OVERVIEW, cookieParser(), authenticate('jwt', {
+      failureRedirect: `/login?redirect=${routes.DASHBOARD_OVERVIEW}`,
     }))
   }
 

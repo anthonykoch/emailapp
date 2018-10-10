@@ -16,6 +16,11 @@ export type IRootStore = RootStore
 
 export type KnexDB = Knex<any>
 
+export type Overview = {
+  sent: number,
+  received: number,
+}
+
 export type UserFrom = {
   id: number,
   firstName: string,
@@ -41,6 +46,8 @@ export type User = {
   id: number,
   firstName: string,
   lastName: string,
+  username: string,
+  profileImage: string,
   role: string,
   shortName: string,
 }
@@ -144,4 +151,40 @@ export interface IValidator {
   check({
     context: any,
   } & ValidationResult): void | any;
+}
+
+
+
+
+
+
+export type AuthStoreState = {
+  isLoggedIn: boolean,
+  token: null | string,
+  isFetching: boolean,
+}
+
+export type UsersStoreState = {
+  user: ?User,
+}
+
+export type MeetingStoreState = {
+  isSidebarShowing: boolean,
+}
+
+export type UsersMessagesStoreState = {
+  messages: Message[],
+}
+
+export type UsersMessagesOverviewStoreState = {
+  overview: Overview,
+}
+
+export type RootStoreState = {
+  isServer: boolean,
+  auth?: AuthStoreState,
+  meeting?: MeetingStoreState,
+  users?: UsersStoreState,
+  usersMessages?: UsersMessagesStoreState,
+  usersMessagesOverview?: UsersMessagesOverviewStoreState,
 }

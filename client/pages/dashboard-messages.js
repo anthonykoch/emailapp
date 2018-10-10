@@ -2,6 +2,7 @@
 
 import React from 'react'
 import styled, { css, cx } from 'react-emotion'
+import { observer } from 'mobx-react'
 
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
@@ -10,72 +11,32 @@ import LiveCallNotification from '@app/components/LiveCallNotification/LiveCallN
 import MessagesOverview from '@app/components/Overview/Messages'
 import MessagesInbox from '@app/components/MessagesInbox/MessagesInbox'
 
-import { Link } from '@app/routes'
+import withStore from '@app/hocs/store'
+import withAuth from '@app/hocs/authentication'
 import styles from '@app/styles/utilities'
 
-import type { Message, NextInitialArgs } from '@root/types'
+import type { NextInitialArgs, IRootStore } from '@root/types'
 import type { Theme } from '@app/styles/variables'
 
 type Props = {
+  store: IRootStore,
   theme: Theme,
   liveCallNotification: boolean,
+  overview: {
+    sent: number,
+    received: number,
+  }
 }
 
-type InitialProps = {
-  messages: ?Message[],
-  user: ?{
-    id: number,
-    firstName: string,
-    lastName: string,
-    username: string,
-    shortName: string,
-    role: string,
-  },
-}
+type InitialProps = {}
 
 // https://dribbble.com/shots/3903437-Dashboard-message/attachments/888558
 // https://dribbble.com/shots/3781660-Dashboard-Meeting/attachments/851963
-// if (process.env.SERVER) {
-//   const { route: UsersServiceRoute } = require('../../server/services/users/users.service')
-// }
 
-export default class DashboardMessages extends React.Component<Props & InitialProps> {
+@observer
+class DashboardMessages extends React.Component<Props & InitialProps> {
   allFilter: any;
   filters: any;
-
-  static async getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
-    let overview
-    let messages
-    let user
-
-    if (process.env.SERVER) {
-      const userId = String(req.user.id)
-      const promises = [
-        services.usersMessagesOverview.find({ route: { userid: userId } }),
-        services.usersMessages.find({ route: { userid: userId } }),
-        services.users.get(userId),
-      ]
-
-      ;([overview, messages, user] = await Promise.all(promises))
-    } else {
-      ;(
-        [overview, messages, user] =
-          await Promise.all([
-
-          ])
-            .catch((err) => console.log(err) || [])
-      )
-    }
-
-    return {
-      messages,
-      user,
-      overview: {
-        sent: Number(overview?.sent) || 'memed',
-        received: Number(overview?.received) || 'memed',
-      },
-    }
-  }
 
   constructor() {
     super()
@@ -106,15 +67,21 @@ export default class DashboardMessages extends React.Component<Props & InitialPr
   }
 
   render() {
-    const { liveCallNotification, messages, overview } = this.props
+    const {
+      usersMessagesOverview: { overview },
+      usersMessages: { messages },
+      users: { user },
+      // liveCallNotification=false,
+    } = this.props.store
 
     return (
       <Page
+        user={
+          // $FlowFixMe This can technically never be null at this point
+          user
+        }
         middle={
           <div>
-            <Link route="/logout">
-              <a>Logout</a>
-            </Link>
             <styles.spacing.Margin bottom="3">
               <Header>
                 <Heading level="1" theme={this.props.theme}>
@@ -129,8 +96,8 @@ export default class DashboardMessages extends React.Component<Props & InitialPr
               </Header>
             </styles.spacing.Margin>
 
-            {liveCallNotification && (<styles.spacing.Margin bottom="4">
-              <LiveCallNotification />
+            {false && (<styles.spacing.Margin bottom="4">
+              <LiveCallNotification users={[]} />
             </styles.spacing.Margin>)}
 
             <styles.spacing.Margin bottom="4">
@@ -188,3 +155,32 @@ const IdkWhatThisIs = styled('div')`
     background-color: ${props.theme.filterActionBackgroundActive};
   `}
 `
+
+const Export = withAuth(withStore(DashboardMessages))
+
+async function getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
+  if (process.env.SERVER) {
+    const userId = String(req.user.id)
+
+    const [overview, messages, user] = await Promise.all([
+      services.usersMessagesOverview.find({ route: { userid: userId } }),
+      services.usersMessages.find({ route: { userid: userId } }),
+      services.users.get(userId),
+    ])
+
+    store.usersMessagesOverview.setOverview(overview)
+    store.usersMessages.setMessages(messages)
+    store.users.setUser(user)
+  } else {
+    store.usersMessagesOverview.getOverview()
+    store.usersMessages.getMessages()
+    store.users.getUser()
+  }
+
+  return {}
+}
+
+// $FlowFixMe
+Export.getInitialProps = getInitialProps
+
+export default Export

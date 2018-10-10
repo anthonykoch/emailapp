@@ -7,7 +7,7 @@ import configureValidator from '@app/validations/register'
 import StoreContext from '@app/context/store'
 import createStore from '@app/store'
 
-import type { IRootStore } from '@root/types'
+import type { IRootStore, RootStoreState } from '@root/types'
 
 const isServer = typeof window === 'undefined'
 const __NEXT_MOBX_STORE__ = '__NEXT_MOBX_STORE__'
@@ -15,10 +15,7 @@ const __NEXT_MOBX_STORE__ = '__NEXT_MOBX_STORE__'
 // Adapted from
 // https://github.com/zeit/next.js/blob/master/examples/with-mobx/lib/with-mobx-store.js
 
-function getStore(initialState: {
-  isServer: boolean,
-  lastUpdate?: number,
-}): IRootStore {
+function getStore(initialState: RootStoreState): IRootStore {
   // Always make a new store if server, otherwise state is shared between requests
   if (isServer) {
     return createStore(initialState)

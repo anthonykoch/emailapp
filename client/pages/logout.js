@@ -1,15 +1,11 @@
 // @flow
 
 import React from 'react'
-// import { observer } from 'mobx'
-import styled, { css } from 'react-emotion'
 import Head from 'next/head'
 
 import Main from '@app/layouts/main'
-
-import auth from '@app/auth'
 import { Router } from '@app/routes'
-import styles from '@app/styles/utilities'
+import withStore from '@app/hocs/store'
 
 import type { IRootStore } from '@root/types'
 
@@ -38,16 +34,10 @@ const validations = {
   },
 }
 
-export default class Login extends React.Component<Props, State> {
-  static async getInitialProps({ store }) {
-    if (process.env.SERVER) {
-
-    } else {
-      console.log(await store.auth.logout())
-      Router.pushRoute('/login')
-    }
-
-    return {}
+class Logout extends React.Component<Props, State> {
+  async componentDidMount() {
+    await this.props.store.auth.logout()
+    Router.pushRoute('/login')
   }
 
   render() {
@@ -60,3 +50,5 @@ export default class Login extends React.Component<Props, State> {
     )
   }
 }
+
+export default withStore(Logout)

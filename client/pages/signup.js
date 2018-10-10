@@ -96,7 +96,6 @@ class Signup extends React.Component<Props, State> {
     }, () => {
       this.getValidationsFor({ [name]: value }, name)
         .then(({ errors }) => {
-          // console.log('getvalid', errors);
           if (errors[name] == null || errors[name].length === 0) {
             this.setState({
               errors: {

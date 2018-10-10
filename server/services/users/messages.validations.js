@@ -16,8 +16,6 @@ export class Find extends Validator implements IValidator {
   messages = {}
 
   pick(context: any) {
-    console.log(context.params);
-
     return {
       userid: context.params.route.userid,
       limit: context.params.query?.limit,

@@ -3,22 +3,20 @@
 import React from 'react'
 import { css } from 'react-emotion'
 
-// $FlowFixMe
-import profileImage from '@app/images/profile-image.jpg'
+import type { User } from '@root/types'
 
 type Props = {
-  user: {
-    firstName: string,
-    lastName: string,
-  }
+  user: User,
 }
 
 export default class UserProfilePreview extends React.PureComponent<Props> {
   render() {
+    const { user } = this.props
+
     return (
       <div className={containerClass}>
-        <img className={avatarClass} src={profileImage} />
-        <div className={usernameClass}>{this.props.user.firstName} {this.props.user.lastName}</div>
+        <img className={avatarClass} src={user.profileImage} />
+        <div className={usernameClass}>{user.firstName} {user.lastName}</div>
         <div className={actionClass}></div>
       </div>
     )

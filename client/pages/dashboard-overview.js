@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import styled, { css } from 'react-emotion'
+// import styled, { css } from 'react-emotion'
 import Head from 'next/head'
 import { observer } from 'mobx-react'
 
@@ -27,7 +27,7 @@ type Props = {
 } & InitialProps
 
 @observer
-class DashboardMeeting extends React.Component<Props> {
+class DashboardOverview extends React.Component<Props> {
   render() {
     const {
       users: { user },
@@ -36,18 +36,18 @@ class DashboardMeeting extends React.Component<Props> {
     return (
       <Page
         user={
-          // $FlowFixMe
+          // $FlowFixMe This can technically never be null at this point
           user
         }
         middle={
           <div>
             <Head>
-              <title>Meetings</title>
+              <title>Overview</title>
             </Head>
             <DetailsSidebarContainer />
             <styles.spacing.Margin bottom="4">
               <Heading level="1">
-                Meetings
+                Overview
               </Heading>
             </styles.spacing.Margin>
             <styles.spacing.Margin bottom="6">
@@ -66,16 +66,6 @@ class DashboardMeeting extends React.Component<Props> {
                 }}
               />
             </styles.spacing.Margin>
-            <styles.spacing.Margin bottom="4">
-              <Subheading>Today - 8 Meeting</Subheading>
-            </styles.spacing.Margin>
-            <styles.spacing.Margin bottom="4">
-              <MeetingCardWrapper>
-                <MeetingCard
-
-                />
-              </MeetingCardWrapper>
-            </styles.spacing.Margin>
           </div>
         }
         right={null}
@@ -85,33 +75,21 @@ class DashboardMeeting extends React.Component<Props> {
   }
 }
 
-const Subheading = styled('div')`
-  font-size: 15px;
-  font-weight: 600;
-  ${(props: { theme: Theme }) => css`
-    color: ${props.theme.colorTextForeground};
-  `}
-`
-
-const MeetingCardWrapper = styled('div')`
-  max-width: 260px;
-`
-
-const Export = withAuth(withStore(DashboardMeeting))
+const Export = withAuth(withStore(DashboardOverview))
 
 async function getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
   if (process.env.SERVER) {
     const userId = String(req.user.id)
 
-    const [user] = await Promise.all([
+    const [overview, user] = await Promise.all([
+      services.usersMessagesOverview.find({ route: { userid: userId } }),
       services.users.get(userId),
-      // services.usersMeetingsOverview.find({ route: { userid: userId } }),
     ])
 
-    // store.usersMeetingsOverview.setOverview(overview)
+    store.usersMessagesOverview.setOverview(overview)
     store.users.setUser(user)
   } else {
-    // store.usersMeetingOverview.getOverview()
+    store.usersMessagesOverview.getOverview()
     store.users.getUser()
   }
 

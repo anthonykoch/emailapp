@@ -9,7 +9,7 @@
     "start": "npm run build && cross-env NODE_ENV='production' node ./build/server/index.js",
     "build": "npm run build:clean && npm run build:babel && npm run build:next && npm run build:copy",
     "build:next": "cross-env NODE_ENV='production' next build client",
-    "build:babel": "babel server -d build/server && babel client/routes.js -d build/client",
+    "build:babel": "babel shared -d build/shared && babel server -d build/server && babel client/routes.js -d build/client",
     "build:copy": "cp .alias.js build/.alias.js",
     "build:clean": "rm -rf build/*",
     "fix": "npx eslint \"client/**/*.js\" \"server/**/*.js\" *.js --fix -c .eslintrc.js",

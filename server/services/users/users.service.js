@@ -10,9 +10,8 @@ import type Knex$QueryBuilderFn from 'knex'
 import type {
   KnexDB,
   IDBService,
-  GetResponse,
   SingleCreateResponse,
-  FindResponse,
+  User,
 } from '@root/types'
 
 export class Service implements IDBService {
@@ -29,16 +28,23 @@ export class Service implements IDBService {
     this.table = Service.table
   }
 
-  async get(id: string): Promise<{} | null> {
+  async get(id: string): Promise<?User> {
     if (!Number.isFinite(+id)) {
       return null
     }
 
     return this.db(this.table)
-      .select()
+      .select({
+        id: 'id',
+        firstName: 'first_name',
+        lastName: 'last_name',
+        // 'profile_image as profileImage',
+        shortname: 'shortname',
+        username: 'username',
+      })
       .where('id', id)
       .first()
-      .then((user: ?{}) => user || null)
+      .then((user: ?User) => user === undefined ? null : user)
       .catch(() => {
         throw new RequestError.GeneralError('Service Unavailable')
       })
@@ -83,8 +89,6 @@ export class Service implements IDBService {
           builder.where('username', 'ilike', query.username)
         }
       })
-
-    console.log(q.toString())
 
     return q.catch(() => {
       throw new RequestError.GeneralError('Service Unavailable')

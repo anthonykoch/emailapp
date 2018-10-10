@@ -10,12 +10,10 @@ import SetAlert from './SetAlert'
 
 import styles from '@app/styles/utilities'
 
+import type { User } from '@root/types'
+
 type Props = {
-  user: {
-    // TODO: Figure out how to declare global types with flow
-    firstName: string,
-    lastName: string,
-  }
+  user: User,
 }
 
 export default class DashboardHeader extends React.PureComponent<Props> {

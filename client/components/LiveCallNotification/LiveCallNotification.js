@@ -9,16 +9,19 @@ import IconCamera from '@app/components/Icon/IconCamera'
 import UserListThumbnail from '@app/components/UserListThumbnail/UserListThumbnail'
 import LiveCallInfo from './Information'
 
-import { users } from '@app/data'
-
 import type { Theme } from '@app/styles/variables'
+import type { User } from '@root/types'
 
-type Props = {}
+type Props = {
+  users: User[],
+}
 
 // TODO: Do a cool animation with the you're invited button
 
 export default class LiveCallNotification extends React.PureComponent<Props> {
   render() {
+    const { users } = this.props
+
     return (
       <Background>
         <div className={containerClass}>

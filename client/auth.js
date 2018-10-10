@@ -20,12 +20,4 @@ app.configure(auth({
 
 app.configure(client.axios(axios))
 
-// export const getUsersMessages = (userId) => {
-//   axios.get('/api/users/${userId}/messages', {
-//     header: {
-//       Authorization: app.getJWT
-//     }
-//   })
-// }
-
 export default app

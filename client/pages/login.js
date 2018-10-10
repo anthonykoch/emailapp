@@ -5,7 +5,6 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import Head from 'next/head'
 
-import auth from '@app/auth'
 import { Router, Link } from '@app/routes'
 import styles from '@app/styles/utilities'
 import withStore from '@app/hocs/store'
@@ -14,14 +13,13 @@ import InputGroup from '@app/components/Input/InputGroup'
 import Main from '@app/layouts/main'
 import AnimatedDualOverlay from '@app/components/Overlay/AnimatedDualOverlay'
 
-import type { NextInitialArgs, IRootStore } from '@root/types'
+import type { IRootStore } from '@root/types'
 
-type InitialProps = {
-  store: IRootStore,
-}
+type InitialProps = {}
 
 type Props = {
   redirectUrl: string,
+  store: IRootStore,
 } & InitialProps
 
 type State = {
@@ -29,19 +27,6 @@ type State = {
   username: string,
   password: string,
   error: string,
-}
-
-const validations = {
-  username: {
-    rules: {
-
-    },
-    messages: {},
-  },
-  password: {
-    rules: {},
-    messages: {},
-  },
 }
 
 class Login extends React.Component<Props, State> {
@@ -52,10 +37,7 @@ class Login extends React.Component<Props, State> {
     isAuthenticated: false,
     username: '',
     password: '',
-  }
-
-  static async getInitialProps(props: NextInitialArgs): InitialProps {
-    return {}
+    error: '',
   }
 
   constructor() {
@@ -65,14 +47,18 @@ class Login extends React.Component<Props, State> {
     this.onUsernameChange = this.onInputChange.bind(this, 'username')
   }
 
-  componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({ isAuthenticated: true })
+  async componentDidMount() {
+    if (await this.props.store.auth.isAuthenticated()) {
+      if (Router.query.redirect) {
+        return Router.pushRoute(Router.query.redirect)
+      }
 
-  //     setTimeout(() => {
-  //       this.setState({ isAuthenticated: false })
-  //     }, 5000)
-  //   }, 3000)
+      return Router.pushRoute('/dashboard/overview')
+    }
+
+    this.setState({
+      isAuthenticated: false,
+    })
   }
 
   onSubmit = async (e) => {
@@ -113,7 +99,6 @@ class Login extends React.Component<Props, State> {
 
   render() {
     const { error, isAuthenticated } = this.state
-    console.log(this.props.redirectUrl);
 
     return (
       <Main>
@@ -128,7 +113,6 @@ class Login extends React.Component<Props, State> {
                 <styles.spacing.Margin y="6">
                   <Title>Sign in</Title>
                 </styles.spacing.Margin>
-
                 {error && (
                   <styles.spacing.Margin y="6">
                     <Error>{error}</Error>
@@ -193,9 +177,9 @@ class Login extends React.Component<Props, State> {
 
 
 const blue1 = '#373bff'
-const blue2 = '#b8b8cd'
-const inputBorderColor = blue2
-const inputBorderColorActive = blue1
+// const blue2 = '#b8b8cd'
+// const inputBorderColor = blue2
+// const inputBorderColorActive = blue1
 
 const SignUpLink = styled('a')`
   color: ${blue1};
