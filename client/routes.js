@@ -12,7 +12,7 @@ export const defs = [
   {
     name: 'home',
     pattern: '/',
-    page: 'index',
+    page: 'login',
   },
   {
     name: 'dashboard-messages',

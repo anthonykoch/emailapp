@@ -172,9 +172,11 @@ async function getInitialProps({ req, services, store }: NextInitialArgs): Promi
     store.usersMessages.setMessages(messages)
     store.users.setUser(user)
   } else {
-    store.usersMessagesOverview.getOverview()
-    store.usersMessages.getMessages()
-    store.users.getUser()
+    await Promise.all([
+      store.usersMessagesOverview.getOverview(),
+      store.usersMessages.getMessages(),
+      store.users.getUser(),
+    ])
   }
 
   return {}

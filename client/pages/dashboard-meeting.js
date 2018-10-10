@@ -112,7 +112,9 @@ async function getInitialProps({ req, services, store }: NextInitialArgs): Promi
     store.users.setUser(user)
   } else {
     // store.usersMeetingOverview.getOverview()
-    store.users.getUser()
+    await Promise.all([
+      store.users.getUser(),
+    ])
   }
 
   return {}

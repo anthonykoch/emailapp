@@ -106,27 +106,24 @@ export class UsersStore extends NestedStore {
       return null
     }
 
-    const user =
-      axios
-        .get(`/api/users/${authUser.userId}`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            this.setUser(res.data)
-          }
+    return axios
+      .get(`/api/users/${authUser.userId}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          this.setUser(res.data)
+        }
 
-          return res
-        })
-        .catch(err => {
-          console.log('UsersStore', err)
+        return res
+      })
+      .catch(err => {
+        console.log('UsersStore', err)
 
-          return err
-        })
-
-    return user
+        return err
+      })
   }
 }
 
@@ -291,7 +288,7 @@ export class AuthStore extends NestedStore {
   }
 
   @action async logout() {
-    return auth.logout()
+    return auth.passport.logout()
   }
 
   @action login({

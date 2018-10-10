@@ -6,7 +6,7 @@ import Validator from 'validatorjs'
 import _ from 'lodash'
 import Head from 'next/head'
 
-import { create } from '@shared/validations/user'
+import { create } from '@app/validations/user'
 import auth from '@app/auth'
 import styles from '@app/styles/utilities'
 import { withStore } from '@app/context/store'

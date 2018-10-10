@@ -3,7 +3,7 @@
 import RequestError from '@feathersjs/errors'
 
 import { Validator } from '@server/hooks/validate'
-import { create } from '@shared/validations/user'
+import { create } from '@app/validations/user'
 
 import type { IValidator, ValidationResult } from '@root/types'
 

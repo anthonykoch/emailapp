@@ -21,19 +21,6 @@ type State = {
   error: string,
 }
 
-const validations = {
-  username: {
-    rules: {
-
-    },
-    messages: {},
-  },
-  password: {
-    rules: {},
-    messages: {},
-  },
-}
-
 class Logout extends React.Component<Props, State> {
   async componentDidMount() {
     await this.props.store.auth.logout()
