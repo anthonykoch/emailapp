@@ -1,7 +1,6 @@
 // @flow
 
 import Validator from 'validatorjs'
-import axios from 'axios'
 
 export default (app: any) => {
   Validator.register('stripped', (value, req, attribute) => {

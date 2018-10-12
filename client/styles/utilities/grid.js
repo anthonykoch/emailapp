@@ -11,7 +11,6 @@ export const AutoFlexGrid = (props: { children: any }) => {
   return (
     <div style={{ 'display': 'flex' }}>
       {children.map((child, index) => {
-
         return (
           <div key={index} style={{ width, flexBasis: 'auto' }}>
             {child}

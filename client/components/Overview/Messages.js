@@ -4,7 +4,6 @@ import React from 'react'
 import styled from 'react-emotion'
 
 import Overview from './Overview'
-// import styles from '@app/styles/utilities'
 
 type Props = {
   overall: {

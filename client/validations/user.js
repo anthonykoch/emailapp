@@ -22,5 +22,5 @@ export const create = {
     'min.password': 'Your password must be at least 8 characters',
     'max.password': 'Your password must be no more than 128 characters',
     'stripped.password': 'The password can not begin or end with whitespace',
-  }
+  },
 }

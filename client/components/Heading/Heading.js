@@ -28,4 +28,5 @@ const Heading: ComponentType<Props> = styled('h2')`
     ${css(types[props.level])}
   `}
 `
+
 export default Heading

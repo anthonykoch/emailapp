@@ -4,6 +4,7 @@ import React from 'react'
 import Head from 'next/head'
 
 import Main from '@app/layouts/main'
+
 import { Router } from '@app/routes'
 import withStore from '@app/hocs/store'
 

@@ -63,7 +63,6 @@ export default class InputGroup extends React.Component<Props> {
   }
 }
 
-
 const blue1 = '#373bff'
 const blue2 = '#b8b8cd'
 const inputBorderColor = blue2

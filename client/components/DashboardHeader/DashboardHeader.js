@@ -36,9 +36,6 @@ export default class DashboardHeader extends React.PureComponent<Props> {
               </div>
               <UserProfilePreview
                 user={this.props.user}
-                className={css`
-
-                `}
               />
             </DashboardRight>
           </div>

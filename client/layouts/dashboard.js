@@ -93,7 +93,6 @@ const Container = styled('div')`
   padding-top: 40px;
 `
 
-// width: Using calc() fixes a bug with elements that have white-space: nowrap
 const LeftColumn = styled('div')`
   flex-basis: auto;
   padding-left: ${gutter}px;
@@ -107,6 +106,7 @@ const MiddleColumn = styled('div')`
   width: calc(100% - ${leftColumnWidth}px);
 `
 
+// FIXME: Not sure if there should be a third column
 // const RightColumn = styled('div')`
 //   flex-basis: auto;
 //   max-width: ${rightColumnWidth}px;

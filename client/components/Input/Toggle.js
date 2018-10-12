@@ -1,12 +1,12 @@
 // @flow
 
 import React from 'react'
-
 import styled, { css } from 'react-emotion'
 
 import type { Theme } from '@app/styles/variables'
 
 type Props = {
+  inputProps?: Object,
   checked?: boolean,
   onChange?: Function,
   className?: string,
@@ -40,11 +40,12 @@ export default class Checkbox extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { className } = this.props
+    const { inputProps, className } = this.props
 
     return (
       <Container className={className}>
         <Input
+          {...inputProps}
           type="checkbox"
           checked={this.state.isChecked}
           onChange={this.onChange}

@@ -18,33 +18,33 @@ type State = {
   isOpen: boolean,
 }
 
-export default withStore(observer(
-  class DetailsSidebarContainer extends React.Component<Props, State> {
-    constructor(props: Props) {
-      super()
+class DetailsSidebarContainer extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super()
 
-      this.state = {
-        isOpen: props.defaultOpen == null ? false : props.defaultOpen,
-      }
+    this.state = {
+      isOpen: props.defaultOpen == null ? false : props.defaultOpen,
     }
+  }
 
-    show = () => {
-      this.props.store.meeting.showSidebar()
-    }
+  show = () => {
+    this.props.store.meeting.showSidebar()
+  }
 
-    hide = () => {
-      this.props.store.meeting.hideSidebar()
-    }
+  hide = () => {
+    this.props.store.meeting.hideSidebar()
+  }
 
-    render() {
-      const { store } = this.props
+  render() {
+    const { store } = this.props
 
-      return (
-        <DetailsSidebar
-          open={store.meeting.isSidebarShowing}
-          onRequestClose={this.hide}
-        />
-      )
-    }
-  })
-)
+    return (
+      <DetailsSidebar
+        open={store.meeting.isSidebarShowing}
+        onRequestClose={this.hide}
+      />
+    )
+  }
+}
+
+export default withStore(observer(DetailsSidebarContainer))

@@ -2,8 +2,6 @@
 
 import styled from 'react-emotion'
 
-// import type { Theme } from '@app/styles/variables'
-
 export const SectionHeader = styled('div')`
   display: flex;
   align-items: center;

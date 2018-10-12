@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-// import { observer } from 'mobx'
 import styled, { css } from 'react-emotion'
 import Head from 'next/head'
 

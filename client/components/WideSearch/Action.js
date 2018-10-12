@@ -23,7 +23,6 @@ export default class Action extends React.PureComponent<Props> {
     )
   }
 
-
   renderContent() {
     switch (this.props.type) {
       case 'category':

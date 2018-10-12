@@ -12,9 +12,7 @@ import profileImage from '@app/images/shrewd.png'
 import type { Theme } from '@app/styles/variables'
 import type { User } from '@root/types'
 
-type Props = {
-  //
-}
+type Props = {}
 
 const users: User[] =
   Array(6).fill(6)
@@ -22,6 +20,7 @@ const users: User[] =
       id: index,
       firstName: 'Tony',
       lastName: 'Bamboni',
+      profileImage: '',
       username: 'lol',
       role: 'Super Admin',
       shortName: 'T',

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-
 import styled from 'react-emotion'
 
 type Props = {
@@ -87,15 +86,15 @@ const Indicator = styled('span')`
 `
 
 const Input = styled('input')`
-z-index: -1;
-position: absolute;
+  z-index: -1;
+  position: absolute;
 
-&:checked + * {
-  border-color: #008fff;
-  background-color: #008fff;
+  &:checked + * {
+    border-color: #008fff;
+    background-color: #008fff;
 
-  &:after {
-    opacity: 1;
+    &:after {
+      opacity: 1;
+    }
   }
-}
 `

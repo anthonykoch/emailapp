@@ -4,11 +4,12 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import { Transition } from 'react-transition-group'
 
-import styles from '@app/styles/utilities'
+// import Vote from './Vote'
 import InviteNotification from './InviteNotification'
 import { SectionPanel } from './Section'
-// import Vote from './Vote'
 import IconClose from '@app/components/Icon/IconClose'
+
+import styles from '@app/styles/utilities'
 
 import type { Theme } from '@app/styles/variables'
 

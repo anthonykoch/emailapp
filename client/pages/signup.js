@@ -6,14 +6,13 @@ import Validator from 'validatorjs'
 import _ from 'lodash'
 import Head from 'next/head'
 
-import { create } from '@app/validations/user'
-import auth from '@app/auth'
-import styles from '@app/styles/utilities'
-import { withStore } from '@app/context/store'
-
 import InputGroup from '@app/components/Input/InputGroup'
 import Main from '@app/layouts/main'
 import AnimatedDualOverlay from '@app/components/Overlay/AnimatedDualOverlay'
+
+import { create } from '@app/validations/user'
+import styles from '@app/styles/utilities'
+import { withStore } from '@app/context/store'
 
 import type { IRootStore } from '@root/types'
 

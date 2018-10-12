@@ -7,9 +7,6 @@ import styles from '@app/styles/utilities'
 import Checkbox from '@app/components/Input/Checkbox'
 import Tag from './Tag'
 
-// $FlowFixMe
-import profileImage from '@app/images/profile-image.jpg'
-
 import type { Message as TMessage } from '@root/types'
 
 type Props = {
@@ -29,7 +26,6 @@ export default class Message extends React.PureComponent<Props> {
           </CheckboxContainer>
           <Avatar>
             <ShortnameAvatar shortname={message.from.shortname}></ShortnameAvatar>
-            {/* <AvatarImage src={profileImage} alt="awd" /> */}
           </Avatar>
           <From>
             {message.from.firstName}{' '}
@@ -62,13 +58,6 @@ const Avatar = styled('div')`
   padding-right: 20px;
 `
 
-const AvatarImage = styled('img')`
-  border-radius: 50%;
-  display: block;
-  height: 40px;
-  width: 40px;
-`
-
 const TagList = styled('div')`
   display: flex;
   align-items: center;
@@ -80,8 +69,6 @@ const From = styled('div')`
   padding-right: 20px;
   width: 150px;
 `
-
-// 'shortname', users.shortname
 
 const CheckboxContainer = styled('div')`
   align-items: center;

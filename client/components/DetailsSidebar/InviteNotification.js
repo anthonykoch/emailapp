@@ -1,14 +1,14 @@
 // @flow
 
 import React from 'react'
-
 import styled, { css } from 'react-emotion'
 
-import styles from '@app/styles/utilities'
 import Toggle from '@app/components/Input/Toggle'
 import Time from './Time'
 import Title from './Title'
 import { SectionHeader } from './Section'
+
+import styles from '@app/styles/utilities'
 
 // $FlowFixMe
 import profileImage from '@app/images/shrewd.png'
@@ -23,15 +23,14 @@ export default class InviteNotification extends React.Component<Props> {
     return (
       <div>
         <SectionHeader>
-          {/* <div>{' '}</div> */}
           <div><Avatar src={profileImage} alt="avatar"/></div>
           <Time>9:43 PM</Time>
         </SectionHeader>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <styles.spacing.Padding right="2">
-            <Title>Mike invited you to "Over it"</Title>
+            <Title>{`Mike invited you to "Over it"`}</Title>
           </styles.spacing.Padding>
-          <ToggleWrapper htmlFor={'lol'}>
+          <ToggleWrapper>
             <Toggle />
             <LabelText>Going</LabelText>
           </ToggleWrapper>
