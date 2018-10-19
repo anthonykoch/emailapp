@@ -4,6 +4,13 @@
 An (in progress) mock email application built with Feathers JS backend and SSR React
 
 
+## Preview
+
+[A preview of the app can be see here](/emailapp.gif).
+
+**Note:** The long pauses between page changes [are caused Next's on-demand compilation in dev mode](https://github.com/zeit/next.js/issues/2146#issuecomment-305792277)
+
+
 ## Uses
 
 - [next.js v7](https://nextjs.org)
