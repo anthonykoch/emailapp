@@ -32,7 +32,7 @@ export default class InviteNotification extends React.Component<Props> {
           </styles.spacing.Padding>
           <ToggleWrapper>
             <Toggle />
-            <LabelText>Going</LabelText>
+            <LabelText>Going?</LabelText>
           </ToggleWrapper>
         </div>
       </div>
@@ -46,7 +46,7 @@ const ToggleWrapper = styled('div')`
 `
 
 const LabelText = styled('span')`
-  font-size: 11px;
+  font-size: 10px;
   display: inline-block;
   margin-left: 7px;
 

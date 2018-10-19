@@ -12,7 +12,9 @@ import profileImage from '@app/images/shrewd.png'
 import type { Theme } from '@app/styles/variables'
 import type { User } from '@root/types'
 
-type Props = {}
+type Props = {
+  onViewDetailsClick?: Function,
+}
 
 const users: User[] =
   Array(6).fill(6)
@@ -28,6 +30,8 @@ const users: User[] =
 
 export default class MeetingCard extends React.PureComponent<Props> {
   render() {
+    const { onViewDetailsClick } = this.props
+
     return (
       <Panel>
         <Header>
@@ -53,7 +57,7 @@ export default class MeetingCard extends React.PureComponent<Props> {
           </styles.spacing.Padding>
         </Information>
         <Divider />
-        <Action>View Details</Action>
+        <Action onClick={onViewDetailsClick}>View Details</Action>
       </Panel>
     )
   }

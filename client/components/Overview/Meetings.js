@@ -39,7 +39,7 @@ export default class MeetingOverview extends React.PureComponent<Props> {
         icon: <IconBackground />,
       },
       {
-        title: 'Canceled Messages',
+        title: 'Canceled Meetings',
         amount: canceled.amount,
         timeframe: canceled.timeframe,
         icon: <IconBackground />,

@@ -46,7 +46,8 @@ export default class InputGroup extends React.Component<Props> {
           </styles.spacing.Margin>
           <Control>
             <Input
-              type="text" {...inputProps}
+              type="text"
+              {...inputProps}
               hasIcon={icon != null}
               size={size}
             />

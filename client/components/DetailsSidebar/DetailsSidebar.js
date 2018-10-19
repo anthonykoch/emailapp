@@ -82,9 +82,9 @@ export default class DetailsSidebar extends React.PureComponent<Props> {
           <SectionPanel>
             <InviteNotification></InviteNotification>
           </SectionPanel>
-          <SectionPanel>
-            {/* <Vote open={true} options={undefined}></Vote> */}
-          </SectionPanel>
+          {/* <SectionPanel>
+            <Vote open={true} options={undefined}></Vote>
+          </SectionPanel> */}
         </Panel>
       </SidebarTransition>
     )

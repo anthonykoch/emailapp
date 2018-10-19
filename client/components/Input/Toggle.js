@@ -74,7 +74,7 @@ const Indicator = styled('span')`
   display: block;
   height: ${indicatorSize}px;
   position: relative;
-  transition-duration: 250ms;
+  transition-duration: 210ms;
   transition-property: transform;
   width: ${indicatorSize}px;
 
@@ -86,14 +86,13 @@ const Indicator = styled('span')`
 `
 
 const IndicatorContainer = styled('div')`
+  background-color: #e9e9e9;
   border-radius: 1000px;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: block;
   padding: ${indicatorContainerBorderWidth}px;
+  transition: background-color 210ms;
   width: ${indicatorContainerWidth}px;
-
-  ${(props: { theme: Theme }) => css`
-    background-color: ${props.theme.color1}
-  `}
 `
 
 const Input = styled('input')`
