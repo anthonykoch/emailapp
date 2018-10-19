@@ -24,6 +24,7 @@ type Props = {
 
 type State = {
   isAuthenticated: boolean,
+  isAuthPrecheckFinished: boolean,
   username: string,
   password: string,
   error: string,
@@ -121,7 +122,7 @@ class Login extends React.Component<Props, State> {
       <AnimatedDualOverlay
         showing={!isAuthenticated}
         first={
-          <form validate>
+          <form>
             <LoginInner>
               <styles.spacing.Margin y="6">
                 <Title>Sign in</Title>

@@ -23,7 +23,7 @@ export default class AppDocument extends Document {
     return (
       <html>
         <Head>
-          <title key="title">With Emotion</title>
+          <title key="title"></title>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body>
