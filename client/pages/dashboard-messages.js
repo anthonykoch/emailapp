@@ -1,8 +1,10 @@
 // @flow
 
 import React from 'react'
+import { withRouter } from 'next/router'
 import styled, { css, cx } from 'react-emotion'
 import { observer } from 'mobx-react'
+import _ from 'lodash'
 
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
@@ -71,13 +73,13 @@ class DashboardMessages extends React.Component<Props & InitialProps> {
       usersMessagesOverview: { overview },
       usersMessages: { messages },
       users: { user },
-      // liveCallNotification=false,
+      notifications={},
     } = this.props.store
 
     return (
       <Page
         user={
-          // $FlowFixMe This can technically never be null at this point
+          // $FlowFixMe
           user
         }
         middle={
@@ -96,7 +98,7 @@ class DashboardMessages extends React.Component<Props & InitialProps> {
               </Header>
             </styles.spacing.Margin>
 
-            {false && (<styles.spacing.Margin bottom="4">
+            {notifications.liveCall && (<styles.spacing.Margin bottom="4">
               <LiveCallNotification users={[]} />
             </styles.spacing.Margin>)}
 
@@ -156,7 +158,7 @@ const IdkWhatThisIs = styled('div')`
   `}
 `
 
-const Export = withAuth(withStore(DashboardMessages))
+const Export = _.flowRight(withRouter, withAuth, withStore)(DashboardMessages)
 
 async function getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
   if (process.env.SERVER) {
@@ -184,5 +186,6 @@ async function getInitialProps({ req, services, store }: NextInitialArgs): Promi
 
 // $FlowFixMe
 Export.getInitialProps = getInitialProps
+Export.displayName = 'DashboardMessages'
 
 export default Export

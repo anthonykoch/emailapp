@@ -2,6 +2,7 @@
 
 import React from 'react'
 import App, { Container } from 'next/app'
+import { Router } from '@app/routes'
 
 import configureValidator from '@app/validations/register'
 import StoreContext from '@app/context/store'
@@ -74,6 +75,21 @@ export default class AppWithMobx extends App {
     super(props)
 
     this.store = getStore(this.props.initialState)
+
+    if (!process.env.SERVER) {
+      // Fixme: This doesn't seem to work...
+      // Router.beforePopState(({ url, as, options }) => {
+      //   console.log({as})
+
+      //   // if (as !== "/" || as !== "/other") {
+      //   //   // Have SSR render bad routes as a 404.
+      //   //   window.location.href = as
+      //   //   return false
+      //   // }
+
+      //   return true
+      // })
+    }
   }
 
   render() {

@@ -3,7 +3,9 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import Head from 'next/head'
+import { withRouter } from 'next/router'
 import { observer } from 'mobx-react'
+import _ from 'lodash'
 
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
@@ -28,6 +30,11 @@ type Props = {
 
 @observer
 class DashboardMeeting extends React.Component<Props> {
+
+  showSidebar = () => {
+    this.props.store.meeting.showSidebar()
+  }
+
   render() {
     const {
       users: { user },
@@ -72,7 +79,7 @@ class DashboardMeeting extends React.Component<Props> {
             <styles.spacing.Margin bottom="4">
               <MeetingCardWrapper>
                 <MeetingCard
-
+                  onViewDetailsClick={this.showSidebar}
                 />
               </MeetingCardWrapper>
             </styles.spacing.Margin>
@@ -97,7 +104,7 @@ const MeetingCardWrapper = styled('div')`
   max-width: 260px;
 `
 
-const Export = withAuth(withStore(DashboardMeeting))
+const Export = _.flowRight(withRouter, withAuth, withStore)(DashboardMeeting)
 
 async function getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
   if (process.env.SERVER) {
@@ -122,5 +129,6 @@ async function getInitialProps({ req, services, store }: NextInitialArgs): Promi
 
 // $FlowFixMe
 Export.getInitialProps = getInitialProps
+Export.displayName = 'DashboardMeeting'
 
 export default Export

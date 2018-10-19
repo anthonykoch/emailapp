@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react'
+import Head from 'next/head'
+import { withRouter } from 'next/router'
 import styled, { css } from 'react-emotion'
 import Validator from 'validatorjs'
 import _ from 'lodash'
-import Head from 'next/head'
 
 import InputGroup from '@app/components/Input/InputGroup'
 import Main from '@app/layouts/main'
@@ -372,4 +373,8 @@ const Submit = styled('button')`
   width: 100%;
 `
 
-export default withStore(Signup)
+const Export = _.flowRight(withRouter, withStore)(Signup)
+
+Export.displayName = 'Signup'
+
+export default Export

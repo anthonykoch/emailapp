@@ -2,7 +2,9 @@
 
 import React from 'react'
 import Head from 'next/head'
+import { withRouter } from 'next/router'
 import { observer } from 'mobx-react'
+import _ from 'lodash'
 
 import Page from '@app/layouts/dashboard'
 import Heading from '@app/components/Heading/Heading'
@@ -73,7 +75,7 @@ class DashboardOverview extends React.Component<Props> {
   }
 }
 
-const Export = withAuth(withStore(DashboardOverview))
+const Export = _.flowRight(withRouter, withAuth, withStore)(DashboardOverview)
 
 async function getInitialProps({ req, services, store }: NextInitialArgs): Promise<InitialProps> {
   if (process.env.SERVER) {
@@ -98,5 +100,6 @@ async function getInitialProps({ req, services, store }: NextInitialArgs): Promi
 
 // $FlowFixMe
 Export.getInitialProps = getInitialProps
+Export.displayName = 'DashboardOverview'
 
 export default Export

@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Head from 'next/head'
+import { withRouter } from 'next/router'
+import _ from 'lodash'
 
 import Main from '@app/layouts/main'
 
@@ -39,4 +41,8 @@ class Logout extends React.Component<Props, State> {
   }
 }
 
-export default withStore(Logout)
+const Export = _.flowRight(withRouter, withStore)(Logout)
+
+Export.displayName = 'Logout'
+
+export default Export
