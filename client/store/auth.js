@@ -2,15 +2,13 @@
 
 // eslint-disable-next-line no-unused-vars
 import { action, observable, autorun } from 'mobx'
-
 import axios from 'axios'
+
 import auth from '@app/auth'
 import client from '@app/client'
+import NestedStore from '@app/store/nested-store'
 
-import NestedStore from './nested-store'
-
-
-import type { RootStore } from './index'
+import type { RootStore } from '@app/store'
 import type { AuthStoreState } from '@root/types'
 
 type SignupCredentials = {

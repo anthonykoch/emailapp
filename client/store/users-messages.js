@@ -2,12 +2,12 @@
 
 // eslint-disable-next-line no-unused-vars
 import { action, observable, autorun } from 'mobx'
-
 import axios from 'axios'
 
-import NestedStore from './nested-store'
+import NestedStore from '@app/store/nested-store'
 
-import type { RootStore } from './index'
+import type { RootStore } from '@app/store'
+
 import type {
   Message,
   UsersMessagesStoreState,

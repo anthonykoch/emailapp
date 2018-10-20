@@ -5,11 +5,11 @@ import { action, observable, autorun } from 'mobx'
 
 import type { RootStoreState } from '@root/types'
 
-import AuthStore from './auth'
-import MeetingStore from './meeting'
-import UsersStore from './users'
-import UsersMessagesStore from './users-messages'
-import UsersMessagesOverviewStore from './users-messages-overview'
+import AuthStore from '@store/auth'
+import MeetingStore from '@store/meeting'
+import UsersStore from '@store/users'
+import UsersMessagesStore from '@store/users-messages'
+import UsersMessagesOverviewStore from '@store/users-messages-overview'
 
 export class RootStore {
   // eslint-disable-next-line

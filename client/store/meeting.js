@@ -3,9 +3,9 @@
 // eslint-disable-next-line no-unused-vars
 import { action, observable, autorun } from 'mobx'
 
-import NestedStore from './nested-store'
+import NestedStore from '@app/store/nested-store'
 
-import type { RootStore } from './'
+import type { RootStore } from '@app/store'
 import type { MeetingStoreState } from '@root/types'
 
 export default class MeetingStore extends NestedStore {
